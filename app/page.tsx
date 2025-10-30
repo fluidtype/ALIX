@@ -387,10 +387,10 @@ function RoadmapInvestorsSection() {
   ];
 
   return (
-    <section className="relative overflow-hidden border-t border-steel/60 bg-carbon py-24">
+    <section className="relative overflow-hidden border-t border-steel/60 bg-carbon py-20">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(173,255,0,0.12),transparent_75%)]" />
-      <div className="relative mx-auto w-full max-w-[120rem] space-y-16 px-6 md:px-10 xl:px-16 2xl:px-24">
-        <div className="pt-24 pb-16">
+      <div className="relative mx-auto w-full max-w-[120rem] space-y-12 px-6 md:px-10 xl:px-16 2xl:px-24">
+        <div className="pt-16 pb-10">
           <div className="h-1 w-20 bg-lime-gradient" />
           <div className="mt-6">
             <h2 className="font-display text-[1.4rem] font-semibold text-lime-400 md:text-[1.6rem]">
@@ -403,7 +403,7 @@ function RoadmapInvestorsSection() {
           </div>
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-6">
           <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <h3 className="font-display text-2xl text-white">Roadmap 30 Giorni – Auditata, IAO Nativa, su Base</h3>
           </div>
@@ -428,14 +428,14 @@ function RoadmapInvestorsSection() {
               </div>
             ))}
           </div>
-          <div className="mt-8 flex w-full justify-center mb-16">
+          <div className="mt-6 flex w-full justify-center mb-12">
             <div className="inline-flex items-center rounded-full border border-lime-400/40 bg-black/60 px-4 py-1 text-[11px] font-medium uppercase tracking-wide text-lime-300">
               DAY 30 • IAO ALIX ACTIVE • INDEX100 LIVE
             </div>
           </div>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 mb-16">
+        <div className="grid gap-6 md:grid-cols-2 mb-12">
           <div className="flex h-full flex-col rounded-xl border border-neutral-800 bg-neutral-900/40 p-6">
             <h3 className="text-lg font-medium text-white mb-4">Parametri di Lancio</h3>
             <dl className="space-y-4 text-sm">
@@ -473,7 +473,7 @@ function RoadmapInvestorsSection() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-3 text-[11px] tracking-wide text-neutral-300">
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-3 text-[11px] tracking-wide text-neutral-300">
           <span className="rounded-full border border-neutral-700 bg-black/40 px-3 py-1">Audit: Quantstamp</span>
           <span className="rounded-full border border-neutral-700 bg-black/40 px-3 py-1">LP locked 10 anni</span>
           <span className="rounded-full border border-neutral-700 bg-black/40 px-3 py-1">No pre-mine · No insiders</span>
