@@ -384,8 +384,8 @@ function RoadmapInvestorsSection() {
           <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <h3 className="font-display text-2xl text-white">Roadmap 30 Giorni – Auditata, IAO Nativa, su Base</h3>
           </div>
-          <div className="overflow-x-auto rounded-2xl border border-steel/60 bg-graphite/80">
-            <div className="min-w-[720px] grid grid-cols-5 divide-x divide-steel/40">
+          <div className="rounded-2xl border border-steel/60 bg-graphite/80">
+            <div className="grid divide-y divide-steel/40 sm:grid-cols-2 lg:grid-cols-5 lg:divide-y-0 lg:divide-x lg:divide-steel/40">
               {timeline.map((item) => (
                 <div key={item.period} className="space-y-4 p-6">
                   <div className="text-xs uppercase tracking-[0.3em] text-neon/80">{item.period}</div>
