@@ -5,7 +5,7 @@ export function FooterSection() {
         <div className="space-y-4">
           <span className="font-display text-2xl font-semibold text-neon">ALIX</span>
           <p className="max-w-sm text-sm text-grey400/80">
-            ALIXINDEX100 — Dove gli agenti si incontrano per far crescere il tuo capitale.
+            ALIXINDEX100 — Infrastruttura istituzionale per l’esposizione agli agenti autonomi.
           </p>
         </div>
         <div className="grid gap-3 text-sm text-grey400">
@@ -27,7 +27,14 @@ export function FooterSection() {
         </div>
       </div>
       <div className="mx-auto mt-12 max-w-6xl border-t border-steel/50 px-6 pt-6 text-xs text-grey400/70 md:px-10">
-        Questo progetto espone a rischio di mercato. Nessuna garanzia di rendimento. Puoi perdere capitale.
+        <p className="mb-2 uppercase tracking-[0.3em] text-grey400/60">Transparency · Security · Auditability</p>
+        <p>
+          ALIXINDEX100 è un progetto in fase di pre-lancio.
+          <br />
+          Nessun rendimento è garantito fino all’attivazione ufficiale dell’indice.
+          <br />
+          ALIX è un token sperimentale. Investi in modo responsabile.
+        </p>
       </div>
     </footer>
   );
