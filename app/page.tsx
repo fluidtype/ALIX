@@ -11,6 +11,7 @@ export default function LandingPage() {
         <HowItWorksSection />
         <LiveIndexSection />
         <TrustedSection />
+        <RoadmapInvestorsSection />
       </main>
       <FooterSection />
     </div>
@@ -291,6 +292,155 @@ function TrustedSection() {
         >
           Leggi la Visione
         </a>
+      </div>
+    </section>
+  );
+}
+
+function RoadmapInvestorsSection() {
+  const timeline = [
+    {
+      period: "Day 0",
+      objective: "Preparazione IAO",
+      milestone: "Setup profilo agente · 100 $VIRTUAL fee · Deploy pagina IAO",
+    },
+    {
+      period: "Week 1",
+      objective: "Core Protocol",
+      milestone: "Vault su Base · 1inch Fusion Router · Gelato Keeper · Weight Engine (0.6 MC + 0.3 Vol + 0.1 Liq)",
+    },
+    {
+      period: "Week 2",
+      objective: "Sicurezza & Testnet",
+      milestone: "Audit Quantstamp · Beta privata con 100 tester · Test bonding curve",
+    },
+    {
+      period: "Week 3",
+      objective: "Lancio IAO",
+      milestone: "Token ALIX generato da Virtuals · INDEX100 live (feed top 100 agents)",
+    },
+    {
+      period: "Week 4",
+      objective: "Fee + Staking Attivi",
+      milestone: "1% trading fee + 0.3% protocol fee · NAV live · Rebalance automatico",
+    },
+  ];
+
+  const launchParameters = [
+    { label: "Piattaforma", value: "Virtuals Protocol IAO (Base chain)" },
+    { label: "Supply Fisso", value: "1 miliardo ALIX" },
+    { label: "Liquidity", value: "Paired con $VIRTUAL – LP locked 10 anni" },
+    { label: "Trading Fee", value: "1% per inference/GPU" },
+    { label: "Fair Launch", value: "No pre-mine · No insiders · Community-only" },
+  ];
+
+  const security = [
+    { label: "Audit", value: "Quantstamp – Report pubblico Day 14" },
+    {
+      label: "Smart Contract",
+      value: "GitHub pubblico (github.com/alix-index) · Verified su Base + Virtuals SDK",
+    },
+    {
+      label: "Integrazione Virtuals",
+      value: "100 $VIRTUAL fee · 1% fee su agent ops",
+    },
+  ];
+
+  const nextPhases = [
+    {
+      phase: "Fase 2",
+      timeline: "Mese 2–4",
+      objective: "MEME100 · TRADE100 · GAME100 – indici tematici basati su Virtuals Agents",
+    },
+    {
+      phase: "Fase 3",
+      timeline: "Mese 5–8",
+      objective: "User-Generated Index – creazione indici personalizzati su Virtuals IAO",
+    },
+    {
+      phase: "Fase 4",
+      timeline: "Mese 9–12",
+      objective: "Cross-chain (Solana) · Leverage 2x · Staking v2 con GAME SDK",
+    },
+  ];
+
+  return (
+    <section className="relative overflow-hidden border-t border-steel/60 bg-carbon py-24">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(173,255,0,0.12),transparent_75%)]" />
+      <div className="relative mx-auto max-w-6xl space-y-16 px-6 md:px-10">
+        <div className="space-y-6">
+          <div className="h-1 w-20 bg-lime-gradient" />
+          <div className="space-y-4">
+            <h2 className="font-display text-3xl font-semibold text-neon md:text-4xl">
+              ALIXINDEX100 – Roadmap Pubblica per Investitori
+            </h2>
+            <p className="text-lg text-grey400">
+              Fair Launch su Virtuals Protocol – IAO Day 30 · Audit Quantstamp in corso · Tokenizzazione su Base
+            </p>
+          </div>
+        </div>
+
+        <div className="space-y-6">
+          <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+            <h3 className="font-display text-2xl text-white">Roadmap 30 Giorni – Auditata, IAO Nativa, su Base</h3>
+          </div>
+          <div className="overflow-x-auto rounded-2xl border border-steel/60 bg-graphite/80">
+            <div className="min-w-[720px] grid grid-cols-5 divide-x divide-steel/40">
+              {timeline.map((item) => (
+                <div key={item.period} className="space-y-4 p-6">
+                  <div className="text-xs uppercase tracking-[0.3em] text-neon/80">{item.period}</div>
+                  <div className="font-display text-xl text-white">{item.objective}</div>
+                  <p className="text-sm leading-relaxed text-grey400">{item.milestone}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-full border border-neon/40 bg-black/60 px-4 py-2 text-center text-sm font-semibold uppercase tracking-[0.28em] text-neon">
+            → Day 30: IAO ALIX + INDEX100 Live
+          </div>
+        </div>
+
+        <div className="grid gap-10 lg:grid-cols-2">
+          <div className="space-y-4">
+            <h3 className="font-display text-2xl text-white">Parametri di Lancio</h3>
+            <div className="divide-y divide-steel/40 overflow-hidden rounded-2xl border border-steel/60 bg-graphite/80">
+              {launchParameters.map((item) => (
+                <div key={item.label} className="grid gap-4 px-6 py-5 md:grid-cols-[0.4fr_1fr]">
+                  <span className="text-sm uppercase tracking-[0.25em] text-grey400/70">{item.label}</span>
+                  <span className="text-base text-grey400">{item.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="space-y-4">
+            <h3 className="font-display text-2xl text-white">Trasparenza &amp; Sicurezza – Zero Compromessi</h3>
+            <div className="divide-y divide-steel/40 overflow-hidden rounded-2xl border border-steel/60 bg-graphite/80">
+              {security.map((item) => (
+                <div key={item.label} className="grid gap-4 px-6 py-5 md:grid-cols-[0.4fr_1fr]">
+                  <span className="text-sm uppercase tracking-[0.25em] text-grey400/70">{item.label}</span>
+                  <span className="text-base text-grey400">{item.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <h3 className="font-display text-2xl text-white">Prossime Fasi – Oltre i 30 Giorni</h3>
+          <div className="divide-y divide-steel/40 overflow-hidden rounded-2xl border border-steel/60 bg-graphite/80">
+            {nextPhases.map((item) => (
+              <div key={item.phase} className="grid gap-4 px-6 py-5 md:grid-cols-[0.25fr_0.25fr_1fr]">
+                <span className="text-sm font-semibold uppercase tracking-[0.25em] text-neon/80">{item.phase}</span>
+                <span className="text-sm uppercase tracking-[0.2em] text-grey400/70">{item.timeline}</span>
+                <span className="text-base text-grey400">{item.objective}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <p className="text-sm text-gray-400">
+          MANTIENI LO STESOS STILE DELLA LANDING PAGE, MANDA SCREEN FINALE
+        </p>
       </div>
     </section>
   );
