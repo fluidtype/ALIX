@@ -8,7 +8,7 @@ const navLinks = [
   { label: "Indice", href: "/#index" },
   { label: "Come funziona", href: "/#how-it-works" },
   { label: "Roadmap", href: "/roadmap" },
-  { label: "Whitepaper", href: "/#whitepaper" },
+  { label: "Whitepaper", href: "/whitepaper" },
 ];
 
 export function Header() {
