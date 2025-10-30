@@ -305,27 +305,46 @@ function RoadmapInvestorsSection() {
     {
       period: "Day 0",
       objective: "Preparazione IAO",
-      milestone: "Setup profilo agente · 100 $VIRTUAL fee · Deploy pagina IAO",
+      details: [
+        "· Setup profilo agente Virtuals",
+        "· Fee 100 $VIRTUAL per attivazione",
+        "· Deploy pagina IAO",
+      ],
     },
     {
       period: "Week 1",
       objective: "Core Protocol",
-      milestone: "Vault su Base · 1inch Fusion Router · Gelato Keeper · Weight Engine (0.6 MC + 0.3 Vol + 0.1 Liq)",
+      details: [
+        "· Vault su Base + 1inch Fusion Router",
+        "· Gelato Keeper per automazioni",
+        "· Weight Engine 0.6 MC · 0.3 Vol · 0.1 Liq",
+      ],
     },
     {
       period: "Week 2",
       objective: "Sicurezza & Testnet",
-      milestone: "Audit Quantstamp · Beta privata con 100 tester · Test bonding curve",
+      details: [
+        "· Audit Quantstamp avviato",
+        "· Beta privata con 100 tester",
+        "· Test bonding curve",
+      ],
     },
     {
       period: "Week 3",
       objective: "Lancio IAO",
-      milestone: "Token ALIX generato da Virtuals · INDEX100 live (feed top 100 agents)",
+      details: [
+        "· Token ALIX generato da Virtuals",
+        "· INDEX100 live con feed top 100 agents",
+      ],
     },
     {
       period: "Week 4",
       objective: "Fee + Staking Attivi",
-      milestone: "1% trading fee + 0.3% protocol fee · NAV live · Rebalance automatico",
+      details: [
+        "· 1% trading fee + 0.3% protocol fee",
+        "· NAV live e reporting giornaliero",
+        "· Rebalance automatico",
+      ],
     },
   ];
 
@@ -371,60 +390,73 @@ function RoadmapInvestorsSection() {
     <section className="relative overflow-hidden border-t border-steel/60 bg-carbon py-24">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(173,255,0,0.12),transparent_75%)]" />
       <div className="relative mx-auto w-full max-w-[120rem] space-y-16 px-6 md:px-10 xl:px-16 2xl:px-24">
-        <div className="space-y-6">
+        <div className="pt-24 pb-16">
           <div className="h-1 w-20 bg-lime-gradient" />
-          <div className="space-y-4">
-            <h2 className="font-display text-3xl font-semibold text-neon md:text-4xl">
+          <div className="mt-6">
+            <h2 className="font-display text-[1.4rem] font-semibold text-lime-400 md:text-[1.6rem]">
               ALIXINDEX100 – Roadmap Pubblica per Investitori
             </h2>
-            <p className="text-lg text-grey400">
+            <p className="mt-4 max-w-[900px] text-sm leading-relaxed text-neutral-300 md:text-base">
               Fair Launch su Virtuals Protocol – IAO Day 30 · Audit Quantstamp in corso · Tokenizzazione su Base
             </p>
+            <div className="h-px w-full bg-neutral-800/60 mt-6 mb-8" />
           </div>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-8">
           <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <h3 className="font-display text-2xl text-white">Roadmap 30 Giorni – Auditata, IAO Nativa, su Base</h3>
           </div>
-          <div className="rounded-2xl border border-steel/60 bg-graphite/80">
-            <div className="grid divide-y divide-steel/40 sm:grid-cols-2 lg:grid-cols-5 lg:divide-y-0 lg:divide-x lg:divide-steel/40">
-              {timeline.map((item) => (
-                <div key={item.period} className="space-y-4 p-6">
-                  <div className="text-xs uppercase tracking-[0.3em] text-neon/80">{item.period}</div>
-                  <div className="font-display text-xl text-white">{item.objective}</div>
-                  <p className="text-sm leading-relaxed text-grey400">{item.milestone}</p>
+          <div className="grid gap-4 rounded-xl border border-neutral-800 bg-neutral-900/40 p-4 md:grid-cols-5 md:p-6">
+            {timeline.map((item) => (
+              <div
+                key={item.period}
+                className="flex flex-col gap-3 rounded-xl border border-neutral-800 bg-black/40 p-4"
+              >
+                <div className="space-y-2">
+                  <div className="h-px w-8 bg-lime-400/30" />
+                  <span className="text-[10px] font-medium uppercase tracking-[0.15em] text-neutral-400">
+                    {item.period.toUpperCase()}
+                  </span>
                 </div>
-              ))}
-            </div>
+                <h4 className="text-base font-semibold text-white">{item.objective}</h4>
+                <div className="space-y-1 text-sm leading-relaxed text-neutral-300">
+                  {item.details.map((detail) => (
+                    <p key={detail}>{detail}</p>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="rounded-full border border-neon/40 bg-black/60 px-4 py-2 text-center text-sm font-semibold uppercase tracking-[0.28em] text-neon">
-            → Day 30: IAO ALIX + INDEX100 Live
+          <div className="mt-8 flex w-full justify-center mb-16">
+            <div className="inline-flex items-center rounded-full border border-lime-400/40 bg-black/60 px-4 py-1 text-[11px] font-medium uppercase tracking-wide text-lime-300">
+              DAY 30 • IAO ALIX ACTIVE • INDEX100 LIVE
+            </div>
           </div>
         </div>
 
-        <div className="grid gap-10 lg:grid-cols-2">
-          <div className="space-y-4">
-            <h3 className="font-display text-2xl text-white">Parametri di Lancio</h3>
-            <div className="divide-y divide-steel/40 overflow-hidden rounded-2xl border border-steel/60 bg-graphite/80">
+        <div className="grid gap-6 md:grid-cols-2 mb-16">
+          <div className="flex h-full flex-col rounded-xl border border-neutral-800 bg-neutral-900/40 p-6">
+            <h3 className="text-lg font-medium text-white mb-4">Parametri di Lancio</h3>
+            <dl className="space-y-4 text-sm">
               {launchParameters.map((item) => (
-                <div key={item.label} className="grid gap-4 px-6 py-5 md:grid-cols-[0.4fr_1fr]">
-                  <span className="text-sm uppercase tracking-[0.25em] text-grey400/70">{item.label}</span>
-                  <span className="text-base text-grey400">{item.value}</span>
+                <div key={item.label} className="flex flex-col">
+                  <dt className="text-[11px] uppercase tracking-[0.15em] text-neutral-400">{item.label}</dt>
+                  <dd className="text-sm leading-relaxed text-neutral-100">{item.value}</dd>
                 </div>
               ))}
-            </div>
+            </dl>
           </div>
-          <div className="space-y-4">
-            <h3 className="font-display text-2xl text-white">Trasparenza &amp; Sicurezza – Zero Compromessi</h3>
-            <div className="divide-y divide-steel/40 overflow-hidden rounded-2xl border border-steel/60 bg-graphite/80">
+          <div className="flex h-full flex-col rounded-xl border border-neutral-800 bg-neutral-900/40 p-6">
+            <h3 className="text-lg font-medium text-white mb-4">Trasparenza &amp; Sicurezza – Zero Compromessi</h3>
+            <dl className="space-y-4 text-sm">
               {security.map((item) => (
-                <div key={item.label} className="grid gap-4 px-6 py-5 md:grid-cols-[0.4fr_1fr]">
-                  <span className="text-sm uppercase tracking-[0.25em] text-grey400/70">{item.label}</span>
-                  <span className="text-base text-grey400">{item.value}</span>
+                <div key={item.label} className="flex flex-col">
+                  <dt className="text-[11px] uppercase tracking-[0.15em] text-neutral-400">{item.label}</dt>
+                  <dd className="text-sm leading-relaxed text-neutral-100">{item.value}</dd>
                 </div>
               ))}
-            </div>
+            </dl>
           </div>
         </div>
 
@@ -439,6 +471,12 @@ function RoadmapInvestorsSection() {
               </div>
             ))}
           </div>
+        </div>
+
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-3 text-[11px] tracking-wide text-neutral-300">
+          <span className="rounded-full border border-neutral-700 bg-black/40 px-3 py-1">Audit: Quantstamp</span>
+          <span className="rounded-full border border-neutral-700 bg-black/40 px-3 py-1">LP locked 10 anni</span>
+          <span className="rounded-full border border-neutral-700 bg-black/40 px-3 py-1">No pre-mine · No insiders</span>
         </div>
 
       </div>
