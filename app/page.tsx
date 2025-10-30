@@ -25,31 +25,31 @@ function HeroSection() {
         <div className="space-y-8">
           <div className="inline-flex items-center gap-2 rounded-full border border-steel/60 bg-graphite/60 px-4 py-1 text-xs uppercase tracking-[0.3em] text-grey400/80">
             <span className="h-2 w-2 rounded-full bg-neon" />
-            <span>ALIXINDEX100 LIVE ACCESS</span>
+            <span>ALIXINDEX100 PRE-LAUNCH</span>
           </div>
           <h1 className="font-display text-4xl font-semibold tracking-tight text-white md:text-5xl lg:text-6xl">
-            Possiedi l’intelligenza, non inseguirla.
+            Building the Infrastructure for the Autonomous Economy
           </h1>
           <p className="max-w-xl text-lg text-grey400">
-            ALIX è il token che ti apre l’accesso all’ALIXINDEX100, l’indice che replica in tempo reale i 100 agenti più forti di Virtuals Protocol.
+            ALIX è il token che abiliterà l’accesso al primo indice decentralizzato di agenti autonomi su Virtuals Protocol.
             <br />
-            Un solo token, cento menti autonome, un ecosistema in evoluzione costante.
+            Una nuova classe di asset, trasparente e on-chain, progettata per la prossima generazione di investitori.
           </p>
           <div className="space-y-4">
             <a
               href="https://www.alixindex.com"
               className="inline-flex items-center gap-3 rounded-lg bg-neon px-6 py-3 text-base font-semibold text-carbon transition hover:bg-lime-gradient"
             >
-              Partecipa alla Prevendita ⚡
+              Iscriviti alla Whitelist
             </a>
-            <p className="text-sm text-grey400/80">Accesso riservato ai possessori di ALIX.</p>
+            <p className="text-sm text-grey400/80">Verrai avvisato al lancio ufficiale di ALIXINDEX100.</p>
           </div>
           <div className="flex flex-wrap items-center gap-4 rounded-xl border border-steel/60 bg-graphite/60 px-6 py-4 text-sm text-grey400/90">
-            <span>👥 168K+ utenti real-time</span>
+            <span>Audit Quantstamp in corso</span>
             <span className="hidden h-1 w-1 rounded-full bg-steel md:inline-block" />
-            <span>💠 Top Agents Sync Daily</span>
+            <span>100% On-Chain Transparency</span>
             <span className="hidden h-1 w-1 rounded-full bg-steel md:inline-block" />
-            <span>🔒 100% On-Chain Transparency</span>
+            <span>Roadmap pubblica 2025–2026</span>
           </div>
         </div>
         <div className="relative">
@@ -60,37 +60,12 @@ function HeroSection() {
               <span className="inline-flex h-2 w-2 items-center justify-center">
                 <span className="block h-2 w-2 rounded-full bg-neon" />
               </span>
-              <span>ALIXINDEX100 — Live Composition</span>
+              <span>Coming Soon · ALIXINDEX100 Launch Preview</span>
             </div>
-            <div className="relative h-64 w-full overflow-hidden rounded-2xl border border-steel/60 bg-black/60">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(173,255,0,0.35),transparent_55%),radial-gradient(circle_at_80%_30%,rgba(0,255,163,0.25),transparent_60%)]" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <svg
-                  className="h-[90%] w-[90%] text-neon"
-                  viewBox="0 0 400 260"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M0 200 C60 140 120 220 180 160 C240 100 300 220 360 120"
-                    stroke="currentColor"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M40 220 C110 150 180 210 240 150 C300 90 360 170 400 100"
-                    stroke="rgba(198,255,0,0.6)"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeDasharray="10 12"
-                  />
-                </svg>
-              </div>
-              <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-black/60 px-6 py-4 text-xs uppercase tracking-[0.25em] text-grey400">
-                <span>SYNC • REALTIME</span>
-                <span className="text-neon">+4.6% TODAY</span>
-              </div>
+            <div className="relative flex h-64 w-full items-center justify-center overflow-hidden rounded-2xl border border-steel/60 bg-black/60">
+              <span className="text-center text-sm uppercase tracking-[0.25em] text-grey400">
+                Coming Soon · ALIXINDEX100 Launch Preview
+              </span>
             </div>
             <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
               {[
@@ -120,22 +95,22 @@ function AboutAlixSection() {
     <section id="index" className="border-t border-neon/30 bg-graphite py-20">
       <div className="mx-auto grid max-w-6xl items-center gap-16 px-6 md:grid-cols-[1.2fr_0.8fr] md:px-10">
         <div className="space-y-6">
-          <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">Che cos’è ALIX?</h2>
+          <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">ALIX: Access Token for Autonomous Indexing</h2>
           <p className="text-lg text-grey400">
-            ALIX è il token d’accesso all’ALIXINDEX100, l’indice che replica in tempo reale i top 100 agenti di Virtuals Protocol. Possedere ALIX significa possedere una parte dell’evoluzione.
+            ALIX è la chiave d’accesso all’ecosistema ALIXINDEX100 — un indice on-chain che selezionerà e bilancerà i 100 agenti AI più performanti su Virtuals Protocol.
           </p>
           <ul className="space-y-3 text-base text-grey400">
             <li className="flex items-start gap-3">
               <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-neon" />
-              <span>Accesso esclusivo alla piattaforma dell’indice.</span>
+              <span>Accesso esclusivo alla piattaforma al momento del lancio.</span>
             </li>
             <li className="flex items-start gap-3">
               <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-neon" />
-              <span>Esposizione immediata ai migliori agenti dell’ecosistema.</span>
+              <span>Esposizione programmata ai principali agenti AI del protocollo.</span>
             </li>
             <li className="flex items-start gap-3">
               <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-neon" />
-              <span>L’indice si aggiorna da solo, ogni giorno.</span>
+              <span>Ribilanciamento autonomo ogni 24 ore (attivo dopo il lancio).</span>
             </li>
           </ul>
         </div>
@@ -156,20 +131,20 @@ function AboutAlixSection() {
 function HowItWorksSection() {
   const steps = [
     {
-      title: "01. Acquista ALIX",
-      description: "Partecipa alla prevendita o ottieni ALIX sul DEX.",
+      title: "1️⃣ Acquire ALIX",
+      description: "Il token nativo che garantirà l’accesso all’indice.",
       accent: false,
     },
     {
-      title: "02. Deposita e ricevi quote",
+      title: "2️⃣ Deposit & Receive Shares (coming soon)",
       description:
-        "Depositi ALIX e ottieni ALIXINDEX100: una quota dell’indice dei top agenti.",
+        "La funzione di deposito sarà abilitata al lancio ufficiale.",
       accent: true,
     },
     {
-      title: "03. L’indice si aggiorna ogni giorno",
+      title: "3️⃣ Automated Rebalancing",
       description:
-        "Il paniere dei 100 agenti viene ribilanciato automaticamente. Puoi uscire quando vuoi.",
+        "L’indice si aggiornerà ogni 24 ore sulla base delle performance degli agenti AI.",
       accent: false,
     },
   ];
@@ -177,7 +152,10 @@ function HowItWorksSection() {
   return (
     <section id="how-it-works" className="bg-graphite py-24">
       <div className="mx-auto max-w-6xl space-y-12 px-6 md:px-10">
-        <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">Come funziona</h2>
+        <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">Operational Framework</h2>
+        <p className="text-lg text-grey400">
+          Un’architettura trasparente che integra AI indexing, tokenizzazione e smart contracts.
+        </p>
         <div className="grid gap-6 md:grid-cols-3">
           {steps.map((step) => (
             <div
@@ -219,7 +197,7 @@ function HowItWorksSection() {
           ))}
         </div>
         <p className="text-sm text-grey400/80">
-          L’indice ALIXINDEX100 si aggiorna in base alla capitalizzazione degli agenti di Virtuals Protocol.
+          L’indice ALIXINDEX100 opererà con criteri di selezione verificabili e logiche di governance on-chain.
         </p>
       </div>
     </section>
@@ -228,10 +206,10 @@ function HowItWorksSection() {
 
 function LiveIndexSection() {
   const metrics = [
-    { label: "TVL attuale", value: "$12.4M" },
-    { label: "Valore quota (NAV)", value: "$1.032 / share" },
-    { label: "Rendimento medio giornaliero", value: "+4.6%" },
-    { label: "Ultimo snapshot aggiornato", value: "Oggi • 00:00 UTC" },
+    { label: "Audit Quantstamp", value: "In corso" },
+    { label: "Testnet Launch", value: "Novembre 2025" },
+    { label: "Mainnet Launch", value: "Q1 2026" },
+    { label: "Protocol Layer", value: "Virtuals (AI Infrastructure)" },
   ];
 
   return (
@@ -240,11 +218,14 @@ function LiveIndexSection() {
       <div className="relative mx-auto grid max-w-6xl items-center gap-16 px-6 md:grid-cols-2 md:px-10">
         <div className="relative rounded-3xl border border-steel/60 bg-graphite/80 p-6 backdrop-blur-xl">
           <div className="mb-6 flex items-center justify-between">
-            <h3 className="font-display text-2xl font-semibold text-white">L’indice in azione</h3>
+            <h3 className="font-display text-2xl font-semibold text-white">ALIXINDEX100: Autonomous Market Exposure</h3>
             <span className="rounded-full border border-neon/40 bg-black/60 px-3 py-1 text-xs uppercase tracking-[0.2em] text-grey400">
-              Live Feed
+              In Validation
             </span>
           </div>
+          <p className="mb-6 text-sm text-grey400">
+            Un indice decentralizzato progettato per tracciare la crescita collettiva dei migliori agenti autonomi su Virtuals Protocol. Attualmente in fase di audit e validazione.
+          </p>
           <div className="relative h-72 overflow-hidden rounded-2xl border border-steel/60 bg-black/60">
             <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(43,43,46,0.6)_1px,transparent_1px),linear-gradient(rgba(43,43,46,0.6)_1px,transparent_1px)] bg-[length:36px_36px]" />
             <svg
@@ -269,9 +250,8 @@ function LiveIndexSection() {
               <circle cx="120" cy="150" r="5" fill="#ADFF00" />
               <circle cx="240" cy="120" r="5" fill="#00FFA3" />
             </svg>
-            <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-black/70 px-5 py-3 text-xs uppercase tracking-[0.25em] text-grey400">
-              <span>ALIXINDEX100</span>
-              <span className="text-neon">SYNCED • 00:00 UTC</span>
+            <div className="absolute inset-x-0 bottom-0 flex items-center justify-center bg-black/70 px-5 py-3 text-xs uppercase tracking-[0.25em] text-grey400">
+              <span>Coming Soon · ALIXINDEX100 Launch Preview</span>
             </div>
           </div>
         </div>
@@ -286,7 +266,7 @@ function LiveIndexSection() {
             </div>
           ))}
           <p className="text-sm text-grey400/80">
-            Ogni giorno pubblichiamo la composizione completa dell’indice, con pesi e storici. Trasparente. Pubblico. On-chain.
+            L’indice verrà pubblicato con metodologia, composizione e storico verificabili, accompagnati da controlli di governance e audit continuativi.
           </p>
         </div>
       </div>
@@ -300,16 +280,16 @@ function TrustedSection() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(173,255,0,0.12),transparent_70%)]" />
       <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-8 px-6 text-center md:px-10">
         <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">
-          Your trusted index for the autonomous economy.
+          Your Gateway to Autonomous Asset Management
         </h2>
         <p className="max-w-3xl text-lg text-grey400">
-          ALIXINDEX100 unisce intelligenze autonome, investitori e dati in un unico flusso decentralizzato.
+          ALIXINDEX100 integra intelligenze autonome e governance on-chain per definire un nuovo paradigma d’investimento, costruito su trasparenza, sicurezza e scalabilità.
         </p>
         <a
           href="#index-live"
           className="inline-flex items-center gap-3 rounded-lg bg-neon px-6 py-3 text-base font-semibold text-carbon transition hover:bg-lime-gradient"
         >
-          Explore Index Live
+          Leggi la Visione
         </a>
       </div>
     </section>
