@@ -37,7 +37,7 @@ export function Header() {
         scrolled ? "bg-carbon/90 shadow-[0_10px_30px_rgba(173,255,0,0.12)]" : "bg-black/40"
       } backdrop-blur-md`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-10">
+      <div className="mx-auto flex w-full max-w-[120rem] items-center justify-between px-6 py-4 md:px-10 xl:px-16 2xl:px-24">
         <Link
           href="/#home"
           className="font-display text-2xl font-semibold text-neon tracking-tight"
