@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-carbon text-grey400 font-sans antialiased;
+}
+
+a {
+  @apply text-grey400 transition-colors duration-200;
+}
+
+a:hover {
+  @apply text-neon;
+}
