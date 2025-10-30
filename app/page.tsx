@@ -227,30 +227,33 @@ function LiveIndexSection() {
           <p className="mb-6 text-sm text-grey400">
             Un indice decentralizzato progettato per tracciare la crescita collettiva dei migliori agenti autonomi su Virtuals Protocol. Attualmente in fase di audit e validazione.
           </p>
-          <div className="relative h-72 overflow-hidden rounded-2xl border border-steel/60 bg-black/60">
+          <div className="relative overflow-hidden rounded-2xl border border-steel/60 bg-black/60">
             <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(43,43,46,0.6)_1px,transparent_1px),linear-gradient(rgba(43,43,46,0.6)_1px,transparent_1px)] bg-[length:36px_36px]" />
-            <svg
-              className="absolute inset-6 text-neon"
-              viewBox="0 0 360 220"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <linearGradient id="lineGradient" x1="0" y1="0" x2="360" y2="0" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#ADFF00" />
-                  <stop offset="1" stopColor="#00FFA3" />
-                </linearGradient>
-              </defs>
-              <path
-                d="M0 180 C40 140 80 210 120 150 C160 90 200 200 240 120 C280 40 320 160 360 80"
-                stroke="url(#lineGradient)"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <circle cx="120" cy="150" r="5" fill="#ADFF00" />
-              <circle cx="240" cy="120" r="5" fill="#00FFA3" />
-            </svg>
+            <div className="relative flex aspect-[18/11] w-full items-center justify-center p-6">
+              <svg
+                className="h-full w-full text-neon"
+                viewBox="0 0 360 220"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="xMidYMid meet"
+              >
+                <defs>
+                  <linearGradient id="lineGradient" x1="0" y1="0" x2="360" y2="0" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#ADFF00" />
+                    <stop offset="1" stopColor="#00FFA3" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M0 180 C40 140 80 210 120 150 C160 90 200 200 240 120 C280 40 320 160 360 80"
+                  stroke="url(#lineGradient)"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <circle cx="120" cy="150" r="5" fill="#ADFF00" />
+                <circle cx="240" cy="120" r="5" fill="#00FFA3" />
+              </svg>
+            </div>
             <div className="absolute inset-x-0 bottom-0 flex items-center justify-center bg-black/70 px-5 py-3 text-xs uppercase tracking-[0.25em] text-grey400">
               <span>Coming Soon · ALIXINDEX100 Launch Preview</span>
             </div>
