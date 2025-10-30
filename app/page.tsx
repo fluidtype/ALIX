@@ -22,7 +22,7 @@ function HeroSection() {
   return (
     <section id="home" className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(173,255,0,0.08),transparent_60%)]" />
-      <div className="relative mx-auto grid max-w-6xl items-center gap-16 px-6 pb-24 pt-10 md:grid-cols-2 md:px-10 md:pt-16">
+      <div className="relative mx-auto grid w-full max-w-[120rem] items-center gap-16 px-6 pb-24 pt-10 md:grid-cols-2 md:px-10 md:pt-16 xl:px-16 2xl:px-24">
         <div className="space-y-8">
           <div className="inline-flex items-center gap-2 rounded-full border border-steel/60 bg-graphite/60 px-4 py-1 text-xs uppercase tracking-[0.3em] text-grey400/80">
             <span className="h-2 w-2 rounded-full bg-neon" />
@@ -94,7 +94,7 @@ function HeroSection() {
 function AboutAlixSection() {
   return (
     <section id="index" className="border-t border-neon/30 bg-graphite py-20">
-      <div className="mx-auto grid max-w-6xl items-center gap-16 px-6 md:grid-cols-[1.2fr_0.8fr] md:px-10">
+      <div className="mx-auto grid w-full max-w-[120rem] items-center gap-16 px-6 md:grid-cols-[1.2fr_0.8fr] md:px-10 xl:px-16 2xl:px-24">
         <div className="space-y-6">
           <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">ALIX: Access Token for Autonomous Indexing</h2>
           <p className="text-lg text-grey400">
@@ -152,7 +152,7 @@ function HowItWorksSection() {
 
   return (
     <section id="how-it-works" className="bg-graphite py-24">
-      <div className="mx-auto max-w-6xl space-y-12 px-6 md:px-10">
+      <div className="mx-auto w-full max-w-[120rem] space-y-12 px-6 md:px-10 xl:px-16 2xl:px-24">
         <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">Operational Framework</h2>
         <p className="text-lg text-grey400">
           Un’architettura trasparente che integra AI indexing, tokenizzazione e smart contracts.
@@ -216,7 +216,7 @@ function LiveIndexSection() {
   return (
     <section className="relative overflow-hidden bg-carbon py-24">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(173,255,0,0.08),transparent_65%)]" />
-      <div className="relative mx-auto grid max-w-6xl items-center gap-16 px-6 md:grid-cols-2 md:px-10">
+      <div className="relative mx-auto grid w-full max-w-[120rem] items-center gap-16 px-6 md:grid-cols-2 md:px-10 xl:px-16 2xl:px-24">
         <div className="relative rounded-3xl border border-steel/60 bg-graphite/80 p-6 backdrop-blur-xl">
           <div className="mb-6 flex items-center justify-between">
             <h3 className="font-display text-2xl font-semibold text-white">ALIXINDEX100: Autonomous Market Exposure</h3>
@@ -227,30 +227,33 @@ function LiveIndexSection() {
           <p className="mb-6 text-sm text-grey400">
             Un indice decentralizzato progettato per tracciare la crescita collettiva dei migliori agenti autonomi su Virtuals Protocol. Attualmente in fase di audit e validazione.
           </p>
-          <div className="relative h-72 overflow-hidden rounded-2xl border border-steel/60 bg-black/60">
+          <div className="relative overflow-hidden rounded-2xl border border-steel/60 bg-black/60">
             <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(43,43,46,0.6)_1px,transparent_1px),linear-gradient(rgba(43,43,46,0.6)_1px,transparent_1px)] bg-[length:36px_36px]" />
-            <svg
-              className="absolute inset-6 text-neon"
-              viewBox="0 0 360 220"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <linearGradient id="lineGradient" x1="0" y1="0" x2="360" y2="0" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#ADFF00" />
-                  <stop offset="1" stopColor="#00FFA3" />
-                </linearGradient>
-              </defs>
-              <path
-                d="M0 180 C40 140 80 210 120 150 C160 90 200 200 240 120 C280 40 320 160 360 80"
-                stroke="url(#lineGradient)"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <circle cx="120" cy="150" r="5" fill="#ADFF00" />
-              <circle cx="240" cy="120" r="5" fill="#00FFA3" />
-            </svg>
+            <div className="relative flex aspect-[18/11] w-full items-center justify-center p-6">
+              <svg
+                className="h-full w-full text-neon"
+                viewBox="0 0 360 220"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="xMidYMid meet"
+              >
+                <defs>
+                  <linearGradient id="lineGradient" x1="0" y1="0" x2="360" y2="0" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#ADFF00" />
+                    <stop offset="1" stopColor="#00FFA3" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M0 180 C40 140 80 210 120 150 C160 90 200 200 240 120 C280 40 320 160 360 80"
+                  stroke="url(#lineGradient)"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <circle cx="120" cy="150" r="5" fill="#ADFF00" />
+                <circle cx="240" cy="120" r="5" fill="#00FFA3" />
+              </svg>
+            </div>
             <div className="absolute inset-x-0 bottom-0 flex items-center justify-center bg-black/70 px-5 py-3 text-xs uppercase tracking-[0.25em] text-grey400">
               <span>Coming Soon · ALIXINDEX100 Launch Preview</span>
             </div>
@@ -279,7 +282,7 @@ function TrustedSection() {
   return (
     <section id="whitepaper" className="relative overflow-hidden bg-graphite py-24">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(173,255,0,0.12),transparent_70%)]" />
-      <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-8 px-6 text-center md:px-10">
+      <div className="relative mx-auto flex w-full max-w-[100rem] flex-col items-center gap-8 px-6 text-center md:px-10 xl:px-16 2xl:px-24">
         <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">
           Your Gateway to Autonomous Asset Management
         </h2>
@@ -367,7 +370,7 @@ function RoadmapInvestorsSection() {
   return (
     <section className="relative overflow-hidden border-t border-steel/60 bg-carbon py-24">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(173,255,0,0.12),transparent_75%)]" />
-      <div className="relative mx-auto max-w-6xl space-y-16 px-6 md:px-10">
+      <div className="relative mx-auto w-full max-w-[120rem] space-y-16 px-6 md:px-10 xl:px-16 2xl:px-24">
         <div className="space-y-6">
           <div className="h-1 w-20 bg-lime-gradient" />
           <div className="space-y-4">
@@ -438,9 +441,6 @@ function RoadmapInvestorsSection() {
           </div>
         </div>
 
-        <p className="text-sm text-gray-400">
-          MANTIENI LO STESOS STILE DELLA LANDING PAGE, MANDA SCREEN FINALE
-        </p>
       </div>
     </section>
   );
