@@ -37,7 +37,7 @@ export function Header() {
         scrolled ? "bg-carbon/90 shadow-[0_10px_30px_rgba(173,255,0,0.12)]" : "bg-black/40"
       } backdrop-blur-md`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-10">
+      <div className="mx-auto flex w-full max-w-[120rem] items-center justify-between px-6 py-4 md:px-10 xl:px-16 2xl:px-24">
         <Link
           href="/#home"
           className="font-display text-2xl font-semibold text-neon tracking-tight"
@@ -75,29 +75,29 @@ export function Header() {
           Partecipa alla Prevendita
         </a>
       </div>
-      <div
-        className={`lg:hidden ${menuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"} transition-opacity duration-300`}
-      >
-        <nav className="mx-4 mt-2 space-y-2 rounded-2xl border border-steel/70 bg-black/80 px-6 py-6 backdrop-blur-xl">
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
+      {menuOpen && (
+        <div className="lg:hidden">
+          <nav className="mx-4 mt-2 space-y-2 rounded-2xl border border-steel/70 bg-black/80 px-6 py-6 backdrop-blur-xl">
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="block border-b border-steel/40 pb-3 text-sm uppercase tracking-[0.25em] text-grey400 transition-colors duration-200 last:border-b-0 last:pb-0 hover:text-neon"
+              >
+                {link.label}
+              </Link>
+            ))}
+            <a
+              href="https://www.alixindex.com"
               onClick={() => setMenuOpen(false)}
-              className="block border-b border-steel/40 pb-3 text-sm uppercase tracking-[0.25em] text-grey400 transition-colors duration-200 last:border-b-0 last:pb-0 hover:text-neon"
+              className="mt-4 inline-flex w-full items-center justify-center rounded-lg bg-neon px-4 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-carbon shadow-lime"
             >
-              {link.label}
-            </Link>
-          ))}
-          <a
-            href="https://www.alixindex.com"
-            onClick={() => setMenuOpen(false)}
-            className="mt-4 inline-flex w-full items-center justify-center rounded-lg bg-neon px-4 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-carbon shadow-lime"
-          >
-            Prevendita
-          </a>
-        </nav>
-      </div>
+              Prevendita
+            </a>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
