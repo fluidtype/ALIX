@@ -130,3 +130,24 @@ ALIXINDEX100 è un fondo autonomo, trasparente e resiliente. Entrata e uscita av
 ---
 
 **Stato:** Pronto per audit, testnet e lancio. Versione definitiva: ALIX IN → ALIX OUT. Sempre.
+
+## 🖼️ Public Assets
+
+All static images (logos, hero graphics, mockups, etc.) should be placed in `/public`.
+
+Example:
+
+```
+/public/hero.png
+/public/logo.svg
+/public/bg-grid.png
+```
+
+When deploying on Vercel or GitHub Pages, the `/public` folder will be automatically included.
+
+Confirm that your Next.js image imports follow this pattern:
+
+```jsx
+<Image src="/hero.png" alt="ALIX hero" width={1200} height={800} />
+```
+
