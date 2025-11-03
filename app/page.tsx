@@ -7,7 +7,7 @@ export default function LandingPage() {
   return (
     <div className="relative bg-carbon text-grey400">
       <Header />
-      <main className="pt-28 md:pt-32">
+      <main className="px-6 pt-24 md:px-0 md:pt-28">
         <HeroSection />
         <AboutAlixSection />
         <HowItWorksSection />
@@ -24,7 +24,7 @@ function HeroSection() {
   return (
     <section id="home" className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(173,255,0,0.08),transparent_60%)]" />
-      <div className="relative mx-auto grid w-full max-w-[120rem] items-center gap-16 px-6 pb-24 pt-10 md:grid-cols-2 md:px-10 md:pt-16 xl:px-16 2xl:px-24">
+      <div className="relative mx-auto grid w-full max-w-[120rem] items-center gap-16 px-0 pb-16 pt-10 md:grid-cols-2 md:px-10 md:pt-16 xl:px-16 2xl:px-24">
         <div className="space-y-8">
           <div className="inline-flex items-center gap-2 rounded-full border border-steel/60 bg-graphite/60 px-4 py-1 text-xs uppercase tracking-[0.3em] text-grey400/80">
             <span className="h-2 w-2 rounded-full bg-neon" />
@@ -95,8 +95,8 @@ function HeroSection() {
 
 function AboutAlixSection() {
   return (
-    <section id="index" className="border-t border-neon/30 bg-graphite py-20">
-      <div className="mx-auto w-full max-w-[120rem] px-6 md:px-10 xl:px-16 2xl:px-24">
+    <section id="index" className="border-t border-neon/30 bg-graphite py-16">
+      <div className="mx-auto w-full max-w-[120rem] px-0 md:px-10 xl:px-16 2xl:px-24">
         <div className="grid items-center gap-12 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
           <div className="max-w-2xl space-y-6 md:max-w-none">
             <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">Il Ruolo di $ALIX: Governance e Utilità Deflazionaria</h2>
@@ -158,8 +158,8 @@ function HowItWorksSection() {
   ];
 
   return (
-    <section id="how-it-works" className="bg-graphite py-24">
-      <div className="mx-auto w-full max-w-[120rem] space-y-12 px-6 md:px-10 xl:px-16 2xl:px-24">
+    <section id="how-it-works" className="bg-graphite py-16">
+      <div className="mx-auto w-full max-w-[120rem] space-y-10 px-0 md:px-10 xl:px-16 2xl:px-24">
         <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">Come Funziona: Un Ciclo Semplice e Autonomo</h2>
         <p className="text-lg text-grey400">
           Il meccanismo è progettato per essere intuitivo, simmetrico e completamente on-chain: Virtuals in → ALIXINDEX100 → Virtuals out.
@@ -168,7 +168,7 @@ function HowItWorksSection() {
           {steps.map((step) => (
             <div
               key={step.title}
-              className={`group relative overflow-hidden rounded-2xl border border-steel/60 p-8 transition-all duration-300 ${
+              className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border border-steel/60 p-8 transition-all duration-300 ${
                 step.accent
                   ? "bg-neon text-carbon shadow-lime"
                   : "bg-carbon/60 text-grey400"
@@ -181,24 +181,30 @@ function HowItWorksSection() {
                   <div className="h-full w-full bg-[radial-gradient(circle_at_top,_rgba(173,255,0,0.15),transparent_70%)]" />
                 )}
               </div>
-              <div className="relative space-y-4">
-                <h3
-                  className={`font-display text-2xl font-semibold tracking-tight ${
-                    step.accent ? "text-carbon" : "text-white"
-                  }`}
-                >
-                  {step.title}
-                </h3>
-                <p className={`text-base ${step.accent ? "text-carbon/80" : "text-grey400"}`}>
-                  {step.description}
-                </p>
-                {step.accent && (
-                  <a
-                    href="#learn-more"
-                    className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-carbon"
+              <div className="relative flex flex-1 flex-col space-y-4">
+                <div>
+                  <h3
+                    className={`font-display text-2xl font-semibold tracking-tight ${
+                      step.accent ? "text-carbon" : "text-white"
+                    }`}
                   >
-                    Learn more →
-                  </a>
+                    {step.title}
+                  </h3>
+                </div>
+                <div className="flex-grow">
+                  <p className={`text-base ${step.accent ? "text-carbon/80" : "text-grey400"}`}>
+                    {step.description}
+                  </p>
+                </div>
+                {step.accent && (
+                  <div className="pt-2">
+                    <a
+                      href="#learn-more"
+                      className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-carbon"
+                    >
+                      Learn more →
+                    </a>
+                  </div>
                 )}
               </div>
             </div>
@@ -221,9 +227,9 @@ function LiveIndexSection() {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-carbon py-24">
+    <section className="relative overflow-hidden bg-carbon py-16">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(173,255,0,0.08),transparent_65%)]" />
-      <div className="relative mx-auto grid w-full max-w-[120rem] items-center gap-16 px-6 md:grid-cols-2 md:px-10 xl:px-16 2xl:px-24">
+      <div className="relative mx-auto grid w-full max-w-[120rem] items-center gap-16 px-0 md:grid-cols-2 md:px-10 xl:px-16 2xl:px-24">
         <div className="relative rounded-3xl border border-steel/60 bg-graphite/80 p-6 backdrop-blur-xl">
           <div className="mb-6 flex items-center justify-between">
             <h3 className="font-display text-2xl font-semibold text-white">L&apos;Indice: Criteri di Selezione e Pesi</h3>
@@ -287,9 +293,9 @@ function LiveIndexSection() {
 
 function TrustedSection() {
   return (
-    <section id="whitepaper" className="relative overflow-hidden bg-graphite py-24">
+    <section id="whitepaper" className="relative overflow-hidden bg-graphite py-16">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(173,255,0,0.12),transparent_70%)]" />
-      <div className="relative mx-auto flex w-full max-w-[100rem] flex-col items-center gap-8 px-6 text-center md:px-10 xl:px-16 2xl:px-24">
+      <div className="relative mx-auto flex w-full max-w-[100rem] flex-col items-center gap-8 px-0 text-center md:px-10 xl:px-16 2xl:px-24">
         <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">
           La Visione: La Borsa Decentralizzata dell&apos;Intelligenza
         </h2>
@@ -329,11 +335,6 @@ function RoadmapInvestorsSection() {
       objective: "Integrazione con Virtuals Protocol",
       details: [],
     },
-    {
-      period: "Week 4",
-      objective: "",
-      details: [],
-    },
   ];
 
   const launchParameters = [
@@ -367,18 +368,13 @@ function RoadmapInvestorsSection() {
       timeline: "",
       objective: "Una piattaforma per creare e monetizzare i propri indici algoritmici.",
     },
-    {
-      phase: "Fase 4",
-      timeline: "",
-      objective: "",
-    },
   ];
 
   return (
-    <section className="relative overflow-hidden border-t border-steel/60 bg-carbon py-20">
+    <section className="relative overflow-hidden border-t border-steel/60 bg-carbon py-16">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(173,255,0,0.12),transparent_75%)]" />
-      <div className="relative mx-auto w-full max-w-[120rem] space-y-12 px-6 md:px-10 xl:px-16 2xl:px-24">
-        <div className="pt-16 pb-10">
+      <div className="relative mx-auto w-full max-w-[120rem] space-y-12 px-0 md:px-10 xl:px-16 2xl:px-24">
+        <div className="pt-12 pb-8">
           <div className="h-1 w-20 bg-lime-gradient" />
           <div className="mt-6">
             <h2 className="font-display text-[1.4rem] font-semibold text-lime-400 md:text-[1.6rem]">
@@ -395,11 +391,11 @@ function RoadmapInvestorsSection() {
           <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <h3 className="font-display text-2xl text-white">Fase 1 — ALIXINDEX100 (2025)</h3>
           </div>
-          <div className="grid gap-4 rounded-xl border border-neutral-800 bg-neutral-900/40 p-4 md:grid-cols-5 md:p-6">
+          <div className="flex space-x-4 overflow-x-auto rounded-xl border border-neutral-800 bg-neutral-900/40 p-4 pb-4 md:grid md:gap-4 md:space-x-0 md:overflow-visible md:p-6 md:pb-6 md:grid-cols-5">
             {timeline.map((item) => (
               <div
                 key={item.period}
-                className="flex flex-col gap-3 rounded-xl border border-neutral-800 bg-black/40 p-4"
+                className="flex min-w-[250px] flex-col gap-3 rounded-xl border border-neutral-800 bg-black/40 p-4 md:min-w-0"
               >
                 <div className="space-y-2">
                   <div className="h-px w-8 bg-lime-400/30" />
@@ -452,10 +448,13 @@ function RoadmapInvestorsSection() {
           <h3 className="font-display text-2xl text-white">Fasi Successive</h3>
           <div className="divide-y divide-steel/40 overflow-hidden rounded-2xl border border-steel/60 bg-graphite/80">
             {nextPhases.map((item) => (
-              <div key={item.phase} className="grid gap-4 px-6 py-5 md:grid-cols-[0.25fr_0.25fr_1fr]">
+              <div
+                key={item.phase}
+                className="flex flex-col gap-3 px-6 py-5 md:grid md:grid-cols-[0.25fr_0.25fr_1fr] md:gap-4"
+              >
                 <span className="text-sm font-semibold uppercase tracking-[0.25em] text-neon/80">{item.phase}</span>
                 <span className="text-sm uppercase tracking-[0.2em] text-grey400/70">{item.timeline}</span>
-                <span className="text-base text-grey400">{item.objective}</span>
+                <span className="text-base text-grey400 md:mt-0">{item.objective}</span>
               </div>
             ))}
           </div>
