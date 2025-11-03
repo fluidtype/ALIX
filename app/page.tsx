@@ -118,14 +118,14 @@ function AboutAlixSection() {
               </li>
             </ul>
           </div>
-          <div className="flex justify-center md:justify-end">
-            <div className="relative aspect-[3/4] w-full max-w-xs overflow-hidden md:max-w-sm">
+          <div className="flex justify-center md:justify-end md:pl-6">
+            <div className="relative aspect-[3/4] w-full max-w-[460px] overflow-hidden md:max-w-[540px] md:-translate-x-[184px]">
               <Image
                 src="/mockup.png"
                 alt="Anteprima dell’interfaccia ALIXINDEX100"
                 fill
                 className="object-contain"
-                sizes="(min-width: 768px) 320px, 240px"
+                sizes="(min-width: 768px) 384px, 288px"
                 priority
               />
             </div>
