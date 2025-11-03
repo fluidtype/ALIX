@@ -5,21 +5,21 @@ export function FooterSection() {
         <div className="space-y-4">
           <span className="font-display text-2xl font-semibold text-neon">ALIX</span>
           <p className="max-w-sm text-sm text-grey400/80">
-            ALIXINDEX100 — Infrastruttura istituzionale per l’esposizione agli agenti autonomi.
+            ALIX sarà la valuta dell&apos;economia autonoma.
           </p>
         </div>
         <div className="grid gap-3 text-sm text-grey400">
           <a href="#docs" className="hover:text-neon">
-            Docs
+            Documentazione (docs.alixindex100.ai)
           </a>
           <a href="#telegram" className="hover:text-neon">
-            Telegram
+            Telegram (@ALIXProtocol)
           </a>
           <a href="#discord" className="hover:text-neon">
-            Discord
+            Discord (@ALIXProtocol)
           </a>
           <a href="#x" className="hover:text-neon">
-            X
+            X (@ALIXProtocol)
           </a>
           <a href="#virtuals" className="hover:text-neon">
             Built on Virtuals Protocol
