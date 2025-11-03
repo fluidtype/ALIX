@@ -5,7 +5,7 @@ export function FooterSection() {
         <div className="space-y-4">
           <span className="font-display text-2xl font-semibold text-neon">ALIX</span>
           <p className="max-w-sm text-sm text-grey400/80">
-            ALIX sarà la valuta dell'economia autonoma.
+            ALIX sarà la valuta dell&apos;economia autonoma.
           </p>
         </div>
         <div className="grid gap-3 text-sm text-grey400">

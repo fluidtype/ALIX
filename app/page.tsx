@@ -34,9 +34,9 @@ function HeroSection() {
             Possiedi il mercato, non inseguirlo.
           </h1>
           <p className="max-w-xl text-lg text-grey400">
-            ALIXINDEX100 è il primo indice decentralizzato che traccia le 100 principali valute autonome dell'ecosistema Virtuals.
+            ALIXINDEX100 è il primo indice decentralizzato che traccia le 100 principali valute autonome dell&apos;ecosistema Virtuals.
             <br />
-            Un solo token per ottenere un'esposizione diversificata, ribilanciata automaticamente ogni 24 ore in base a dati on-chain.
+            Un solo token per ottenere un&apos;esposizione diversificata, ribilanciata automaticamente ogni 24 ore in base a dati on-chain.
           </p>
           <div className="space-y-4">
             <a
@@ -101,7 +101,7 @@ function AboutAlixSection() {
           <div className="max-w-2xl space-y-6 md:max-w-none">
             <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">Il Ruolo di $ALIX: Governance e Utilità Deflazionaria</h2>
             <p className="text-lg text-grey400">
-              $ALIX è il token di governance e ricompensa dell'ecosistema. Ogni deposito nell'indice genera una commissione dell'1% usata per riacquistare e bruciare $ALIX, creando un meccanismo deflazionario che premia i possessori del token.
+              $ALIX è il token di governance e ricompensa dell&apos;ecosistema. Ogni deposito nell&apos;indice genera una commissione dell&apos;1% usata per riacquistare e bruciare $ALIX, creando un meccanismo deflazionario che premia i possessori del token.
             </p>
             <ul className="space-y-3 text-base text-grey400">
               <li className="flex items-start gap-3">
@@ -114,7 +114,7 @@ function AboutAlixSection() {
               </li>
               <li className="flex items-start gap-3">
                 <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-neon" />
-                <span>Accesso Esclusivo: Ottieni l'accesso a futuri indici tematici.</span>
+                <span>Accesso Esclusivo: Ottieni l&apos;accesso a futuri indici tematici.</span>
               </li>
             </ul>
           </div>
@@ -144,7 +144,7 @@ function HowItWorksSection() {
       accent: false,
     },
     {
-      title: "2️⃣ Ricevi Quote dell'Indice",
+      title: "2️⃣ Ricevi Quote dell&apos;Indice",
       description:
         "Il Vault emette istantaneamente quote di ALIXINDEX100 che rappresentano la tua esposizione al paniere dei 100 asset.",
       accent: true,
@@ -152,7 +152,7 @@ function HowItWorksSection() {
     {
       title: "3️⃣ Riscatta in $VIRTUALS",
       description:
-        "Puoi riscattare le tue quote in qualsiasi momento, ricevendo l'equivalente in $VIRTUALS al valore netto di mercato (NAV).",
+        "Puoi riscattare le tue quote in qualsiasi momento, ricevendo l&apos;equivalente in $VIRTUALS al valore netto di mercato (NAV).",
       accent: false,
     },
   ];
@@ -226,13 +226,13 @@ function LiveIndexSection() {
       <div className="relative mx-auto grid w-full max-w-[120rem] items-center gap-16 px-6 md:grid-cols-2 md:px-10 xl:px-16 2xl:px-24">
         <div className="relative rounded-3xl border border-steel/60 bg-graphite/80 p-6 backdrop-blur-xl">
           <div className="mb-6 flex items-center justify-between">
-            <h3 className="font-display text-2xl font-semibold text-white">L'Indice: Criteri di Selezione e Pesi</h3>
+            <h3 className="font-display text-2xl font-semibold text-white">L&apos;Indice: Criteri di Selezione e Pesi</h3>
             <span className="rounded-full border border-neon/40 bg-black/60 px-3 py-1 text-xs uppercase tracking-[0.2em] text-grey400">
               In Validation
             </span>
           </div>
           <p className="mb-6 text-sm text-grey400">
-            ALIXINDEX100 seleziona i 100 principali token dell'ecosistema Virtuals in base a una formula ponderata e trasparente, recuperando dati da CoinGecko, CoinMarketCap e dalle API di Virtuals.
+            ALIXINDEX100 seleziona i 100 principali token dell&apos;ecosistema Virtuals in base a una formula ponderata e trasparente, recuperando dati da CoinGecko, CoinMarketCap e dalle API di Virtuals.
           </p>
           <div className="relative overflow-hidden rounded-2xl border border-steel/60 bg-black/60">
             <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(43,43,46,0.6)_1px,transparent_1px),linear-gradient(rgba(43,43,46,0.6)_1px,transparent_1px)] bg-[length:36px_36px]" />
@@ -291,7 +291,7 @@ function TrustedSection() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(173,255,0,0.12),transparent_70%)]" />
       <div className="relative mx-auto flex w-full max-w-[100rem] flex-col items-center gap-8 px-6 text-center md:px-10 xl:px-16 2xl:px-24">
         <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">
-          La Visione: La Borsa Decentralizzata dell'Intelligenza
+          La Visione: La Borsa Decentralizzata dell&apos;Intelligenza
         </h2>
         <p className="max-w-3xl text-lg text-grey400">
           ALIX vuole diventare una rete di indici autonomi che unisce automazione, trasparenza e comunità. Non solo dati da possedere, ma un ecosistema a cui appartenere.
@@ -352,7 +352,7 @@ function RoadmapInvestorsSection() {
     },
     {
       label: "Ciclo Chiuso",
-      value: "Entrata e uscita dall'indice esclusivamente in $VIRTUALS.",
+      value: "Entrata e uscita dall&apos;indice esclusivamente in $VIRTUALS.",
     },
   ];
 
