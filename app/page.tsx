@@ -94,36 +94,25 @@ function HeroSection() {
 function AboutAlixSection() {
   return (
     <section id="index" className="border-t border-neon/30 bg-graphite py-20">
-      <div className="mx-auto grid w-full max-w-[120rem] items-center gap-16 px-6 md:grid-cols-[1.2fr_0.8fr] md:px-10 xl:px-16 2xl:px-24">
-        <div className="space-y-6">
-          <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">ALIX: Access Token for Autonomous Indexing</h2>
-          <p className="text-lg text-grey400">
-            ALIX è la chiave d’accesso all’ecosistema ALIXINDEX100 — un indice on-chain che selezionerà e bilancerà i 100 agenti AI più performanti su Virtuals Protocol.
-          </p>
-          <ul className="space-y-3 text-base text-grey400">
-            <li className="flex items-start gap-3">
-              <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-neon" />
-              <span>Accesso esclusivo alla piattaforma al momento del lancio.</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-neon" />
-              <span>Esposizione programmata ai principali agenti AI del protocollo.</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-neon" />
-              <span>Ribilanciamento autonomo ogni 24 ore (attivo dopo il lancio).</span>
-            </li>
-          </ul>
-        </div>
-        <div className="relative flex items-center justify-center">
-          <div className="absolute inset-0 -z-10 bg-[conic-gradient(from_90deg_at_50%_50%,rgba(173,255,0,0.15),transparent_60%)] blur-2xl" />
-          <div className="relative flex h-64 w-64 items-center justify-center rounded-full border border-neon/40 bg-black/60 shadow-[0_0_60px_rgba(173,255,0,0.25)]">
-            <div className="h-40 w-40 rounded-full border border-neon/70" />
-            <div className="absolute inset-10 rounded-full border border-steel/70" />
-            <div className="absolute inset-16 rounded-full border border-neonAlt/60" />
-            <span className="font-display text-2xl text-neon">ALIX</span>
-          </div>
-        </div>
+      <div className="mx-auto w-full max-w-[120rem] space-y-6 px-6 md:px-10 xl:px-16 2xl:px-24">
+        <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">ALIX: Access Token for Autonomous Indexing</h2>
+        <p className="text-lg text-grey400">
+          ALIX è la chiave d’accesso all’ecosistema ALIXINDEX100 — un indice on-chain che selezionerà e bilancerà i 100 agenti AI più performanti su Virtuals Protocol.
+        </p>
+        <ul className="space-y-3 text-base text-grey400">
+          <li className="flex items-start gap-3">
+            <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-neon" />
+            <span>Accesso esclusivo alla piattaforma al momento del lancio.</span>
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-neon" />
+            <span>Esposizione programmata ai principali agenti AI del protocollo.</span>
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-neon" />
+            <span>Ribilanciamento autonomo ogni 24 ore (attivo dopo il lancio).</span>
+          </li>
+        </ul>
       </div>
     </section>
   );
