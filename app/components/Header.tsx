@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 
 const navLinks = [
   { label: "Home", href: "/#home" },
-  { label: "Indice", href: "/#index" },
-  { label: "Come funziona", href: "/#how-it-works" },
+  { label: "Index", href: "/#index" },
+  { label: "How it works", href: "/#how-it-works" },
   { label: "Roadmap", href: "/roadmap" },
   { label: "Whitepaper", href: "/whitepaper" },
 ];
@@ -72,7 +72,7 @@ export function Header() {
           href="https://www.alixindex.com"
           className="rounded-lg bg-neon px-5 py-2 text-sm font-semibold uppercase tracking-[0.12em] text-carbon shadow-lime transition-all duration-200 hover:bg-lime-gradient"
         >
-          Partecipa alla Prevendita
+          Join the Presale
         </a>
       </div>
       {menuOpen && (
@@ -93,7 +93,7 @@ export function Header() {
               onClick={() => setMenuOpen(false)}
               className="mt-4 inline-flex w-full items-center justify-center rounded-lg bg-neon px-4 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-carbon shadow-lime"
             >
-              Prevendita
+              Presale
             </a>
           </nav>
         </div>

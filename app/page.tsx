@@ -31,28 +31,29 @@ function HeroSection() {
             <span>ALIXINDEX100 PRE-LAUNCH</span>
           </div>
           <h1 className="font-display text-4xl font-semibold tracking-tight text-white md:text-5xl lg:text-6xl">
-            Possiedi il mercato, non inseguirlo.
+            <span className="block">Own the market,</span>
+            <span className="block">don&apos;t chase it.</span>
           </h1>
           <p className="max-w-xl text-lg text-grey400">
-            ALIXINDEX100 è il primo indice decentralizzato che traccia le 100 principali valute autonome dell&apos;ecosistema Virtuals.
+            ALIXINDEX100 is the first decentralized index that tracks the top 100 autonomous currencies in the Virtuals ecosystem.
             <br />
-            Un solo token per ottenere un&apos;esposizione diversificata, ribilanciata automaticamente ogni 24 ore in base a dati on-chain.
+            One token delivers diversified exposure, automatically rebalanced every 24 hours with on-chain data.
           </p>
           <div className="space-y-4">
             <a
               href="https://www.alixindex.com"
               className="inline-flex items-center gap-3 rounded-lg bg-neon px-6 py-3 text-base font-semibold text-carbon transition hover:bg-lime-gradient"
             >
-              Connetti Wallet
+              Join the presale
             </a>
-            <p className="text-sm text-grey400/80">Verrai avvisato al lancio ufficiale di ALIXINDEX100.</p>
+            <p className="text-sm text-grey400/80">You&apos;ll be notified when ALIXINDEX100 officially launches.</p>
           </div>
           <div className="flex flex-wrap items-center gap-4 rounded-xl border border-steel/60 bg-graphite/60 px-6 py-4 text-sm text-grey400/90">
-            <span>Audit Quantstamp in corso</span>
+            <span>Quantstamp audit in progress</span>
             <span className="hidden h-1 w-1 rounded-full bg-steel md:inline-block" />
             <span>100% On-Chain Transparency</span>
             <span className="hidden h-1 w-1 rounded-full bg-steel md:inline-block" />
-            <span>Roadmap pubblica 2025–2026</span>
+            <span>Public roadmap 2025–2026</span>
           </div>
         </div>
         <div className="relative">
@@ -72,10 +73,10 @@ function HeroSection() {
             </div>
             <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
               {[
-                { label: "Asset Tracciati", value: "100" },
+                { label: "Tracked Assets", value: "100" },
                 { label: "Rebalance", value: "24h" },
-                { label: "Protocollo", value: "Virtuals" },
-                { label: "Trasparenza", value: "On-Chain" },
+                { label: "Protocol", value: "Virtuals" },
+                { label: "Transparency", value: "On-Chain" },
               ].map((item) => (
                 <div
                   key={item.label}
@@ -99,22 +100,22 @@ function AboutAlixSection() {
       <div className="mx-auto w-full max-w-[120rem] px-0 md:px-10 xl:px-16 2xl:px-24">
         <div className="grid items-center gap-12 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
           <div className="max-w-2xl space-y-6 md:max-w-none">
-            <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">Il Ruolo di $ALIX: Governance e Utilità Deflazionaria</h2>
+            <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">The Role of $ALIX: Governance and Deflationary Utility</h2>
             <p className="text-lg text-grey400">
-              $ALIX è il token di governance e ricompensa dell&apos;ecosistema. Ogni deposito nell&apos;indice genera una commissione dell&apos;1% usata per riacquistare e bruciare $ALIX, creando un meccanismo deflazionario che premia i possessori del token.
+              $ALIX is the governance and rewards token of the ecosystem. Every deposit into the index generates a 1% fee used to buy back and burn $ALIX, creating a deflationary mechanism that rewards token holders.
             </p>
             <ul className="space-y-3 text-base text-grey400">
               <li className="flex items-start gap-3">
                 <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-neon" />
-                <span>Governance sul protocollo: Partecipa alle decisioni chiave.</span>
+                <span>Protocol governance: Take part in key decisions.</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-neon" />
-                <span>Utilità Deflazionaria: Beneficia del meccanismo di buyback &amp; burn.</span>
+                <span>Deflationary utility: Benefit from the buyback &amp; burn mechanism.</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-neon" />
-                <span>Accesso Esclusivo: Ottieni l&apos;accesso a futuri indici tematici.</span>
+                <span>Exclusive access: Unlock future thematic indexes.</span>
               </li>
             </ul>
           </div>
@@ -122,7 +123,7 @@ function AboutAlixSection() {
             <div className="relative aspect-[3/4] w-full max-w-[460px] overflow-hidden md:max-w-[540px] md:-translate-x-[184px]">
               <Image
                 src="/mockup.png"
-                alt="Anteprima dell’interfaccia ALIXINDEX100"
+                alt="Preview of the ALIXINDEX100 interface"
                 fill
                 className="object-contain"
                 sizes="(min-width: 768px) 384px, 288px"
@@ -139,20 +140,20 @@ function AboutAlixSection() {
 function HowItWorksSection() {
   const steps = [
     {
-      title: "1️⃣ Deposita $VIRTUALS",
-      description: "Deposita la valuta nativa del protocollo, $VIRTUALS, nel Vault decentralizzato.",
+      title: "1️⃣ Deposit $VIRTUALS",
+      description: "Deposit the protocol&apos;s native currency, $VIRTUALS, into the decentralized vault.",
       accent: false,
     },
     {
-      title: "2️⃣ Ricevi Quote dell&apos;Indice",
+      title: "2️⃣ Receive Index Shares",
       description:
-        "Il Vault emette istantaneamente quote di ALIXINDEX100 che rappresentano la tua esposizione al paniere dei 100 asset.",
+        "The vault instantly mints ALIXINDEX100 shares that represent your exposure to the basket of 100 assets.",
       accent: true,
     },
     {
-      title: "3️⃣ Riscatta in $VIRTUALS",
+      title: "3️⃣ Redeem in $VIRTUALS",
       description:
-        "Puoi riscattare le tue quote in qualsiasi momento, ricevendo l&apos;equivalente in $VIRTUALS al valore netto di mercato (NAV).",
+        "Redeem your shares at any time and receive the equivalent in $VIRTUALS at net asset value (NAV).",
       accent: false,
     },
   ];
@@ -160,9 +161,9 @@ function HowItWorksSection() {
   return (
     <section id="how-it-works" className="bg-graphite py-16">
       <div className="mx-auto w-full max-w-[120rem] space-y-10 px-0 md:px-10 xl:px-16 2xl:px-24">
-        <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">Come Funziona: Un Ciclo Semplice e Autonomo</h2>
+        <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">How It Works: A Simple, Autonomous Loop</h2>
         <p className="text-lg text-grey400">
-          Il meccanismo è progettato per essere intuitivo, simmetrico e completamente on-chain: Virtuals in → ALIXINDEX100 → Virtuals out.
+          The mechanism is designed to be intuitive, symmetric, and fully on-chain: Virtuals in → ALIXINDEX100 → Virtuals out.
         </p>
         <div className="grid gap-6 md:grid-cols-3">
           {steps.map((step) => (
@@ -211,7 +212,7 @@ function HowItWorksSection() {
           ))}
         </div>
         <p className="text-sm text-grey400/80">
-          L’indice ALIXINDEX100 opererà con criteri di selezione verificabili e logiche di governance on-chain.
+          The ALIXINDEX100 index will operate with verifiable selection criteria and on-chain governance logic.
         </p>
       </div>
     </section>
@@ -220,8 +221,8 @@ function HowItWorksSection() {
 
 function LiveIndexSection() {
   const metrics = [
-    { label: "Audit Quantstamp", value: "In corso" },
-    { label: "Testnet Launch", value: "Novembre 2025" },
+    { label: "Quantstamp Audit", value: "In progress" },
+    { label: "Testnet Launch", value: "November 2025" },
     { label: "Mainnet Launch", value: "Q1 2026" },
     { label: "Protocol Layer", value: "Virtuals (AI Infrastructure)" },
   ];
@@ -232,13 +233,13 @@ function LiveIndexSection() {
       <div className="relative mx-auto grid w-full max-w-[120rem] items-center gap-16 px-0 md:grid-cols-2 md:px-10 xl:px-16 2xl:px-24">
         <div className="relative rounded-3xl border border-steel/60 bg-graphite/80 p-6 backdrop-blur-xl">
           <div className="mb-6 flex items-center justify-between">
-            <h3 className="font-display text-2xl font-semibold text-white">L&apos;Indice: Criteri di Selezione e Pesi</h3>
+            <h3 className="font-display text-2xl font-semibold text-white">The Index: Selection Criteria &amp; Weights</h3>
             <span className="rounded-full border border-neon/40 bg-black/60 px-3 py-1 text-xs uppercase tracking-[0.2em] text-grey400">
               In Validation
             </span>
           </div>
           <p className="mb-6 text-sm text-grey400">
-            ALIXINDEX100 seleziona i 100 principali token dell&apos;ecosistema Virtuals in base a una formula ponderata e trasparente, recuperando dati da CoinGecko, CoinMarketCap e dalle API di Virtuals.
+            ALIXINDEX100 selects the top 100 tokens in the Virtuals ecosystem using a transparent weighted formula, pulling data from CoinGecko, CoinMarketCap, and Virtuals APIs.
           </p>
           <div className="relative overflow-hidden rounded-2xl border border-steel/60 bg-black/60">
             <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(43,43,46,0.6)_1px,transparent_1px),linear-gradient(rgba(43,43,46,0.6)_1px,transparent_1px)] bg-[length:36px_36px]" />
@@ -283,7 +284,7 @@ function LiveIndexSection() {
             </div>
           ))}
           <p className="text-sm text-grey400/80">
-            La ponderazione è calcolata dinamicamente: 60% per capitalizzazione di mercato, 30% per volume di scambio e 10% per profondità di liquidità.
+            Weighting is calculated dynamically: 60% market capitalization, 30% trading volume, and 10% liquidity depth.
           </p>
         </div>
       </div>
@@ -297,16 +298,16 @@ function TrustedSection() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(173,255,0,0.12),transparent_70%)]" />
       <div className="relative mx-auto flex w-full max-w-[100rem] flex-col items-center gap-8 px-0 text-center md:px-10 xl:px-16 2xl:px-24">
         <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">
-          La Visione: La Borsa Decentralizzata dell&apos;Intelligenza
+          The Vision: The Decentralized Exchange of Intelligence
         </h2>
         <p className="max-w-3xl text-lg text-grey400">
-          ALIX vuole diventare una rete di indici autonomi che unisce automazione, trasparenza e comunità. Non solo dati da possedere, ma un ecosistema a cui appartenere.
+          ALIX aims to become a network of autonomous indexes that blends automation, transparency, and community. Not just data to own, but an ecosystem to belong to.
         </p>
         <a
           href="#index-live"
           className="inline-flex items-center gap-3 rounded-lg bg-neon px-6 py-3 text-base font-semibold text-carbon transition hover:bg-lime-gradient"
         >
-          Leggi il Whitepaper
+          Read the Whitepaper
         </a>
       </div>
     </section>
@@ -322,51 +323,51 @@ function RoadmapInvestorsSection() {
     },
     {
       period: "Week 1",
-      objective: "Audit Quantstamp + lancio mainnet",
+      objective: "Quantstamp audit + mainnet launch",
       details: [],
     },
     {
       period: "Week 2",
-      objective: "Snapshot giornalieri & ribilanciamento automatico",
+      objective: "Daily snapshots & automated rebalancing",
       details: [],
     },
     {
       period: "Week 3",
-      objective: "Integrazione con Virtuals Protocol",
+      objective: "Integration with the Virtuals Protocol",
       details: [],
     },
   ];
 
   const launchParameters = [
-    { label: "Piattaforma", value: "Virtuals Protocol IAO (Base chain)" },
-    { label: "Supply Fisso", value: "1 miliardo ALIX" },
-    { label: "Liquidity", value: "Paired con $VIRTUAL – LP locked 10 anni" },
-    { label: "Commissione di Deposito", value: "1% (usata per buyback & burn di $ALIX)" },
+    { label: "Platform", value: "Virtuals Protocol IAO (Base chain)" },
+    { label: "Fixed Supply", value: "1 billion ALIX" },
+    { label: "Liquidity", value: "Paired with $VIRTUAL – LP locked 10 years" },
+    { label: "Deposit Fee", value: "1% (used for $ALIX buyback & burn)" },
     { label: "Fair Launch", value: "No pre-mine · No insiders · Community-only" },
   ];
 
   const security = [
-    { label: "Audit", value: "Quantstamp – Report pubblico Day 14" },
+    { label: "Audit", value: "Quantstamp – Public report Day 14" },
     {
       label: "Smart Contract",
-      value: "GitHub pubblico (github.com/alix-index) · Verified su Base + Virtuals SDK",
+      value: "Public GitHub (github.com/alix-index) · Verified on Base + Virtuals SDK",
     },
     {
-      label: "Ciclo Chiuso",
-      value: "Entrata e uscita dall&apos;indice esclusivamente in $VIRTUALS.",
+      label: "Closed Loop",
+      value: "Index entry and exit exclusively in $VIRTUALS.",
     },
   ];
 
   const nextPhases = [
     {
-      phase: "Fase 2 (2026-2027) — ETF Tematici",
+      phase: "Phase 2 (2026-2027) — Thematic ETFs",
       timeline: "",
-      objective: "Espansione in portafogli specializzati come ALIXMEME50, ALIXGAME30 e ALIXTECH20.",
+      objective: "Expansion into specialized portfolios such as ALIXMEME50, ALIXGAME30, and ALIXTECH20.",
     },
     {
-      phase: "Fase 3 (2027-2028) — ETF Generati dagli Utenti",
+      phase: "Phase 3 (2027-2028) — User-Created ETFs",
       timeline: "",
-      objective: "Una piattaforma per creare e monetizzare i propri indici algoritmici.",
+      objective: "A platform to build and monetize custom algorithmic indexes.",
     },
   ];
 
@@ -378,10 +379,10 @@ function RoadmapInvestorsSection() {
           <div className="h-1 w-20 bg-lime-gradient" />
           <div className="mt-6">
             <h2 className="font-display text-[1.4rem] font-semibold text-lime-400 md:text-[1.6rem]">
-              Roadmap Evolutiva: Da Indice a Fabbrica di ETF
+              Evolution Roadmap: From Index to ETF Factory
             </h2>
             <p className="mt-4 max-w-[900px] text-sm leading-relaxed text-neutral-300 md:text-base">
-              Fair Launch su Virtuals Protocol – IAO Day 30 · Audit Quantstamp in corso · Tokenizzazione su Base
+              Fair launch on Virtuals Protocol – IAO Day 30 · Quantstamp audit in progress · Tokenized on Base
             </p>
             <div className="h-px w-full bg-neutral-800/60 mt-6 mb-8" />
           </div>
@@ -389,7 +390,7 @@ function RoadmapInvestorsSection() {
 
         <div className="space-y-6">
           <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-            <h3 className="font-display text-2xl text-white">Fase 1 — ALIXINDEX100 (2025)</h3>
+            <h3 className="font-display text-2xl text-white">Phase 1 — ALIXINDEX100 (2025)</h3>
           </div>
           <div className="flex space-x-4 overflow-x-auto rounded-xl border border-neutral-800 bg-neutral-900/40 p-4 pb-4 md:grid md:gap-4 md:space-x-0 md:overflow-visible md:p-6 md:pb-6 md:grid-cols-5">
             {timeline.map((item) => (
@@ -421,7 +422,7 @@ function RoadmapInvestorsSection() {
 
         <div className="grid gap-6 md:grid-cols-2 mb-12">
           <div className="flex h-full flex-col rounded-xl border border-neutral-800 bg-neutral-900/40 p-6">
-            <h3 className="text-lg font-medium text-white mb-4">Parametri di Lancio</h3>
+            <h3 className="text-lg font-medium text-white mb-4">Launch Parameters</h3>
             <dl className="space-y-4 text-sm">
               {launchParameters.map((item) => (
                 <div key={item.label} className="flex flex-col">
@@ -432,7 +433,7 @@ function RoadmapInvestorsSection() {
             </dl>
           </div>
           <div className="flex h-full flex-col rounded-xl border border-neutral-800 bg-neutral-900/40 p-6">
-            <h3 className="text-lg font-medium text-white mb-4">Trasparenza &amp; Sicurezza – Zero Compromessi</h3>
+            <h3 className="text-lg font-medium text-white mb-4">Transparency &amp; Security – Zero Compromises</h3>
             <dl className="space-y-4 text-sm">
               {security.map((item) => (
                 <div key={item.label} className="flex flex-col">
@@ -445,7 +446,7 @@ function RoadmapInvestorsSection() {
         </div>
 
         <div className="space-y-4">
-          <h3 className="font-display text-2xl text-white">Fasi Successive</h3>
+          <h3 className="font-display text-2xl text-white">Next Phases</h3>
           <div className="divide-y divide-steel/40 overflow-hidden rounded-2xl border border-steel/60 bg-graphite/80">
             {nextPhases.map((item) => (
               <div
@@ -462,7 +463,7 @@ function RoadmapInvestorsSection() {
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3 text-[11px] tracking-wide text-neutral-300">
           <span className="rounded-full border border-neutral-700 bg-black/40 px-3 py-1">Audit: Quantstamp</span>
-          <span className="rounded-full border border-neutral-700 bg-black/40 px-3 py-1">LP locked 10 anni</span>
+          <span className="rounded-full border border-neutral-700 bg-black/40 px-3 py-1">LP locked 10 years</span>
           <span className="rounded-full border border-neutral-700 bg-black/40 px-3 py-1">No pre-mine · No insiders</span>
         </div>
 

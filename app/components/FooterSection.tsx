@@ -5,12 +5,12 @@ export function FooterSection() {
         <div className="space-y-4">
           <span className="font-display text-2xl font-semibold text-neon">ALIX</span>
           <p className="max-w-sm text-sm text-grey400/80">
-            ALIX sarà la valuta dell&apos;economia autonoma.
+            ALIX will be the currency of the autonomous economy.
           </p>
         </div>
         <div className="grid gap-3 text-sm text-grey400">
           <a href="#docs" className="hover:text-neon">
-            Documentazione (docs.alixindex100.ai)
+            Documentation (docs.alixindex100.ai)
           </a>
           <a href="#telegram" className="hover:text-neon">
             Telegram (@ALIXProtocol)
@@ -29,11 +29,11 @@ export function FooterSection() {
       <div className="mx-auto mt-12 w-full max-w-[120rem] border-t border-steel/50 px-6 pt-6 text-xs text-grey400/70 md:px-10 xl:px-16 2xl:px-24">
         <p className="mb-2 uppercase tracking-[0.3em] text-grey400/60">Transparency · Security · Auditability</p>
         <p>
-          ALIXINDEX100 è un progetto in fase di pre-lancio.
+          ALIXINDEX100 is a project currently in pre-launch.
           <br />
-          Nessun rendimento è garantito fino all’attivazione ufficiale dell’indice.
+          No yield is guaranteed until the index is officially live.
           <br />
-          ALIX è un token sperimentale. Investi in modo responsabile.
+          ALIX is an experimental token. Invest responsibly.
         </p>
       </div>
     </footer>
