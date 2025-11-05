@@ -7,73 +7,73 @@ const cardClass =
 const tableBaseClass = "min-w-full text-left text-sm text-grey400";
 
 const tokenLaunchRows = [
-  { parameter: "Piattaforma", detail: "Virtuals Protocol IAO (Base chain)" },
-  { parameter: "Supply Fisso", detail: "1 miliardo ALIX" },
-  { parameter: "Liquidity", detail: "Paired con $VIRTUAL – LP locked 10 anni" },
-  { parameter: "Trading Fee", detail: "1% su ogni trade (inference + GPU)" },
+  { parameter: "Platform", detail: "Virtuals Protocol IAO (Base chain)" },
+  { parameter: "Fixed Supply", detail: "1 billion ALIX" },
+  { parameter: "Liquidity", detail: "Paired with $VIRTUAL – LP locked 10 years" },
+  { parameter: "Trading Fee", detail: "1% on every trade (inference + GPU)" },
   { parameter: "Launch", detail: "Day 30: Bonding curve → Graduation → Uniswap LP" },
   { parameter: "Fair Launch", detail: "No pre-mine · No insiders · Community-only" },
 ];
 
 const transparencyRows = [
   {
-    parameter: "Audit Ufficiale",
-    detail: "Quantstamp (Top 3 mondiale) – Report pubblico Day 14",
+    parameter: "Official Audit",
+    detail: "Quantstamp (Global top 3) – Public report Day 14",
   },
   {
     parameter: "Smart Contract",
-    detail: "GitHub pubblico (github.com/alix-index) · Verified su Base + Virtuals SDK",
+    detail: "Public GitHub (github.com/alix-index) · Verified on Base + Virtuals SDK",
   },
   {
     parameter: "Virtuals Integration",
-    detail: "IAO nativo: 100 $VIRTUAL fee · 1% fee su agent ops",
+    detail: "Native IAO: 100 $VIRTUAL fee · 1% fee on agent ops",
   },
 ];
 
 const roadmapRows = [
   {
     week: "Day 0",
-    objective: "Preparazione IAO",
-    milestones: "Setup profilo agente · 100 $VIRTUAL fee · Deploy pagina IAO",
+    objective: "IAO preparation",
+    milestones: "Agent profile setup · 100 $VIRTUAL fee · Deploy IAO page",
   },
   {
-    week: "Settimana 1",
-    objective: "Costruzione del Core Protocol",
-    milestones: "Vault su Base · 1inch Fusion Router · Gelato Keeper · Weight Engine (0.6 MC + 0.3 Vol + 0.1 Liq)",
+    week: "Week 1",
+    objective: "Build the core protocol",
+    milestones: "Vault on Base · 1inch Fusion Router · Gelato Keeper · Weight Engine (0.6 MC + 0.3 Vol + 0.1 Liq)",
   },
   {
-    week: "Settimana 2",
-    objective: "Sicurezza & Testnet",
-    milestones: "Audit Quantstamp · Beta privata con 100 tester · Test bonding curve",
+    week: "Week 2",
+    objective: "Security & testnet",
+    milestones: "Quantstamp audit · Private beta with 100 testers · Bonding curve tests",
   },
   {
-    week: "Settimana 3",
-    objective: "Lancio Ufficiale IAO",
-    milestones: "Token ALIX generato da Virtuals · Deploy Vault · INDEX100 live (feed top 100 agents)",
+    week: "Week 3",
+    objective: "Official IAO launch",
+    milestones: "ALIX token minted by Virtuals · Vault deployed · INDEX100 live (top 100 agents feed)",
   },
   {
-    week: "Settimana 4",
-    objective: "Attivazione Fee + Staking",
-    milestones: "1% trading fee + 0.3% protocol fee · NAV live · Rebalance automatico · Staking ALIX attivo",
+    week: "Week 4",
+    objective: "Activate fees + staking",
+    milestones: "1% trading fee + 0.3% protocol fee · Live NAV · Automatic rebalance · ALIX staking active",
   },
 ];
 
 const day30Rows = [
   {
     feature: "Wallet Gating",
-    status: "Accesso solo con ≥1 ALIX (su Base)",
+    status: "Access granted only with ≥1 ALIX (on Base)",
   },
   {
     feature: "Deposito ALIX",
-    status: "Approve + Deposit → ricevi quote INDEX",
+    status: "Approve + Deposit → receive INDEX shares",
   },
   {
     feature: "NAV in tempo reale",
-    status: "Aggiornato ogni blocco (Top 100 Virtuals Agents)",
+    status: "Updated every block (Top 100 Virtuals Agents)",
   },
   {
     feature: "Rebalance automatico",
-    status: "Gelato Keeper · trigger >2.5% deviazione",
+    status: "Gelato Keeper · trigger >2.5% deviation",
   },
   {
     feature: "Riscatto in ALIX",
@@ -81,11 +81,11 @@ const day30Rows = [
   },
   {
     feature: "Snapshot storico",
-    status: "IPFS + Arweave · immutabile",
+    status: "IPFS + Arweave · immutable",
   },
   {
     feature: "Dashboard v3.0",
-    status: "Grafici, top 100 agenti, storico personale, dark neon UI",
+    status: "Charts, top 100 agents, personal history, dark neon UI",
   },
   {
     feature: "Virtuals Revenue",
@@ -95,67 +95,67 @@ const day30Rows = [
 
 const feeRows = [
   {
-    fee: "0.3% su deposito/redeem",
-    destination: "100% al Treasury ALIX",
+    fee: "0.3% on deposit/redeem",
+    destination: "100% to the ALIX Treasury",
   },
   {
     fee: "1% trading fee (Virtuals)",
     destination: "Agent wallet (inference revenue + buyback)",
   },
   {
-    fee: "Buyback automatico ALIX",
-    destination: "Day 31 – alimentato da fee + $VIRTUAL pair",
+    fee: "Automatic $ALIX buyback",
+    destination: "Day 31 – powered by fees + $VIRTUAL pair",
   },
   {
-    fee: "Staking ALIX",
-    destination: "50% delle fee redistribuite agli staker → APY reale",
+    fee: "$ALIX staking",
+    destination: "50% of fees redistributed to stakers → Real APY",
   },
 ];
 
 const tvlRows = [
-  { tvl: "$5M", reward: "1% del supply" },
-  { tvl: "$10M", reward: "2% del supply" },
-  { tvl: "$25M", reward: "3% del supply + NFT \"Whale Club\" (Virtuals marketplace)" },
+  { tvl: "$5M", reward: "1% of supply" },
+  { tvl: "$10M", reward: "2% of supply" },
+  { tvl: "$25M", reward: "3% of supply + \"Whale Club\" NFT (Virtuals marketplace)" },
 ];
 
 const nextStepsRows = [
   {
-    phase: "Fase 2",
-    timeline: "Mese 2–4",
-    goal: "MEME100 · TRADE100 · GAME100 – indici tematici basati su Virtuals Agents",
+    phase: "Phase 2",
+    timeline: "Month 2–4",
+    goal: "MEME100 · TRADE100 · GAME100 – thematic indexes based on Virtuals Agents",
   },
   {
-    phase: "Fase 3",
-    timeline: "Mese 5–8",
-    goal: "User-Generated Index – Crea il tuo indice su Virtuals IAO (0.1% fee + inference revenue)",
+    phase: "Phase 3",
+    timeline: "Month 5–8",
+    goal: "User-generated index – Build your own on Virtuals IAO (0.1% fee + inference revenue)",
   },
   {
-    phase: "Fase 4",
-    timeline: "Mese 9–12",
-    goal: "Cross-chain (Solana) · Leverage 2x · Staking v2 con GAME SDK",
+    phase: "Phase 4",
+    timeline: "Month 9–12",
+    goal: "Cross-chain (Solana) · 2x leverage · Staking v2 with GAME SDK",
   },
 ];
 
 const investRows = [
   {
-    reason: "Unico al mondo",
-    detail: "Primo indice decentralizzato di agenti autonomi su Virtuals",
+    reason: "One of a kind",
+    detail: "First decentralized index of autonomous agents on Virtuals",
   },
   {
     reason: "ALIX = Access + Revenue",
-    detail: "Token di accesso + 1% fee + governance + staking",
+    detail: "Access token + 1% fee + governance + staking",
   },
   {
     reason: "Buyback Day 31",
-    detail: "0.3% + 1% fee → Treasury → ALIX più scarso",
+    detail: "0.3% + 1% fee → Treasury → Scarcer ALIX",
   },
   {
-    reason: "Audit Quantstamp",
-    detail: "Sicurezza bancaria su Base",
+    reason: "Quantstamp audit",
+    detail: "Bank-grade security on Base",
   },
   {
-    reason: "TVL Target",
-    detail: "$5M in 30 gg · $25M in 90 gg",
+    reason: "TVL targets",
+    detail: "$5M in 30 days · $25M in 90 days",
   },
 ];
 
@@ -167,14 +167,14 @@ export default function RoadmapPage() {
         <section className="py-16">
           <div className={`${containerClass} space-y-6`}>
             <h1 className="font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
-              ALIXINDEX100 – ROADMAP PUBBLICA PER INVESTITORI
+              ALIXINDEX100 – PUBLIC ROADMAP FOR INVESTORS
             </h1>
             <div className="space-y-2 text-sm uppercase tracking-[0.25em] text-grey400/80 sm:text-base sm:tracking-[0.35em]">
               <p>
-                FAIR LAUNCH SU VIRTUALS PROTOCOL – <span className="text-neon">IAO DAY 30</span>
+                FAIR LAUNCH ON VIRTUALS PROTOCOL – <span className="text-neon">IAO DAY 30</span>
               </p>
               <p>
-                <span className="text-neon">ALIX IN → ALIX OUT</span> – SEMPRE. TOKENIZZATO COME AI AGENT SU BASE.
+                <span className="text-neon">ALIX IN → ALIX OUT</span> – ALWAYS. TOKENIZED AS AN AI AGENT ON BASE.
               </p>
             </div>
             <div className="h-px w-full bg-steel/60" />
@@ -184,19 +184,19 @@ export default function RoadmapPage() {
         <section className="border-y border-steel/60 bg-graphite/60 py-16">
           <div className={`${containerClass} space-y-8`}>
             <div>
-              <h2 className="font-display text-2xl font-semibold tracking-tight text-white sm:text-3xl">VISIONE</h2>
+              <h2 className="font-display text-2xl font-semibold tracking-tight text-white sm:text-3xl">VISION</h2>
             </div>
             <div className="space-y-6 text-base leading-relaxed text-grey400">
               <p>
-                <strong className="text-white">ALIXINDEX100</strong> è il primo indice decentralizzato di agenti autonomi su
-                Virtuals Protocol. Un fondo autonomo, trasparente, auditato da <span className="text-neon">Quantstamp</span>, che
-                permette a chiunque possieda <span className="text-neon">ALIX</span> (AI Agent Token su Virtuals, supply fisso 1B)
-                di ottenere esposizione ai 100 migliori agenti AI del protocollo – con entrata e uscita esclusivamente in
+                <strong className="text-white">ALIXINDEX100</strong> is the first decentralized index of autonomous agents on
+                Virtuals Protocol. It is a self-governing, transparent fund audited by <span className="text-neon">Quantstamp</span>
+                that gives anyone holding <span className="text-neon">ALIX</span> (the AI Agent Token on Virtuals, fixed supply 1B)
+                exposure to the protocol&apos;s top 100 AI agents – with entry and exit exclusively in
                 <span className="text-neon"> ALIX</span>.
               </p>
               <p>
-                Virtuals Protocol genera il token <span className="text-neon">ALIX</span> tramite Initial Agent Offering (IAO):
-                bonding curve paired con $VIRTUAL, LP locked 10 anni, 1% trading fee per inference/GPU.
+                Virtuals Protocol mints the <span className="text-neon">ALIX</span> token through an Initial Agent Offering (IAO):
+                a bonding curve paired with $VIRTUAL, LP locked for 10 years, and a 1% trading fee covering inference/GPU.
                 <span className="font-semibold text-neon"> Fair launch – no insiders, no pre-mine.</span>
               </p>
             </div>
@@ -204,10 +204,10 @@ export default function RoadmapPage() {
               <div className="absolute inset-y-0 left-0 w-1 bg-neon" aria-hidden="true" />
               <div className="relative space-y-3 text-sm text-grey400">
                 <p>
-                  <span className="font-semibold text-white">Oggi:</span> Preparazione IAO (100 $VIRTUAL fee).
+                  <span className="font-semibold text-white">Today:</span> IAO preparation (100 $VIRTUAL fee).
                 </p>
                 <p>
-                  <span className="font-semibold text-white">Tra 30 giorni:</span> IAO ALIX live + INDEX100 operativo + fee attive.
+                  <span className="font-semibold text-white">In 30 days:</span> ALIX IAO live + INDEX100 operating + fees active.
                 </p>
               </div>
             </div>
@@ -218,7 +218,7 @@ export default function RoadmapPage() {
           <div className={`${containerClass} space-y-8`}>
             <div className="space-y-4">
               <h2 className="font-display text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-                TOKEN LAUNCH – FAIR IAO SU VIRTUALS
+                TOKEN LAUNCH – FAIR IAO ON VIRTUALS
               </h2>
               <a
                 href="https://www.alixindex.com"
@@ -234,8 +234,8 @@ export default function RoadmapPage() {
                 <table className={`${tableBaseClass} min-w-[600px]`}>
                   <thead className="bg-graphite/80 text-xs uppercase tracking-[0.25em] text-grey400/80">
                     <tr>
-                      <th className="px-5 py-4 font-medium text-grey400">Parametro</th>
-                      <th className="px-5 py-4 font-medium text-grey400">Dettaglio</th>
+                      <th className="px-5 py-4 font-medium text-grey400">Parameter</th>
+                      <th className="px-5 py-4 font-medium text-grey400">Detail</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -251,22 +251,22 @@ export default function RoadmapPage() {
                 </table>
               </div>
             </div>
-            <p className="text-xs uppercase tracking-[0.2em] text-grey400/70">TGE = Day 30 – IAO live + INDEX100 attivo.</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-grey400/70">TGE = Day 30 – IAO live + INDEX100 active.</p>
           </div>
         </section>
 
         <section className="border-y border-steel/60 bg-graphite/60 py-16">
           <div className={`${containerClass} space-y-6`}>
             <h2 className="font-display text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-              TRASPARENZA &amp; SICUREZZA – ZERO COMPROMESSI
+              TRANSPARENCY &amp; SECURITY – ZERO COMPROMISES
             </h2>
             <div className={cardClass}>
               <div className="overflow-x-auto">
                 <table className={`${tableBaseClass} min-w-[520px]`}>
                   <thead className="bg-graphite/80 text-xs uppercase tracking-[0.25em] text-grey400/80">
                     <tr>
-                      <th className="px-5 py-4 font-medium text-grey400">Parametro</th>
-                      <th className="px-5 py-4 font-medium text-grey400">Dettaglio</th>
+                      <th className="px-5 py-4 font-medium text-grey400">Parameter</th>
+                      <th className="px-5 py-4 font-medium text-grey400">Detail</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -286,16 +286,16 @@ export default function RoadmapPage() {
         <section className="py-16">
           <div className={`${containerClass} space-y-6`}>
             <h2 className="font-display text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-              ROADMAP 30 GIORNI – AUDITATA, IAO NATIVE, SU BASE
+              30-DAY ROADMAP – AUDITED, NATIVE IAO, ON BASE
             </h2>
             <div className={cardClass}>
               <div className="overflow-x-auto">
                 <table className={`${tableBaseClass} min-w-[720px]`}>
                   <thead className="bg-graphite/80 text-xs uppercase tracking-[0.25em] text-grey400/80">
                     <tr>
-                      <th className="px-5 py-4 font-medium text-grey400">SETTIMANA</th>
-                      <th className="px-5 py-4 font-medium text-grey400">OBIETTIVO PRINCIPALE</th>
-                      <th className="px-5 py-4 font-medium text-grey400">MILESTONE CHIAVE</th>
+                      <th className="px-5 py-4 font-medium text-grey400">WEEK</th>
+                      <th className="px-5 py-4 font-medium text-grey400">PRIMARY OBJECTIVE</th>
+                      <th className="px-5 py-4 font-medium text-grey400">KEY MILESTONES</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -317,17 +317,17 @@ export default function RoadmapPage() {
           <div className={`${containerClass} space-y-8`}>
             <div className="space-y-3">
               <h2 className="font-display text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-                DAY 30 – IAO ALIX + INDEX100 È LIVE E REDDITIZIO
+                DAY 30 – ALIX IAO + INDEX100 ARE LIVE AND PROFITABLE
               </h2>
-              <h3 className="font-display text-xl font-semibold text-white">Funzionalità Attive</h3>
+              <h3 className="font-display text-xl font-semibold text-white">Active Features</h3>
             </div>
             <div className={cardClass}>
               <div className="overflow-x-auto">
                 <table className={`${tableBaseClass} min-w-[620px]`}>
                   <thead className="bg-graphite/80 text-xs uppercase tracking-[0.25em] text-grey400/80">
                     <tr>
-                      <th className="px-5 py-4 font-medium text-grey400">Funzionalità</th>
-                      <th className="px-5 py-4 font-medium text-grey400">Stato</th>
+                      <th className="px-5 py-4 font-medium text-grey400">Feature</th>
+                      <th className="px-5 py-4 font-medium text-grey400">Status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -343,7 +343,7 @@ export default function RoadmapPage() {
             </div>
             <div className="space-y-3">
               <h3 className="font-display text-xl font-semibold text-white">
-                Fee del Protocollo – ATTIVE DAL DAY 30
+                Protocol Fees – ACTIVE FROM DAY 30
               </h3>
               <div className={cardClass}>
                 <div className="overflow-x-auto">
@@ -351,7 +351,7 @@ export default function RoadmapPage() {
                     <thead className="bg-graphite/80 text-xs uppercase tracking-[0.25em] text-grey400/80">
                       <tr>
                         <th className="px-5 py-4 font-medium text-grey400">Fee</th>
-                        <th className="px-5 py-4 font-medium text-grey400">Destinazione</th>
+                        <th className="px-5 py-4 font-medium text-grey400">Destination</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -372,15 +372,15 @@ export default function RoadmapPage() {
         <section className="py-16">
           <div className={`${containerClass} space-y-6`}>
             <h2 className="font-display text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-              TVL MILESTONE BONUS – INCENTIVO COLLETTIVO
+              TVL MILESTONE BONUS – COLLECTIVE INCENTIVE
             </h2>
             <div className={cardClass}>
               <div className="overflow-x-auto">
                 <table className={`${tableBaseClass} min-w-[480px]`}>
                   <thead className="bg-graphite/80 text-xs uppercase tracking-[0.25em] text-grey400/80">
                     <tr>
-                      <th className="px-5 py-4 font-medium text-grey400">TVL Raggiunto</th>
-                      <th className="px-5 py-4 font-medium text-grey400">Airdrop ALIX (dal Treasury)</th>
+                      <th className="px-5 py-4 font-medium text-grey400">TVL Achieved</th>
+                      <th className="px-5 py-4 font-medium text-grey400">ALIX Airdrop (from Treasury)</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -395,7 +395,7 @@ export default function RoadmapPage() {
               </div>
             </div>
             <p className="text-xs text-grey400/70">
-              Airdrop ai detentori ALIX (snapshot al raggiungimento).
+              Airdrop to ALIX holders (snapshot at milestone achievement).
             </p>
           </div>
         </section>
@@ -403,16 +403,16 @@ export default function RoadmapPage() {
         <section className="border-y border-steel/60 bg-graphite/60 py-16">
           <div className={`${containerClass} space-y-6`}>
             <h2 className="font-display text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-              PROSSIME FASI – OLTRE I 30 GIORNI
+              NEXT STAGES – BEYOND 30 DAYS
             </h2>
             <div className={cardClass}>
               <div className="overflow-x-auto">
                 <table className={`${tableBaseClass} min-w-[680px]`}>
                   <thead className="bg-graphite/80 text-xs uppercase tracking-[0.25em] text-grey400/80">
                     <tr>
-                      <th className="px-5 py-4 font-medium text-grey400">Fase</th>
+                      <th className="px-5 py-4 font-medium text-grey400">Phase</th>
                       <th className="px-5 py-4 font-medium text-grey400">Timeline</th>
-                      <th className="px-5 py-4 font-medium text-grey400">Obiettivo + Upside</th>
+                      <th className="px-5 py-4 font-medium text-grey400">Goal + Upside</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -428,7 +428,7 @@ export default function RoadmapPage() {
               </div>
             </div>
             <p className="text-xs text-grey400/70">
-              Finanziato da fee → buyback ALIX → valore crescente e <span className="text-neon">deflattivo</span>.
+              Funded by fees → ALIX buyback → growing, <span className="text-neon">deflationary</span> value.
             </p>
           </div>
         </section>
@@ -436,15 +436,15 @@ export default function RoadmapPage() {
         <section className="py-16">
           <div className={`${containerClass} space-y-6`}>
             <h2 className="font-display text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-              PERCHÉ INVESTIRE OGGI
+              WHY INVEST TODAY
             </h2>
             <div className={cardClass}>
               <div className="overflow-x-auto">
                 <table className={`${tableBaseClass} min-w-[520px]`}>
                   <thead className="bg-graphite/80 text-xs uppercase tracking-[0.25em] text-grey400/80">
                     <tr>
-                      <th className="px-5 py-4 font-medium text-grey400">Motivo</th>
-                      <th className="px-5 py-4 font-medium text-grey400">Dettaglio</th>
+                      <th className="px-5 py-4 font-medium text-grey400">Reason</th>
+                      <th className="px-5 py-4 font-medium text-grey400">Detail</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -466,20 +466,20 @@ export default function RoadmapPage() {
             <div className="rounded-3xl border border-neon/40 bg-[rgba(12,12,13,0.92)] p-10 shadow-[0_0_35px_rgba(173,255,0,0.18)]">
               <div className="space-y-6">
                 <h2 className="font-display text-3xl font-semibold tracking-tight text-white">
-                  PARTECIPA ALL&rsquo;IAO
+                  JOIN THE IAO
                 </h2>
                 <ul className="space-y-4 border-l border-neon/50 pl-6 text-sm text-grey400">
                   <li>
-                    <span className="font-semibold text-white">Day 0:</span> Preparazione
+                    <span className="font-semibold text-white">Day 0:</span> Preparation
                   </li>
                   <li>
-                    <span className="font-semibold text-white">Day 30:</span> IAO ALIX + INDEX100 live + fee + staking
+                    <span className="font-semibold text-white">Day 30:</span> ALIX IAO + INDEX100 live + fees + staking
                   </li>
                   <li>
-                    <span className="font-semibold text-white">Day 31:</span> LP Uniswap + buyback attivo
+                    <span className="font-semibold text-white">Day 31:</span> Uniswap LP + buyback active
                   </li>
                   <li>
-                    <span className="font-semibold text-white">Day 365:</span> ALIX = il BlackRock della DeFi AI su Virtuals
+                    <span className="font-semibold text-white">Day 365:</span> ALIX becomes the BlackRock of DeFi AI on Virtuals
                   </li>
                 </ul>
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -489,11 +489,11 @@ export default function RoadmapPage() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center rounded-lg bg-neon px-8 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-carbon shadow-lime transition hover:bg-lime-gradient"
                   >
-                    Vai alla Prevendita
+                    Go to the Presale
                   </a>
                   <p className="text-xs text-grey400/70 sm:text-right">
-                    ALIX non è un token. È un AI Agent tokenizzato su Virtuals – accesso al futuro dell’intelligenza decentralizzata.
-                    Possiedi l’indice. Guadagna per sempre.
+                    ALIX is not just a token. It&apos;s a tokenized AI Agent on Virtuals – access to the future of decentralized intelligence.
+                    Own the index. Earn forever.
                   </p>
                 </div>
               </div>
