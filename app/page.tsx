@@ -31,7 +31,8 @@ function HeroSection() {
             <span>ALIXINDEX100 PRE-LAUNCH</span>
           </div>
           <h1 className="font-display text-4xl font-semibold tracking-tight text-white md:text-5xl lg:text-6xl">
-            Own the market, don&apos;t chase it.
+            <span className="block">Own the market,</span>
+            <span className="block">don&apos;t chase it.</span>
           </h1>
           <p className="max-w-xl text-lg text-grey400">
             ALIXINDEX100 is the first decentralized index that tracks the top 100 autonomous currencies in the Virtuals ecosystem.
@@ -43,7 +44,7 @@ function HeroSection() {
               href="https://www.alixindex.com"
               className="inline-flex items-center gap-3 rounded-lg bg-neon px-6 py-3 text-base font-semibold text-carbon transition hover:bg-lime-gradient"
             >
-              Connect Wallet
+              Join the presale
             </a>
             <p className="text-sm text-grey400/80">You&apos;ll be notified when ALIXINDEX100 officially launches.</p>
           </div>
