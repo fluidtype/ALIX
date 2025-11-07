@@ -130,7 +130,7 @@ function AboutAlixSection() {
               </li>
             </ul>
           </div>
-          <div className="flex justify-center md:justify-end">
+          <div className="relative">
             <div className="relative w-full max-w-[34rem] md:ml-[7rem]">
               <div className="absolute -left-12 -top-16 h-40 w-40 rounded-full bg-neon/20 blur-3xl" />
               <div className="absolute -right-8 bottom-10 h-24 w-24 rounded-full bg-neonAlt/25 blur-3xl" />
