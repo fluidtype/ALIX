@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { Header } from "./components/Header";
 import { FooterSection } from "./components/FooterSection";
+import { LaunchPreviewVideo } from "./components/LaunchPreviewVideo";
 
 export default function LandingPage() {
   return (
@@ -60,18 +61,14 @@ function HeroSection() {
         <div className="relative">
           <div className="absolute -left-12 -top-16 h-40 w-40 rounded-full bg-neon/20 blur-3xl" />
           <div className="absolute -right-8 bottom-10 h-24 w-24 rounded-full bg-neonAlt/30 blur-3xl" />
-          <div className="relative rounded-3xl border border-steel/80 bg-graphite/80 p-8 backdrop-blur-xl">
+          <div className="relative w-full max-w-[34rem] rounded-3xl border border-steel/80 bg-graphite/80 p-8 backdrop-blur-xl md:ml-[7rem]">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-steel/70 bg-black/40 px-4 py-1 text-xs tracking-[0.2em] text-grey400">
               <span className="inline-flex h-2 w-2 items-center justify-center">
                 <span className="block h-2 w-2 rounded-full bg-neon" />
               </span>
               <span>Coming Soon · ALIXINDEX100 Launch Preview</span>
             </div>
-            <div className="relative flex h-64 w-full items-center justify-center overflow-hidden rounded-2xl border border-steel/60 bg-black/60">
-              <span className="text-center text-sm uppercase tracking-[0.25em] text-grey400">
-                Coming Soon · ALIXINDEX100 Launch Preview
-              </span>
-            </div>
+          <LaunchPreviewVideo />
             <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
               {[
                 { label: "Tracked Assets", value: "100" },
