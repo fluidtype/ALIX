@@ -93,11 +93,18 @@ function HeroSection() {
 }
 
 function AboutAlixSection() {
+  const tokenMetrics = [
+    { label: "Total Supply", value: "1B ALIX" },
+    { label: "Burn Fee", value: "1%" },
+    { label: "Rebalance Cycle", value: "24h" },
+    { label: "Transparency", value: "100% On-Chain" },
+  ];
+
   return (
     <section id="index" className="border-t border-neon/30 bg-graphite py-16">
       <div className="mx-auto w-full max-w-[120rem] px-0 md:px-10 xl:px-16 2xl:px-24">
-        <div className="grid items-start gap-16 md:grid-cols-2">
-          <div className="max-w-2xl space-y-6 md:max-w-none">
+        <div className="grid items-start gap-6 md:grid-cols-2 md:gap-16">
+          <div className="order-2 max-w-2xl space-y-6 md:order-1 md:max-w-none">
             <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">The Role of $ALIX: Governance and Deflationary Utility</h2>
             <p className="text-lg text-grey400">
               $ALIX is the governance and rewards token of the ecosystem. Every deposit into the index generates a 1% fee used to buy back and burn $ALIX, creating a deflationary mechanism that rewards token holders.
@@ -130,10 +137,10 @@ function AboutAlixSection() {
               </li>
             </ul>
           </div>
-          <div className="relative">
-            <div className="relative w-full max-w-[34rem] md:ml-[7rem]">
-              <div className="absolute -left-12 -top-16 h-40 w-40 rounded-full bg-neon/20 blur-3xl" />
-              <div className="absolute -right-8 bottom-10 h-24 w-24 rounded-full bg-neonAlt/25 blur-3xl" />
+          <div className="relative order-1 md:order-2">
+            <div className="absolute -left-12 -top-16 h-40 w-40 rounded-full bg-neon/20 blur-3xl" />
+            <div className="absolute -right-8 bottom-10 h-24 w-24 rounded-full bg-neonAlt/25 blur-3xl" />
+            <div className="relative flex h-full w-full max-w-[34rem] flex-col md:ml-[7rem]">
               <div className="relative rounded-3xl border border-steel/80 bg-graphite/80 p-8 backdrop-blur-xl">
                 <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-steel/70 bg-black/40 px-4 py-1 text-xs uppercase tracking-[0.2em] text-grey400">
                   <span className="inline-flex h-2 w-2 items-center justify-center">
@@ -156,6 +163,28 @@ function AboutAlixSection() {
                 </div>
                 <div className="mt-6 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                 <p className="text-sm text-grey400">24h on-chain rebalance • Transparent • Autonomous</p>
+              </div>
+              <div className="mt-6 flex flex-col md:mt-10 md:flex-1">
+                <div className="relative flex flex-col items-center justify-center gap-8 rounded-3xl border border-steel/80 bg-graphite/80 p-8 text-center backdrop-blur-xl md:flex-1">
+                  <div
+                    className="inline-flex items-center gap-2 rounded-full border border-steel/70 bg-black/40 px-4 py-1 text-xs uppercase tracking-[0.2em] text-grey400"
+                    aria-label="Token metrics live status"
+                  >
+                    <span className="inline-flex h-2 w-2 items-center justify-center">
+                      <span className="block h-2 w-2 rounded-full bg-neon" />
+                    </span>
+                    <span>TOKEN METRICS — LIVE</span>
+                  </div>
+                  <div className="grid w-full max-w-[22rem] grid-cols-2 gap-x-10 gap-y-6 text-sm">
+                    {tokenMetrics.map((item) => (
+                      <div key={item.label} className="flex flex-col items-center">
+                        <span className="text-[0.7rem] uppercase tracking-[0.18em] text-neon/80">{item.label}</span>
+                        <span className="mt-2 font-display text-lg text-white/90">{item.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-xs text-grey400/80">Data verified by Quantstamp • Updated daily</p>
+                </div>
               </div>
             </div>
           </div>
