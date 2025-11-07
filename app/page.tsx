@@ -109,11 +109,11 @@ function AboutAlixSection() {
                   alt="ALIX mobile app mockup"
                   width={768}
                   height={1024}
-                  className="h-auto w-full transform-gpu drop-shadow-[0_45px_85px_rgba(173,255,0,0.28)]"
+                  className="h-auto w-full transform-gpu drop-shadow-[0_38px_68px_rgba(173,255,0,0.22)]"
                   priority
                 />
               </div>
-              <div className="pointer-events-none absolute left-1/2 top-full h-3 w-3/4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-black/40 blur-md" />
+              <div className="pointer-events-none absolute left-1/2 top-full h-[5px] w-3/4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-black/25 blur-[6px]" />
             </div>
             <ul className="space-y-3 text-base text-grey400">
               <li className="flex items-start gap-3">
@@ -131,17 +131,17 @@ function AboutAlixSection() {
             </ul>
           </div>
           <div className="flex justify-center md:justify-end">
-            <div className="group relative w-full max-w-[34rem] rounded-3xl border border-steel/80 bg-graphite/80 p-8 transition duration-500 backdrop-blur-xl md:ml-[7rem]">
+            <div className="relative w-full max-w-[34rem] md:ml-[7rem]">
               <div className="absolute -left-12 -top-16 h-40 w-40 rounded-full bg-neon/20 blur-3xl" />
               <div className="absolute -right-8 bottom-10 h-24 w-24 rounded-full bg-neonAlt/25 blur-3xl" />
-              <div className="relative z-10 space-y-6">
+              <div className="relative rounded-3xl border border-steel/80 bg-graphite/80 p-8 backdrop-blur-xl">
                 <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-steel/70 bg-black/40 px-4 py-1 text-xs uppercase tracking-[0.2em] text-grey400">
                   <span className="inline-flex h-2 w-2 items-center justify-center">
                     <span className="block h-2 w-2 rounded-full bg-neon" />
                   </span>
                   <span>Rebalance Engine — Preview</span>
                 </div>
-                <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-steel/60 bg-black/50">
+                <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-steel/60 bg-black/60">
                   <video
                     className="h-full w-full object-cover"
                     autoPlay
@@ -154,11 +154,9 @@ function AboutAlixSection() {
                     <source src="/rebalance.mp4" type="video/mp4" />
                   </video>
                 </div>
-                <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                <p className="text-sm text-grey400/80">24h on-chain rebalance • Transparent • Autonomous</p>
+                <div className="mt-6 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                <p className="text-sm text-grey400">24h on-chain rebalance • Transparent • Autonomous</p>
               </div>
-              <div className="pointer-events-none absolute inset-0 rounded-3xl border border-white/5 transition duration-500 group-hover:border-neon/60" />
-              <div className="pointer-events-none absolute inset-0 rounded-3xl shadow-[0_0_0_0_rgba(173,255,0,0.0)] transition duration-500 group-hover:shadow-[0_0_55px_rgba(173,255,0,0.25)]" />
             </div>
           </div>
         </div>
