@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { Header } from "./components/Header";
 import { FooterSection } from "./components/FooterSection";
+import { LaunchPreviewVideo } from "./components/LaunchPreviewVideo";
 
 export default function LandingPage() {
   return (
@@ -67,11 +68,7 @@ function HeroSection() {
               </span>
               <span>Coming Soon · ALIXINDEX100 Launch Preview</span>
             </div>
-            <div className="relative flex h-64 w-full items-center justify-center overflow-hidden rounded-2xl border border-steel/60 bg-black/60">
-              <span className="text-center text-sm uppercase tracking-[0.25em] text-grey400">
-                Coming Soon · ALIXINDEX100 Launch Preview
-              </span>
-            </div>
+          <LaunchPreviewVideo />
             <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
               {[
                 { label: "Tracked Assets", value: "100" },
