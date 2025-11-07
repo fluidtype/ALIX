@@ -14,8 +14,8 @@ export default function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="it">
-      <body className="bg-carbon text-grey400 min-h-screen">{children}</body>
+    <html lang="it" className="overflow-x-hidden">
+      <body className="bg-carbon text-grey400 min-h-screen overflow-x-hidden">{children}</body>
     </html>
   );
 }
