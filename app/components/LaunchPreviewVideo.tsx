@@ -68,7 +68,7 @@ export function LaunchPreviewVideo() {
       {/* Launch Preview Video start */}
       <video
         ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover [transform:scale(1.06)]"
+        className="absolute inset-0 h-full w-full object-cover [transform:scale(1.12)]"
         src="/100.mp4"
         preload="metadata"
         muted
