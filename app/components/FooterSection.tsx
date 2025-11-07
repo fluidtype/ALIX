@@ -9,16 +9,7 @@ export function FooterSection() {
           </p>
         </div>
         <div className="grid gap-3 text-sm text-grey400">
-          <a href="#docs" className="hover:text-neon">
-            Documentation (docs.alixindex100.ai)
-          </a>
-          <a href="#telegram" className="hover:text-neon">
-            Telegram (@ALIXProtocol)
-          </a>
-          <a href="#discord" className="hover:text-neon">
-            Discord (@ALIXProtocol)
-          </a>
-          <a href="#x" className="hover:text-neon">
+          <a href="https://x.com/alixprotocol" target="_blank" rel="noopener noreferrer" className="hover:text-neon">
             X (@ALIXProtocol)
           </a>
           <a href="#virtuals" className="hover:text-neon">
