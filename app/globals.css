@@ -19,3 +19,8 @@ a {
 a:hover {
   @apply text-neon;
 }
+
+.safe-area-inline {
+  padding-left: max(var(--safe-area-padding, 1.5rem), env(safe-area-inset-left));
+  padding-right: max(var(--safe-area-padding, 1.5rem), env(safe-area-inset-right));
+}

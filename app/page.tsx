@@ -24,66 +24,71 @@ export default function LandingPage() {
 
 function HeroSection() {
   return (
-    <section id="home" className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(173,255,0,0.08),transparent_60%)]" />
-      <div className="relative mx-auto grid w-full max-w-[120rem] items-center gap-16 px-0 pb-16 pt-10 md:grid-cols-2 md:px-10 md:pt-16 xl:px-16 2xl:px-24">
-        <div className="space-y-8">
-          <div className="inline-flex items-center gap-2 rounded-full border border-steel/60 bg-graphite/60 px-4 py-1 text-xs uppercase tracking-[0.3em] text-grey400/80">
-            <span className="h-2 w-2 rounded-full bg-neon" />
-            <span>ALIXINDEX100 PRE-LAUNCH</span>
-          </div>
-          <h1 className="font-display text-4xl font-semibold tracking-tight text-white md:text-5xl lg:text-6xl">
-            <span className="block">Own the market,</span>
-            <span className="block">don&apos;t chase it.</span>
-          </h1>
-          <p className="max-w-xl text-lg text-grey400">
-            ALIXINDEX100 is the first decentralized index that tracks the top 100 autonomous currencies in the Virtuals ecosystem.
-            <br />
-            One token delivers diversified exposure, automatically rebalanced every 24 hours with on-chain data.
-          </p>
-          <div className="space-y-4">
-            <a
-              href="https://www.alixindex.com"
-              className="inline-flex items-center gap-3 rounded-lg bg-neon px-6 py-3 text-base font-semibold text-carbon transition hover:bg-lime-gradient"
-            >
-              Join the presale
-            </a>
-            <p className="text-sm text-grey400/80">You&apos;ll be notified when ALIXINDEX100 officially launches.</p>
-          </div>
-          <div className="flex flex-wrap items-center gap-4 rounded-xl border border-steel/60 bg-graphite/60 px-6 py-4 text-sm text-grey400/90">
-            <span>Quantstamp audit in progress</span>
-            <span className="hidden h-1 w-1 rounded-full bg-steel md:inline-block" />
-            <span>100% On-Chain Transparency</span>
-            <span className="hidden h-1 w-1 rounded-full bg-steel md:inline-block" />
-            <span>Public roadmap 2025–2026</span>
-          </div>
-        </div>
-        <div className="relative">
-          <div className="absolute -left-12 -top-16 h-40 w-40 rounded-full bg-neon/20 blur-3xl" />
-          <div className="absolute -right-8 bottom-10 h-24 w-24 rounded-full bg-neonAlt/30 blur-3xl" />
-          <div className="relative w-full max-w-[34rem] rounded-3xl border border-steel/80 bg-graphite/80 p-8 backdrop-blur-xl md:ml-[7rem]">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-steel/70 bg-black/40 px-4 py-1 text-xs tracking-[0.2em] text-grey400">
-              <span className="inline-flex h-2 w-2 items-center justify-center">
-                <span className="block h-2 w-2 rounded-full bg-neon" />
-              </span>
-              <span>Coming Soon · ALIXINDEX100 Launch Preview</span>
-            </div>
-          <LaunchPreviewVideo />
-            <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
-              {[
-                { label: "Tracked Assets", value: "100" },
-                { label: "Rebalance", value: "24h" },
-                { label: "Protocol", value: "Virtuals" },
-                { label: "Transparency", value: "On-Chain" },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  className="rounded-lg border border-steel/60 bg-black/40 p-3 text-xs uppercase tracking-[0.18em] text-grey400"
+    <section id="home" className="relative">
+      {/* Hero background */}
+      <div className="-mx-6 md:mx-0">
+        <div className="relative overflow-hidden rounded-none bg-carbon md:rounded-[3rem]">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(173,255,0,0.08),transparent_60%)]" />
+          <div className="safe-area-inline relative mx-auto grid w-full max-w-[120rem] items-center gap-16 pb-16 pt-10 md:grid-cols-2 md:[--safe-area-padding:2.5rem] md:pt-16 xl:[--safe-area-padding:4rem] 2xl:[--safe-area-padding:6rem]">
+            <div className="space-y-8">
+              <div className="inline-flex items-center gap-2 rounded-full border border-steel/60 bg-graphite/60 px-4 py-1 text-xs uppercase tracking-[0.3em] text-grey400/80">
+                <span className="h-2 w-2 rounded-full bg-neon" />
+                <span>ALIXINDEX100 PRE-LAUNCH</span>
+              </div>
+              <h1 className="font-display text-4xl font-semibold tracking-tight text-white md:text-5xl lg:text-6xl">
+                <span className="block">Own the market,</span>
+                <span className="block">don&apos;t chase it.</span>
+              </h1>
+              <p className="max-w-xl text-lg text-grey400">
+                ALIXINDEX100 is the first decentralized index that tracks the top 100 autonomous currencies in the Virtuals ecosystem.
+                <br />
+                One token delivers diversified exposure, automatically rebalanced every 24 hours with on-chain data.
+              </p>
+              <div className="space-y-4">
+                <a
+                  href="https://www.alixindex.com"
+                  className="inline-flex items-center gap-3 rounded-lg bg-neon px-6 py-3 text-base font-semibold text-carbon transition hover:bg-lime-gradient"
                 >
-                  <span className="block text-[0.65rem] text-grey400/70">{item.label}</span>
-                  <span className="mt-1 block font-display text-lg text-neon">{item.value}</span>
+                  Join the presale
+                </a>
+                <p className="text-sm text-grey400/80">You&apos;ll be notified when ALIXINDEX100 officially launches.</p>
+              </div>
+              <div className="flex flex-wrap items-center gap-4 rounded-xl border border-steel/60 bg-graphite/60 px-6 py-4 text-sm text-grey400/90">
+                <span>Quantstamp audit in progress</span>
+                <span className="hidden h-1 w-1 rounded-full bg-steel md:inline-block" />
+                <span>100% On-Chain Transparency</span>
+                <span className="hidden h-1 w-1 rounded-full bg-steel md:inline-block" />
+                <span>Public roadmap 2025–2026</span>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="absolute -left-12 -top-16 h-40 w-40 rounded-full bg-neon/20 blur-3xl" />
+              <div className="absolute -right-8 bottom-10 h-24 w-24 rounded-full bg-neonAlt/30 blur-3xl" />
+              <div className="relative w-full max-w-[34rem] rounded-3xl border border-steel/80 bg-graphite/80 p-8 backdrop-blur-xl md:ml-[7rem]">
+                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-steel/70 bg-black/40 px-4 py-1 text-xs tracking-[0.2em] text-grey400">
+                  <span className="inline-flex h-2 w-2 items-center justify-center">
+                    <span className="block h-2 w-2 rounded-full bg-neon" />
+                  </span>
+                  <span>Coming Soon · ALIXINDEX100 Launch Preview</span>
                 </div>
-              ))}
+                <LaunchPreviewVideo />
+                <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
+                  {[
+                    { label: "Tracked Assets", value: "100" },
+                    { label: "Rebalance", value: "24h" },
+                    { label: "Protocol", value: "Virtuals" },
+                    { label: "Transparency", value: "On-Chain" },
+                  ].map((item) => (
+                    <div
+                      key={item.label}
+                      className="rounded-lg border border-steel/60 bg-black/40 p-3 text-xs uppercase tracking-[0.18em] text-grey400"
+                    >
+                      <span className="block text-[0.65rem] text-grey400/70">{item.label}</span>
+                      <span className="mt-1 block font-display text-lg text-neon">{item.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
