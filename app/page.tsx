@@ -96,12 +96,23 @@ function AboutAlixSection() {
   return (
     <section id="index" className="border-t border-neon/30 bg-graphite py-16">
       <div className="mx-auto w-full max-w-[120rem] px-0 md:px-10 xl:px-16 2xl:px-24">
-        <div className="grid items-center gap-12 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+        <div className="grid items-start gap-12 md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
           <div className="max-w-2xl space-y-6 md:max-w-none">
             <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">The Role of $ALIX: Governance and Deflationary Utility</h2>
             <p className="text-lg text-grey400">
               $ALIX is the governance and rewards token of the ecosystem. Every deposit into the index generates a 1% fee used to buy back and burn $ALIX, creating a deflationary mechanism that rewards token holders.
             </p>
+            <div className="relative mx-auto mt-6 mb-8 w-full max-w-[26rem] -rotate-2 overflow-hidden rounded-[2.25rem] border border-steel/60 bg-black/40 shadow-[0_40px_90px_-50px_rgba(173,255,0,0.55)] transition-all duration-500 hover:rotate-0 hover:shadow-[0_50px_110px_-60px_rgba(173,255,0,0.65)] md:mx-0">
+              <div className="pointer-events-none absolute inset-0 rounded-[2.25rem] border border-white/5" />
+              <Image
+                src="/mockup.png"
+                alt="ALIX mobile app mockup"
+                width={768}
+                height={1024}
+                className="relative z-10 h-auto w-full object-contain"
+                priority
+              />
+            </div>
             <ul className="space-y-3 text-base text-grey400">
               <li className="flex items-start gap-3">
                 <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-neon" />
@@ -118,15 +129,36 @@ function AboutAlixSection() {
             </ul>
           </div>
           <div className="flex justify-center md:justify-end md:pl-6">
-            <div className="relative aspect-[3/4] w-full max-w-[460px] overflow-hidden md:max-w-[540px] md:-translate-x-[184px]">
-              <Image
-                src="/mockup.png"
-                alt="Preview of the ALIXINDEX100 interface"
-                fill
-                className="object-contain"
-                sizes="(min-width: 768px) 384px, 288px"
-                priority
-              />
+            <div className="group relative w-full max-w-[34rem] rounded-3xl border border-steel/80 bg-graphite/80 p-8 shadow-[0_25px_80px_-40px_rgba(0,0,0,0.75)] transition-shadow duration-500 backdrop-blur-xl md:max-w-[30rem] lg:max-w-[34rem]">
+              <div className="absolute -left-12 -top-16 h-40 w-40 rounded-full bg-neon/15 blur-3xl" />
+              <div className="absolute -right-10 bottom-0 h-24 w-24 rounded-full bg-neonAlt/20 blur-3xl" />
+              <div className="relative z-10 space-y-6">
+                <div className="inline-flex items-center gap-2 rounded-full border border-steel/70 bg-black/40 px-4 py-1 text-[0.7rem] uppercase tracking-[0.28em] text-grey400">
+                  <span className="inline-flex h-2 w-2 items-center justify-center">
+                    <span className="block h-2 w-2 rounded-full bg-neon" />
+                  </span>
+                  <span>Rebalance Engine — Preview</span>
+                </div>
+                <div className="relative overflow-hidden rounded-2xl ring-1 ring-inset ring-steel/60">
+                  <div className="aspect-[16/9] w-full">
+                    <video
+                      className="h-full w-full object-cover"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      aria-label="Preview of the ALIX rebalance engine interface"
+                    >
+                      <source src="/rebalance.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                </div>
+                <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                <p className="text-sm text-grey400/70">24h on-chain rebalance • Transparent • Autonomous</p>
+              </div>
+              <div className="pointer-events-none absolute inset-0 rounded-3xl border border-white/5 transition duration-500 group-hover:border-neon/60" />
+              <div className="pointer-events-none absolute inset-0 rounded-3xl shadow-[0_0_0_0_rgba(173,255,0,0.0)] transition duration-500 group-hover:shadow-[0_0_60px_rgba(173,255,0,0.25)]" />
             </div>
           </div>
         </div>
