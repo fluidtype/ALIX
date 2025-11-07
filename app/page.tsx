@@ -143,7 +143,7 @@ function AboutAlixSection() {
                 </div>
                 <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-steel/60 bg-black/60">
                   <video
-                    className="h-full w-full object-cover"
+                    className="absolute inset-0 h-full w-full object-cover [transform:scale(1.12)]"
                     autoPlay
                     muted
                     loop
