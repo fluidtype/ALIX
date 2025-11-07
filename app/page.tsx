@@ -9,7 +9,7 @@ export default function LandingPage() {
   return (
     <div className="relative bg-carbon text-grey400">
       <Header />
-      <main className="px-6 pt-24 md:px-0 md:pt-28">
+      <main className="pt-24 md:pt-28">
         <HeroSection />
         <AboutAlixSection />
         <HowItWorksSection />
@@ -24,12 +24,9 @@ export default function LandingPage() {
 
 function HeroSection() {
   return (
-    <section id="home" className="relative">
-      {/* Hero background */}
-      <div className="-mx-6 md:mx-0">
-        <div className="relative overflow-hidden rounded-none bg-carbon md:rounded-[3rem]">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(173,255,0,0.08),transparent_60%)]" />
-          <div className="safe-area-inline relative mx-auto grid w-full max-w-[120rem] items-center gap-16 pb-16 pt-10 md:grid-cols-2 md:[--safe-area-padding:2.5rem] md:pt-16 xl:[--safe-area-padding:4rem] 2xl:[--safe-area-padding:6rem]">
+    <section id="home" className="relative overflow-hidden bg-carbon md:rounded-[3rem]">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(173,255,0,0.08),transparent_60%)]" />
+      <div className="safe-area-inline relative mx-auto grid w-full max-w-[120rem] items-center gap-16 pb-16 pt-10 md:grid-cols-2 md:[--safe-area-padding:2.5rem] md:pt-16 xl:[--safe-area-padding:4rem] 2xl:[--safe-area-padding:6rem]">
             <div className="space-y-8">
               <div className="inline-flex items-center gap-2 rounded-full border border-steel/60 bg-graphite/60 px-4 py-1 text-xs uppercase tracking-[0.3em] text-grey400/80">
                 <span className="h-2 w-2 rounded-full bg-neon" />
@@ -91,8 +88,6 @@ function HeroSection() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
     </section>
   );
 }
@@ -107,7 +102,7 @@ function AboutAlixSection() {
 
   return (
     <section id="index" className="border-t border-neon/30 bg-graphite py-16">
-      <div className="mx-auto w-full max-w-[120rem] px-0 md:px-10 xl:px-16 2xl:px-24">
+      <div className="safe-area-inline mx-auto w-full max-w-[120rem] md:[--safe-area-padding:2.5rem] xl:[--safe-area-padding:4rem] 2xl:[--safe-area-padding:6rem]">
         <div className="grid items-start gap-6 md:grid-cols-2 md:gap-16">
           <div className="order-2 max-w-2xl space-y-6 md:order-1 md:max-w-none">
             <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">The Role of $ALIX: Governance and Deflationary Utility</h2>
@@ -222,7 +217,7 @@ function HowItWorksSection() {
 
   return (
     <section id="how-it-works" className="bg-graphite py-16">
-      <div className="mx-auto w-full max-w-[120rem] space-y-10 px-0 md:px-10 xl:px-16 2xl:px-24">
+      <div className="safe-area-inline mx-auto w-full max-w-[120rem] space-y-10 md:[--safe-area-padding:2.5rem] xl:[--safe-area-padding:4rem] 2xl:[--safe-area-padding:6rem]">
         <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">How It Works: A Simple, Autonomous Loop</h2>
         <p className="text-lg text-grey400">
           The mechanism is designed to be intuitive, symmetric, and fully on-chain: Virtuals in → ALIXINDEX100 → Virtuals out.
@@ -292,7 +287,7 @@ function LiveIndexSection() {
   return (
     <section className="relative overflow-hidden bg-carbon py-16">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(173,255,0,0.08),transparent_65%)]" />
-      <div className="relative mx-auto grid w-full max-w-[120rem] items-center gap-16 px-0 md:grid-cols-2 md:px-10 xl:px-16 2xl:px-24">
+      <div className="safe-area-inline relative mx-auto grid w-full max-w-[120rem] items-center gap-16 md:grid-cols-2 md:[--safe-area-padding:2.5rem] xl:[--safe-area-padding:4rem] 2xl:[--safe-area-padding:6rem]">
         <div className="relative rounded-3xl border border-steel/60 bg-graphite/80 p-6 backdrop-blur-xl">
           <div className="mb-6 flex items-center justify-between">
             <h3 className="font-display text-2xl font-semibold text-white">The Index: Selection Criteria &amp; Weights</h3>
@@ -358,7 +353,7 @@ function TrustedSection() {
   return (
     <section id="whitepaper" className="relative overflow-hidden bg-graphite py-16">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(173,255,0,0.12),transparent_70%)]" />
-      <div className="relative mx-auto flex w-full max-w-[100rem] flex-col items-center gap-8 px-0 text-center md:px-10 xl:px-16 2xl:px-24">
+      <div className="safe-area-inline relative mx-auto flex w-full max-w-[100rem] flex-col items-center gap-8 text-center md:[--safe-area-padding:2.5rem] xl:[--safe-area-padding:4rem] 2xl:[--safe-area-padding:6rem]">
         <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">
           The Vision: The Decentralized Exchange of Intelligence
         </h2>
@@ -436,7 +431,7 @@ function RoadmapInvestorsSection() {
   return (
     <section className="relative overflow-hidden border-t border-steel/60 bg-carbon py-16">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(173,255,0,0.12),transparent_75%)]" />
-      <div className="relative mx-auto w-full max-w-[120rem] space-y-12 px-0 md:px-10 xl:px-16 2xl:px-24">
+      <div className="safe-area-inline relative mx-auto w-full max-w-[120rem] space-y-12 md:[--safe-area-padding:2.5rem] xl:[--safe-area-padding:4rem] 2xl:[--safe-area-padding:6rem]">
         <div className="pt-12 pb-8">
           <div className="h-1 w-20 bg-lime-gradient" />
           <div className="mt-6">

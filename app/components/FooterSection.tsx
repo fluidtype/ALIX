@@ -1,7 +1,7 @@
 export function FooterSection() {
   return (
     <footer className="border-t border-steel/60 bg-carbon py-16">
-      <div className="mx-auto grid w-full max-w-[120rem] gap-12 px-6 md:grid-cols-2 md:px-10 xl:px-16 2xl:px-24">
+      <div className="safe-area-inline mx-auto grid w-full max-w-[120rem] gap-12 md:grid-cols-2 md:[--safe-area-padding:2.5rem] xl:[--safe-area-padding:4rem] 2xl:[--safe-area-padding:6rem]">
         <div className="space-y-4">
           <span className="font-display text-2xl font-semibold text-neon">ALIX</span>
           <p className="max-w-sm text-sm text-grey400/80">
@@ -17,7 +17,7 @@ export function FooterSection() {
           </a>
         </div>
       </div>
-      <div className="mx-auto mt-12 w-full max-w-[120rem] border-t border-steel/50 px-6 pt-6 text-xs text-grey400/70 md:px-10 xl:px-16 2xl:px-24">
+      <div className="safe-area-inline mx-auto mt-12 w-full max-w-[120rem] border-t border-steel/50 pt-6 text-xs text-grey400/70 md:[--safe-area-padding:2.5rem] xl:[--safe-area-padding:4rem] 2xl:[--safe-area-padding:6rem]">
         <p className="mb-2 uppercase tracking-[0.3em] text-grey400/60">Transparency · Security · Auditability</p>
         <p>
           ALIXINDEX100 is a project currently in pre-launch.
