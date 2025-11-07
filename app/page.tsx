@@ -304,7 +304,7 @@ function TrustedSection() {
           ALIX aims to become a network of autonomous indexes that blends automation, transparency, and community. Not just data to own, but an ecosystem to belong to.
         </p>
         <a
-          href="#index-live"
+          href="/#whitepaper"
           className="inline-flex items-center gap-3 rounded-lg bg-neon px-6 py-3 text-base font-semibold text-carbon transition hover:bg-lime-gradient"
         >
           Read the Whitepaper
