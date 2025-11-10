@@ -31,19 +31,21 @@ type PostgresDriver = {
 
 export type DatabaseDriver = SqliteDriver | PostgresDriver;
 
+const isBuildTime =
+  process.env.NEXT_PHASE === "phase-production-build" || process.env.npm_lifecycle_event === "build";
 const runningOnVercel = Boolean(process.env.VERCEL);
 const forcePostgres = (process.env.AIRDROP_DB_PROVIDER ?? "").toLowerCase() === "postgres";
 const postgresConnectionString =
   process.env.POSTGRES_URL ?? process.env.POSTGRES_PRISMA_URL ?? process.env.POSTGRES_URL_NON_POOLING;
 const hasPostgresConnection = Boolean(postgresConnectionString);
 
-if (forcePostgres && !hasPostgresConnection) {
+if (!isBuildTime && forcePostgres && !hasPostgresConnection) {
   throw new Error(
     "Postgres connection string missing. Set POSTGRES_URL (or POSTGRES_PRISMA_URL/POSTGRES_URL_NON_POOLING)."
   );
 }
 
-const shouldUsePostgres = forcePostgres || hasPostgresConnection;
+const shouldUsePostgres = !isBuildTime && (forcePostgres || hasPostgresConnection);
 
 let driver: DatabaseDriver;
 

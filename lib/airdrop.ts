@@ -35,7 +35,8 @@ const ensureInitialized =
     ? driver.ensureInitialized
     : () => Promise.resolve();
 
-const isBuildTime = process.env.NEXT_PHASE === "phase-production-build";
+const isBuildTime =
+  process.env.NEXT_PHASE === "phase-production-build" || process.env.npm_lifecycle_event === "build";
 
 export async function createAirdropEntry(input: CreateAirdropInput) {
   const { name, email, walletAddress, signature } = input;
