@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, type ComponentType, type FormEvent } from "react";
+import { useEffect, useMemo, useState, type ComponentType, type FormEvent } from "react";
 import {
   BadgeCheck,
   CheckCircle2,
@@ -27,6 +27,7 @@ import {
 import { Checkbox } from "@/app/components/ui/checkbox";
 import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
+import { OPEN_AIRDROP_EVENT } from "@/lib/events";
 import { cn } from "@/lib/utils";
 
 type BenefitIcon = ComponentType<{ className?: string }>;
@@ -90,6 +91,27 @@ export function AirdropSection() {
   const [successEmail, setSuccessEmail] = useState<string | null>(null);
 
   const walletConnected = Boolean(walletAddress);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const listener: EventListener = () => {
+      setName("");
+      setEmail("");
+      setWalletAddress("");
+      setTermsAccepted(false);
+      setSuccessEmail(null);
+      setIsSubmitting(false);
+      setOpen(true);
+    };
+
+    window.addEventListener(OPEN_AIRDROP_EVENT, listener);
+    return () => {
+      window.removeEventListener(OPEN_AIRDROP_EVENT, listener);
+    };
+  }, []);
 
   const messageToSign = useMemo(() => {
     if (!walletAddress) return "";
