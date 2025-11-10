@@ -49,11 +49,28 @@ let driver: DatabaseDriver;
 if (shouldUsePostgres) {
   let initialized = false;
   let initializationPromise: Promise<void> | null = null;
-  const usePooledConnection = Boolean(pooledConnectionString);
-
   if (!postgresConnectionString) {
     throw new Error("Postgres connection string is not defined");
   }
+
+  const inferConnectionMode = (): "pool" | "direct" => {
+    if (pooledConnectionString && directConnectionString) {
+      return "pool";
+    }
+
+    const target = pooledConnectionString ?? directConnectionString ?? postgresConnectionString;
+
+    try {
+      const { hostname } = new URL(target);
+      const looksLikeVercelPool = /vercel-storage\.com$/i.test(hostname);
+      return looksLikeVercelPool ? "pool" : "direct";
+    } catch {
+      return pooledConnectionString ? "pool" : "direct";
+    }
+  };
+
+  const connectionMode = inferConnectionMode();
+  const usePooledConnection = connectionMode === "pool";
 
   if (usePooledConnection) {
     const pool = createPool({ connectionString: postgresConnectionString });
