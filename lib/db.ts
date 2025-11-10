@@ -32,7 +32,34 @@ const isBuildTime =
 const runningOnVercel = Boolean(process.env.VERCEL);
 const forcePostgres = (process.env.AIRDROP_DB_PROVIDER ?? "").toLowerCase() === "postgres";
 const pooledConnectionString = process.env.POSTGRES_URL;
-const directConnectionString = process.env.POSTGRES_URL_NON_POOLING ?? process.env.POSTGRES_PRISMA_URL;
+
+const isLikelyPooledConnectionString = (value: string | undefined) => {
+  if (!value) return false;
+
+  try {
+    const url = new URL(value);
+    const hostname = url.hostname.toLowerCase();
+    const params = url.searchParams;
+
+    return (
+      params.has("pgbouncer") ||
+      params.has("connection_limit") ||
+      hostname.includes("pooler.vercel") ||
+      hostname.includes("pooling")
+    );
+  } catch {
+    return false;
+  }
+};
+
+const pooledConnectionAvailable =
+  pooledConnectionString && isLikelyPooledConnectionString(pooledConnectionString);
+
+const directConnectionString =
+  process.env.POSTGRES_URL_NON_POOLING ??
+  process.env.POSTGRES_PRISMA_URL ??
+  (!pooledConnectionAvailable ? pooledConnectionString : undefined);
+
 const hasPostgresConnection = Boolean(pooledConnectionString ?? directConnectionString);
 
 if (!isBuildTime && forcePostgres && !hasPostgresConnection) {
@@ -48,8 +75,9 @@ let driver: DatabaseDriver;
 if (shouldUsePostgres) {
   let initialized = false;
   let initializationPromise: Promise<void> | null = null;
-  const connectionMode: "pool" | "direct" = pooledConnectionString ? "pool" : "direct";
-  const connectionString = connectionMode === "pool" ? pooledConnectionString : directConnectionString;
+  const connectionMode: "pool" | "direct" = pooledConnectionAvailable ? "pool" : "direct";
+  const connectionString =
+    connectionMode === "pool" ? pooledConnectionString : directConnectionString ?? pooledConnectionString;
 
   if (!connectionString) {
     throw new Error("Postgres connection string is not defined");
