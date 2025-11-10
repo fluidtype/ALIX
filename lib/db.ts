@@ -33,17 +33,17 @@ const postgresConnectionString =
   process.env.POSTGRES_URL ?? process.env.POSTGRES_PRISMA_URL ?? process.env.POSTGRES_URL_NON_POOLING;
 const hasPostgresConnection = Boolean(postgresConnectionString);
 
-const shouldUsePostgres = forcePostgres || hasPostgresConnection || runningOnVercel;
+if (forcePostgres && !hasPostgresConnection) {
+  throw new Error(
+    "Postgres connection string missing. Set POSTGRES_URL (or POSTGRES_PRISMA_URL/POSTGRES_URL_NON_POOLING)."
+  );
+}
+
+const shouldUsePostgres = forcePostgres || hasPostgresConnection;
 
 let driver: DatabaseDriver;
 
 if (shouldUsePostgres) {
-  if (!hasPostgresConnection) {
-    throw new Error(
-      "Postgres connection string missing. Set POSTGRES_URL (recommended on Vercel) or define AIRDROP_DB_PROVIDER=sqlite to use the local SQLite fallback."
-    );
-  }
-
   let initialized = false;
   let initializationPromise: Promise<void> | null = null;
 
@@ -76,6 +76,12 @@ if (shouldUsePostgres) {
     ensureInitialized,
   };
 } else {
+  if (runningOnVercel) {
+    console.warn(
+      "AIRDROP: falling back to the SQLite driver on Vercel without a Postgres connection string. Data will not persist between requests."
+    );
+  }
+
   const candidateDirs = [
     process.env.AIRDROP_DATA_DIR ? path.resolve(process.env.AIRDROP_DATA_DIR) : undefined,
     path.join(process.cwd(), "data"),
