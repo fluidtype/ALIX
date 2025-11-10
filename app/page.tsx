@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Header } from "./components/Header";
 import { FooterSection } from "./components/FooterSection";
 import { LaunchPreviewVideo } from "./components/LaunchPreviewVideo";
+import { AirdropSection } from "./components/AirdropSection";
 
 export default function LandingPage() {
   return (
@@ -11,6 +12,7 @@ export default function LandingPage() {
       <Header />
       <main className="pt-24 md:pt-28">
         <HeroSection />
+        <AirdropSection />
         <AboutAlixSection />
         <HowItWorksSection />
         <LiveIndexSection />
