@@ -1,4 +1,5 @@
-import Database from "better-sqlite3";
+import SQLiteDatabase from "better-sqlite3";
+import type { Database as SqliteDatabase } from "better-sqlite3";
 import { sql } from "@vercel/postgres";
 import fs from "node:fs";
 import os from "node:os";
@@ -15,7 +16,7 @@ export type SqliteRow = {
 
 type SqliteDriver = {
   kind: "sqlite";
-  db: Database;
+  db: SqliteDatabase;
 };
 
 type PostgresDriver = {
@@ -101,7 +102,7 @@ if (shouldUsePostgres) {
   }
 
   const databasePath = path.join(dataDir, "airdrop.sqlite");
-  const db = new Database(databasePath);
+  const db = new SQLiteDatabase(databasePath);
 
   db.exec(`
     CREATE TABLE IF NOT EXISTS airdrop_entries (
