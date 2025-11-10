@@ -1,6 +1,6 @@
 import SQLiteDatabase from "better-sqlite3";
 import type { Database as SqliteDatabase } from "better-sqlite3";
-import { sql } from "@vercel/postgres";
+import { createPool } from "@vercel/postgres";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -19,9 +19,13 @@ type SqliteDriver = {
   db: SqliteDatabase;
 };
 
+type PostgresSql = ReturnType<typeof createPool>["sql"];
+type PostgresQuery = ReturnType<typeof createPool>["query"];
+
 type PostgresDriver = {
   kind: "postgres";
-  query: typeof sql;
+  sql: PostgresSql;
+  query: PostgresQuery;
   ensureInitialized: () => Promise<void>;
 };
 
@@ -46,12 +50,13 @@ let driver: DatabaseDriver;
 if (shouldUsePostgres) {
   let initialized = false;
   let initializationPromise: Promise<void> | null = null;
+  const pool = createPool({ connectionString: postgresConnectionString! });
 
   const ensureInitialized = async () => {
     if (initialized) return;
     if (!initializationPromise) {
       initializationPromise = (async () => {
-        await sql`
+        await pool.sql`
           CREATE TABLE IF NOT EXISTS airdrop_entries (
             id SERIAL PRIMARY KEY,
             name TEXT NULL,
@@ -72,7 +77,8 @@ if (shouldUsePostgres) {
 
   driver = {
     kind: "postgres",
-    query: sql,
+    sql: pool.sql,
+    query: pool.query.bind(pool) as PostgresQuery,
     ensureInitialized,
   };
 } else {

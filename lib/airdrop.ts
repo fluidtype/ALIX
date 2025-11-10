@@ -1,189 +1,136 @@
-import driver, { type SqliteRow } from "./db";
+import SQLiteDatabase from "better-sqlite3";
+import type { Database as SqliteDatabase } from "better-sqlite3";
+import { createPool } from "@vercel/postgres";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
 
-type CreateAirdropInput = {
-  name: string | null;
-  email: string;
-  walletAddress: string;
-  signature: string;
-};
-
-type ListOptions = {
-  from?: string;
-  to?: string;
-};
-
-export type AirdropEntry = {
+export type SqliteRow = {
   id: number;
   name: string | null;
   email: string;
-  walletAddress: string;
+  wallet_address: string;
   signature: string;
-  createdAt: string;
+  created_at: string;
 };
 
-const ensureInitialized =
-  driver.kind === "postgres"
-    ? driver.ensureInitialized
-    : () => Promise.resolve();
+type SqliteDriver = {
+  kind: "sqlite";
+  db: SqliteDatabase;
+};
 
-export async function createAirdropEntry(input: CreateAirdropInput) {
-  const { name, email, walletAddress, signature } = input;
+type PostgresSql = ReturnType<typeof createPool>["sql"];
+type PostgresQuery = ReturnType<typeof createPool>["query"];
 
-  if (driver.kind === "postgres") {
-    await ensureInitialized();
-    try {
-      await driver.query`
-        INSERT INTO airdrop_entries (name, email, wallet_address, signature)
-        VALUES (${name}, ${email}, ${walletAddress}, ${signature})
-      `;
-    } catch (error) {
-      handleDatabaseError(error);
+type PostgresDriver = {
+  kind: "postgres";
+  sql: PostgresSql;
+  query: PostgresQuery;
+  ensureInitialized: () => Promise<void>;
+};
+
+export type DatabaseDriver = SqliteDriver | PostgresDriver;
+
+const runningOnVercel = Boolean(process.env.VERCEL);
+const forcePostgres = (process.env.AIRDROP_DB_PROVIDER ?? "").toLowerCase() === "postgres";
+const postgresConnectionString =
+  process.env.POSTGRES_URL ?? process.env.POSTGRES_PRISMA_URL ?? process.env.POSTGRES_URL_NON_POOLING;
+const hasPostgresConnection = Boolean(postgresConnectionString);
+
+if (forcePostgres && !hasPostgresConnection) {
+  throw new Error(
+    "Postgres connection string missing. Set POSTGRES_URL (or POSTGRES_PRISMA_URL/POSTGRES_URL_NON_POOLING)."
+  );
+}
+
+const shouldUsePostgres = forcePostgres || hasPostgresConnection;
+
+let driver: DatabaseDriver;
+
+if (shouldUsePostgres) {
+  let initialized = false;
+  let initializationPromise: Promise<void> | null = null;
+  const pool = createPool({ connectionString: postgresConnectionString! });
+
+  const ensureInitialized = async () => {
+    if (initialized) return;
+    if (!initializationPromise) {
+      initializationPromise = (async () => {
+        await pool.sql`
+          CREATE TABLE IF NOT EXISTS airdrop_entries (
+            id SERIAL PRIMARY KEY,
+            name TEXT NULL,
+            email TEXT UNIQUE NOT NULL,
+            wallet_address TEXT UNIQUE NOT NULL,
+            signature TEXT NOT NULL,
+            created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+          )
+        `;
+        initialized = true;
+      })().catch((error) => {
+        initializationPromise = null;
+        throw error;
+      });
     }
-    return;
+    await initializationPromise;
+  };
+
+  driver = {
+    kind: "postgres",
+    sql: pool.sql,
+    query: pool.query.bind(pool) as PostgresQuery,
+    ensureInitialized,
+  };
+} else {
+  if (runningOnVercel) {
+    console.warn(
+      "AIRDROP: falling back to the SQLite driver on Vercel without a Postgres connection string. Data will not persist between requests."
+    );
   }
 
-  const insert = driver.db.prepare(`
-    INSERT INTO airdrop_entries (name, email, wallet_address, signature)
-    VALUES (?, ?, ?, ?)
+  const candidateDirs = [
+    process.env.AIRDROP_DATA_DIR ? path.resolve(process.env.AIRDROP_DATA_DIR) : undefined,
+    path.join(process.cwd(), "data"),
+    path.join(os.tmpdir(), "alix-airdrop"),
+  ].filter((dir): dir is string => Boolean(dir));
+
+  let dataDir: string | undefined;
+
+  for (const dir of candidateDirs) {
+    try {
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
+      fs.accessSync(dir, fs.constants.W_OK);
+      dataDir = dir;
+      break;
+    } catch {
+      // try next candidate
+    }
+  }
+
+  if (!dataDir) {
+    throw new Error("Unable to locate writable directory for the airdrop database");
+  }
+
+  const databasePath = path.join(dataDir, "airdrop.sqlite");
+  const db = new SQLiteDatabase(databasePath);
+
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS airdrop_entries (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT,
+      email TEXT UNIQUE NOT NULL,
+      wallet_address TEXT UNIQUE NOT NULL,
+      signature TEXT NOT NULL,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
   `);
 
-  try {
-    insert.run(name ?? null, email, walletAddress, signature);
-  } catch (error) {
-    handleDatabaseError(error);
-  }
+  driver = {
+    kind: "sqlite",
+    db,
+  };
 }
 
-export async function listAirdropEntries(options: ListOptions = {}) {
-  const { from, to } = options;
-
-  if (driver.kind === "postgres") {
-    await ensureInitialized();
-
-    const conditions: string[] = [];
-    const values: Array<string> = [];
-
-    if (from) {
-      values.push(from);
-      conditions.push(`created_at >= $${values.length}`);
-    }
-    if (to) {
-      values.push(to);
-      conditions.push(`created_at <= $${values.length}`);
-    }
-
-    const whereClause = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
-
-    const listParams = [...values];
-    const { rows } = await driver.query.query(
-      `SELECT id, name, email, wallet_address, signature, created_at FROM airdrop_entries ${whereClause} ORDER BY created_at DESC`,
-      listParams
-    );
-
-    const mapped: AirdropEntry[] = rows.map((row) => ({
-      id: Number((row as { id: number | string }).id),
-      name: (row as { name: string | null }).name,
-      email: (row as { email: string }).email,
-      walletAddress: (row as { wallet_address: string }).wallet_address,
-      signature: (row as { signature: string }).signature,
-      createdAt: normalizeDate((row as { created_at: unknown }).created_at),
-    }));
-
-    const countResult = await driver.query.query(
-      `SELECT COUNT(*)::int as total FROM airdrop_entries ${whereClause}`,
-      [...values]
-    );
-
-    const total = Number((countResult.rows[0] as { total?: number | string })?.total ?? 0);
-
-    return { entries: mapped, total };
-  }
-
-  const conditions: string[] = [];
-  const parameters: Record<string, string> = {};
-
-  if (from) {
-    conditions.push("datetime(created_at) >= datetime(@from)");
-    parameters.from = from;
-  }
-  if (to) {
-    conditions.push("datetime(created_at) <= datetime(@to)");
-    parameters.to = to;
-  }
-
-  const whereClause = conditions.length ? `WHERE ${conditions.join(" AND ")}` : "";
-
-  const select = driver.db.prepare(
-    `SELECT id, name, email, wallet_address, signature, created_at FROM airdrop_entries ${whereClause} ORDER BY datetime(created_at) DESC`
-  );
-  const rows = select.all(parameters) as SqliteRow[];
-
-  const mapped: AirdropEntry[] = rows.map((row) => ({
-    id: row.id,
-    name: row.name,
-    email: row.email,
-    walletAddress: row.wallet_address,
-    signature: row.signature,
-    createdAt: row.created_at,
-  }));
-
-  const countRow = driver.db
-    .prepare(`SELECT COUNT(*) as total FROM airdrop_entries ${whereClause}`)
-    .get(parameters) as { total: number } | undefined;
-
-  return { entries: mapped, total: countRow?.total ?? 0 };
-}
-
-export async function getAirdropStats() {
-  if (driver.kind === "postgres") {
-    await ensureInitialized();
-    const result = await driver.query`SELECT COUNT(*)::int as total FROM airdrop_entries`;
-    const total = Number(result.rows[0]?.total ?? 0);
-    return { totalParticipants: total };
-  }
-
-  const row = driver.db.prepare("SELECT COUNT(*) as total FROM airdrop_entries").get() as
-    | { total: number }
-    | undefined;
-  return { totalParticipants: row?.total ?? 0 };
-}
-
-function normalizeDate(value: unknown) {
-  if (value instanceof Date) {
-    return value.toISOString();
-  }
-  if (typeof value === "string") {
-    return value;
-  }
-  return new Date(String(value ?? "")).toISOString();
-}
-
-function handleDatabaseError(error: unknown): never {
-  if (error instanceof Error && "code" in error) {
-    const code = (error as { code?: string }).code;
-
-    if (code === "SQLITE_CONSTRAINT_UNIQUE") {
-      const message = error.message ?? "";
-      if (/email/.test(message)) {
-        throw new Error("This email is already registered for the airdrop");
-      }
-      if (/wallet_address/.test(message)) {
-        throw new Error("This wallet has already joined the airdrop");
-      }
-      throw new Error("Participation already recorded");
-    }
-
-    if (code === "23505") {
-      const constraint = (error as { constraint?: string }).constraint ?? "";
-      if (constraint.includes("email")) {
-        throw new Error("This email is already registered for the airdrop");
-      }
-      if (constraint.includes("wallet_address")) {
-        throw new Error("This wallet has already joined the airdrop");
-      }
-      throw new Error("Participation already recorded");
-    }
-  }
-
-  throw error instanceof Error ? error : new Error("Internal error");
-}
+export default driver;
