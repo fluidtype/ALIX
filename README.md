@@ -161,3 +161,4 @@ NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id
 
 You can generate a project ID from the [WalletConnect Cloud dashboard](https://cloud.walletconnect.com/). This is the **Project ID** value shown in the dashboard overview (a single ID shared by every platform), *not* the per-platform App IDs that you might configure for iOS or Android bundles. Restart the development server after updating environment variables so the value is available in the browser.
 
+
