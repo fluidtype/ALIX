@@ -1,6 +1,6 @@
 import SQLiteDatabase from "better-sqlite3";
 import type { Database as SqliteDatabase } from "better-sqlite3";
-import { createPool } from "@vercel/postgres";
+import { createPool, createClient } from "@vercel/postgres";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -19,13 +19,9 @@ type SqliteDriver = {
   db: SqliteDatabase;
 };
 
-type PostgresSql = ReturnType<typeof createPool>["sql"];
-type PostgresQuery = ReturnType<typeof createPool>["query"];
-
 type PostgresDriver = {
   kind: "postgres";
-  sql: PostgresSql;
-  query: PostgresQuery;
+  query: <T = unknown>(query: string, params?: readonly unknown[]) => Promise<{ rows: T[] }>;
   ensureInitialized: () => Promise<void>;
 };
 
@@ -35,8 +31,9 @@ const isBuildTime =
   process.env.NEXT_PHASE === "phase-production-build" || process.env.npm_lifecycle_event === "build";
 const runningOnVercel = Boolean(process.env.VERCEL);
 const forcePostgres = (process.env.AIRDROP_DB_PROVIDER ?? "").toLowerCase() === "postgres";
-const postgresConnectionString =
-  process.env.POSTGRES_URL ?? process.env.POSTGRES_PRISMA_URL ?? process.env.POSTGRES_URL_NON_POOLING;
+const pooledConnectionString = process.env.POSTGRES_URL;
+const directConnectionString = process.env.POSTGRES_URL_NON_POOLING ?? process.env.POSTGRES_PRISMA_URL;
+const postgresConnectionString = pooledConnectionString ?? directConnectionString;
 const hasPostgresConnection = Boolean(postgresConnectionString);
 
 if (!isBuildTime && forcePostgres && !hasPostgresConnection) {
@@ -52,37 +49,111 @@ let driver: DatabaseDriver;
 if (shouldUsePostgres) {
   let initialized = false;
   let initializationPromise: Promise<void> | null = null;
-  const pool = createPool({ connectionString: postgresConnectionString! });
+  const usePooledConnection = Boolean(pooledConnectionString);
 
-  const ensureInitialized = async () => {
-    if (initialized) return;
-    if (!initializationPromise) {
-      initializationPromise = (async () => {
-        await pool.sql`
-          CREATE TABLE IF NOT EXISTS airdrop_entries (
-            id SERIAL PRIMARY KEY,
-            name TEXT NULL,
-            email TEXT UNIQUE NOT NULL,
-            wallet_address TEXT UNIQUE NOT NULL,
-            signature TEXT NOT NULL,
-            created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-          )
-        `;
-        initialized = true;
-      })().catch((error) => {
-        initializationPromise = null;
-        throw error;
-      });
-    }
-    await initializationPromise;
-  };
+  if (!postgresConnectionString) {
+    throw new Error("Postgres connection string is not defined");
+  }
 
-  driver = {
-    kind: "postgres",
-    sql: pool.sql,
-    query: pool.query.bind(pool) as PostgresQuery,
-    ensureInitialized,
-  };
+  if (usePooledConnection) {
+    const pool = createPool({ connectionString: postgresConnectionString });
+
+    const query: PostgresDriver["query"] = async <T = unknown>(
+      text: string,
+      params: readonly unknown[] = []
+    ) => {
+      const result = await pool.query(text, params as unknown[]);
+      return { rows: result.rows as T[] };
+    };
+
+    const ensureInitialized = async () => {
+      if (initialized) return;
+      if (!initializationPromise) {
+        initializationPromise = (async () => {
+          await query(
+            `CREATE TABLE IF NOT EXISTS airdrop_entries (
+              id SERIAL PRIMARY KEY,
+              name TEXT NULL,
+              email TEXT UNIQUE NOT NULL,
+              wallet_address TEXT UNIQUE NOT NULL,
+              signature TEXT NOT NULL,
+              created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+            )`
+          );
+          initialized = true;
+        })().catch((error) => {
+          initializationPromise = null;
+          throw error;
+        });
+      }
+      await initializationPromise;
+    };
+
+    driver = {
+      kind: "postgres",
+      query,
+      ensureInitialized,
+    };
+  } else {
+    const client = createClient({ connectionString: postgresConnectionString });
+    let connected = false;
+    let connectPromise: Promise<void> | null = null;
+
+    const getClient = async () => {
+      if (connected) return client;
+      if (!connectPromise) {
+        connectPromise = client
+          .connect()
+          .then(() => {
+            connected = true;
+          })
+          .catch((error) => {
+            connectPromise = null;
+            throw error;
+          });
+      }
+      await connectPromise;
+      return client;
+    };
+
+    const query: PostgresDriver["query"] = async <T = unknown>(
+      text: string,
+      params: readonly unknown[] = []
+    ) => {
+      const activeClient = await getClient();
+      const result = await activeClient.query(text, params as unknown[]);
+      return { rows: result.rows as T[] };
+    };
+
+    const ensureInitialized = async () => {
+      if (initialized) return;
+      if (!initializationPromise) {
+        initializationPromise = (async () => {
+          await query(
+            `CREATE TABLE IF NOT EXISTS airdrop_entries (
+              id SERIAL PRIMARY KEY,
+              name TEXT NULL,
+              email TEXT UNIQUE NOT NULL,
+              wallet_address TEXT UNIQUE NOT NULL,
+              signature TEXT NOT NULL,
+              created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+            )`
+          );
+          initialized = true;
+        })().catch((error) => {
+          initializationPromise = null;
+          throw error;
+        });
+      }
+      await initializationPromise;
+    };
+
+    driver = {
+      kind: "postgres",
+      query,
+      ensureInitialized,
+    };
+  }
 } else {
   if (runningOnVercel) {
     console.warn(

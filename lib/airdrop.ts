@@ -48,10 +48,10 @@ export async function createAirdropEntry(input: CreateAirdropInput) {
   if (driver.kind === "postgres") {
     await ensureInitialized();
     try {
-      await driver.sql`
-        INSERT INTO airdrop_entries (name, email, wallet_address, signature)
-        VALUES (${name}, ${email}, ${walletAddress}, ${signature})
-      `;
+      await driver.query(
+        "INSERT INTO airdrop_entries (name, email, wallet_address, signature) VALUES ($1, $2, $3, $4)",
+        [name ?? null, email, walletAddress, signature]
+      );
     } catch (error) {
       handleDatabaseError(error);
     }
@@ -81,7 +81,7 @@ export async function listAirdropEntries(options: ListOptions = {}) {
     await ensureInitialized();
 
     const whereFragments: string[] = [];
-    const params: string[] = [];
+    const params: unknown[] = [];
 
     if (from) {
       params.push(from);
@@ -159,7 +159,9 @@ export async function getAirdropStats() {
 
   if (driver.kind === "postgres") {
     await ensureInitialized();
-    const result = await driver.sql`SELECT COUNT(*)::int as total FROM airdrop_entries`;
+    const result = await driver.query<{ total: number | string }>(
+      "SELECT COUNT(*)::int as total FROM airdrop_entries"
+    );
     const total = Number(result.rows[0]?.total ?? 0);
     return { totalParticipants: total };
   }
