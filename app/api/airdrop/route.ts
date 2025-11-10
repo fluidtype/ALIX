@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 
 import { createAirdropEntry } from "@/lib/airdrop";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
