@@ -1,13 +1,36 @@
 import Database from "better-sqlite3";
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 
-const dataDir = path.join(process.cwd(), "data");
-const databasePath = path.join(dataDir, "airdrop.sqlite");
+const candidateDirs = [
+  process.env.AIRDROP_DATA_DIR
+    ? path.resolve(process.env.AIRDROP_DATA_DIR)
+    : undefined,
+  path.join(process.cwd(), "data"),
+  path.join(os.tmpdir(), "alix-airdrop"),
+].filter((dir): dir is string => Boolean(dir));
 
-if (!fs.existsSync(dataDir)) {
-  fs.mkdirSync(dataDir, { recursive: true });
+let dataDir: string | undefined;
+
+for (const dir of candidateDirs) {
+  try {
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    fs.accessSync(dir, fs.constants.W_OK);
+    dataDir = dir;
+    break;
+  } catch {
+    // directory not writable, try next candidate
+  }
 }
+
+if (!dataDir) {
+  throw new Error("Unable to locate writable directory for the airdrop database");
+}
+
+const databasePath = path.join(dataDir, "airdrop.sqlite");
 
 const db = new Database(databasePath);
 
