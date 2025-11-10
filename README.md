@@ -151,3 +151,13 @@ Confirm that your Next.js image imports follow this pattern:
 <Image src="/hero.png" alt="ALIX hero" width={1200} height={800} />
 ```
 
+## 🔐 Environment
+
+Create a `.env.local` file and provide your WalletConnect Cloud project identifier so that mobile browsers can establish a session via WalletConnect:
+
+```
+NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id
+```
+
+You can generate a project ID from the [WalletConnect Cloud dashboard](https://cloud.walletconnect.com/). This is the **Project ID** value shown in the dashboard overview (a single ID shared by every platform), *not* the per-platform App IDs that you might configure for iOS or Android bundles. Restart the development server after updating environment variables so the value is available in the browser.
+
