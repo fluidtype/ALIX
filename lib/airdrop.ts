@@ -78,14 +78,14 @@ export function listAirdropEntries(options: ListOptions = {}) {
     createdAt: row.created_at,
   }));
 
-  const count = db
-    .prepare<{ total: number }>(`SELECT COUNT(*) as total FROM airdrop_entries ${whereClause}`)
-    .get(parameters)!.total;
+  const countRow = db
+    .prepare(`SELECT COUNT(*) as total FROM airdrop_entries ${whereClause}`)
+    .get(parameters) as { total: number } | undefined;
 
-  return { entries: mapped, total: count };
+  return { entries: mapped, total: countRow?.total ?? 0 };
 }
 
 export function getAirdropStats() {
-  const { total } = db.prepare<{ total: number }>("SELECT COUNT(*) as total FROM airdrop_entries").get();
-  return { totalParticipants: total ?? 0 };
+  const row = db.prepare("SELECT COUNT(*) as total FROM airdrop_entries").get() as { total: number } | undefined;
+  return { totalParticipants: row?.total ?? 0 };
 }
