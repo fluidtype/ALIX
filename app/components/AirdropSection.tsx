@@ -37,6 +37,8 @@ type Eip1193Provider = {
   on?(event: string, listener: (...args: unknown[]) => void): void;
   off?(event: string, listener: (...args: unknown[]) => void): void;
   disconnect?: () => Promise<void> | void;
+  connect?: () => Promise<unknown>;
+  enable?: () => Promise<unknown>;
 };
 
 type Benefit = {
@@ -169,6 +171,7 @@ export function AirdropSection() {
     if (typeof window === "undefined") return;
     try {
       let activeProvider: Eip1193Provider | null = provider;
+      let shouldConnect = false;
 
       if (!activeProvider) {
         const ethereum = (window as typeof window & { ethereum?: Eip1193Provider }).ethereum;
@@ -199,12 +202,41 @@ export function AirdropSection() {
 
           activeProvider = walletConnectProvider;
           setProvider(walletConnectProvider);
+          shouldConnect = true;
         }
       }
 
       if (!activeProvider) {
         toast.error("No wallet provider available");
         return;
+      }
+
+      if (!shouldConnect) {
+        try {
+          const existingAccounts = await activeProvider.request<string[]>({ method: "eth_accounts" });
+          if (!existingAccounts?.length) {
+            if ("connect" in activeProvider && typeof activeProvider.connect === "function") {
+              shouldConnect = true;
+            } else if ("enable" in activeProvider && typeof activeProvider.enable === "function") {
+              shouldConnect = true;
+            }
+          }
+        } catch (requestError) {
+          console.warn("Unable to fetch existing accounts", requestError);
+          if ("connect" in activeProvider && typeof activeProvider.connect === "function") {
+            shouldConnect = true;
+          } else if ("enable" in activeProvider && typeof activeProvider.enable === "function") {
+            shouldConnect = true;
+          }
+        }
+      }
+
+      if (shouldConnect) {
+        if ("connect" in activeProvider && typeof activeProvider.connect === "function") {
+          await activeProvider.connect();
+        } else if ("enable" in activeProvider && typeof activeProvider.enable === "function") {
+          await activeProvider.enable();
+        }
       }
 
       const accounts = await activeProvider.request<string[]>({ method: "eth_requestAccounts" });
