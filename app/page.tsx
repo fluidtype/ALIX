@@ -45,7 +45,7 @@ function HeroSection() {
               </p>
               <div className="space-y-4">
                 <a
-                  href="https://www.alixindex.com"
+                  href="https://app.virtuals.io/"
                   className="inline-flex items-center gap-3 rounded-lg bg-neon px-6 py-3 text-base font-semibold text-carbon transition hover:bg-lime-gradient"
                 >
                   Join the presale

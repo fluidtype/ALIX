@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { OPEN_AIRDROP_EVENT } from "@/lib/events";
+
 const navLinks = [
   { label: "Home", href: "/#home" },
   { label: "Index", href: "/#index" },
@@ -30,6 +32,13 @@ export function Header() {
       document.body.style.overflow = "";
     };
   }, [menuOpen]);
+
+  const handleAirdropClick = () => {
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new Event(OPEN_AIRDROP_EVENT));
+    }
+    setMenuOpen(false);
+  };
 
   return (
     <header
@@ -68,12 +77,13 @@ export function Header() {
             <path d="M4 6h16M4 12h16M10 18h10" />
           </svg>
         </button>
-        <a
-          href="https://www.alixindex.com"
+        <button
+          type="button"
+          onClick={handleAirdropClick}
           className="rounded-lg bg-neon px-5 py-2 text-sm font-semibold uppercase tracking-[0.12em] text-carbon shadow-lime transition-all duration-200 hover:bg-lime-gradient"
         >
-          Join the Presale
-        </a>
+          Join the Airdrop
+        </button>
       </div>
       {menuOpen && (
         <div className="lg:hidden">
@@ -88,13 +98,13 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
-            <a
-              href="https://www.alixindex.com"
-              onClick={() => setMenuOpen(false)}
+            <button
+              type="button"
+              onClick={handleAirdropClick}
               className="mt-4 inline-flex w-full items-center justify-center rounded-lg bg-neon px-4 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-carbon shadow-lime"
             >
-              Presale
-            </a>
+              Join the Airdrop
+            </button>
           </nav>
         </div>
       )}
