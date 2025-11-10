@@ -1,6 +1,11 @@
-import { Prisma } from "@prisma/client";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 import prisma from "./prisma";
+
+type SubscriptionFindManyArgs = Parameters<typeof prisma.subscription.findMany>[0];
+type SubscriptionWhereInput = SubscriptionFindManyArgs extends { where?: infer Where }
+  ? NonNullable<Where>
+  : Record<string, unknown>;
 
 type CreateAirdropInput = {
   name: string | null;
@@ -21,6 +26,15 @@ export type AirdropEntry = {
   walletAddress: string;
   signature: string;
   createdAt: string;
+};
+
+type SubscriptionRecord = {
+  id: number;
+  name: string | null;
+  email: string;
+  walletAddress: string;
+  signature: string;
+  createdAt: Date;
 };
 
 const isBuildTime =
@@ -54,7 +68,7 @@ export async function listAirdropEntries(options: ListOptions = {}) {
     return { entries: [], total: 0 };
   }
 
-  const where: Prisma.SubscriptionWhereInput = {};
+  const where: SubscriptionWhereInput = {};
   const fromDate = coerceDate(from, { startOfDay: true });
   const toDate = coerceDate(to, { endOfDay: true });
 
@@ -69,7 +83,7 @@ export async function listAirdropEntries(options: ListOptions = {}) {
     prisma.subscription.findMany({
       where,
       orderBy: { createdAt: "desc" },
-    }),
+    }) as Promise<SubscriptionRecord[]>,
     prisma.subscription.count({ where }),
   ]);
 
@@ -116,7 +130,7 @@ function coerceDate(value: string | undefined, options?: { startOfDay?: boolean;
 }
 
 function handleDatabaseError(error: unknown): never {
-  if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
+  if (error instanceof PrismaClientKnownRequestError && error.code === "P2002") {
     const target = Array.isArray(error.meta?.target) ? (error.meta?.target as string[]) : [];
     if (target.includes("email")) {
       throw new Error("This email is already registered for the airdrop");
