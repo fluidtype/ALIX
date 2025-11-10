@@ -32,8 +32,11 @@ import { cn } from "@/lib/utils";
 
 type BenefitIcon = ComponentType<{ className?: string }>;
 
-type EthereumProvider = {
+type Eip1193Provider = {
   request<T = unknown>(args: { method: string; params?: unknown[] }): Promise<T>;
+  on?(event: string, listener: (...args: unknown[]) => void): void;
+  off?(event: string, listener: (...args: unknown[]) => void): void;
+  disconnect?: () => Promise<void> | void;
 };
 
 type Benefit = {
@@ -89,12 +92,20 @@ export function AirdropSection() {
   const [walletAddress, setWalletAddress] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [successEmail, setSuccessEmail] = useState<string | null>(null);
+  const [provider, setProvider] = useState<Eip1193Provider | null>(null);
+
+  const walletConnectProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID;
 
   const walletConnected = Boolean(walletAddress);
 
   useEffect(() => {
     if (typeof window === "undefined") {
       return;
+    }
+
+    const ethereum = (window as typeof window & { ethereum?: Eip1193Provider }).ethereum;
+    if (ethereum) {
+      setProvider(ethereum);
     }
 
     const listener: EventListener = () => {
@@ -113,6 +124,25 @@ export function AirdropSection() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!provider || typeof provider.on !== "function") {
+      return;
+    }
+
+    const handleDisconnect = () => {
+      setWalletAddress("");
+      setProvider(null);
+    };
+
+    provider.on("disconnect", handleDisconnect);
+
+    return () => {
+      if (typeof provider.off === "function") {
+        provider.off("disconnect", handleDisconnect);
+      }
+    };
+  }, [provider]);
+
   const messageToSign = useMemo(() => {
     if (!walletAddress) return "";
     return `I am joining the ALIX airdrop with address: ${walletAddress}`;
@@ -129,14 +159,46 @@ export function AirdropSection() {
 
   const handleConnectWallet = async () => {
     if (typeof window === "undefined") return;
-    const ethereum = (window as typeof window & { ethereum?: EthereumProvider }).ethereum;
-    if (!ethereum) {
-      toast.error("Connect MetaMask to continue");
-      return;
-    }
-
     try {
-      const accounts = await ethereum.request<string[]>({ method: "eth_requestAccounts" });
+      let activeProvider: Eip1193Provider | null = provider;
+
+      if (!activeProvider) {
+        const ethereum = (window as typeof window & { ethereum?: Eip1193Provider }).ethereum;
+
+        if (ethereum) {
+          activeProvider = ethereum;
+          setProvider(ethereum);
+        } else {
+          if (!walletConnectProjectId) {
+            toast.error("WalletConnect is not configured. Please contact support.");
+            return;
+          }
+
+          const { EthereumProvider } = await import("@walletconnect/ethereum-provider");
+          const walletConnectProvider = await EthereumProvider.init({
+            projectId: walletConnectProjectId,
+            chains: [1],
+            showQrModal: true,
+            methods: ["personal_sign", "eth_signTypedData", "eth_sendTransaction"],
+            metadata: {
+              name: "ALIX",
+              description: "ALIX airdrop registration",
+              url: window.location.origin,
+              icons: [new URL("/mockup.png", window.location.origin).toString()],
+            },
+          });
+
+          activeProvider = walletConnectProvider;
+          setProvider(walletConnectProvider);
+        }
+      }
+
+      if (!activeProvider) {
+        toast.error("No wallet provider available");
+        return;
+      }
+
+      const accounts = await activeProvider.request<string[]>({ method: "eth_requestAccounts" });
       const account = accounts?.[0];
       if (!account) {
         toast.error("No wallet selected");
@@ -166,15 +228,16 @@ export function AirdropSection() {
     }
 
     if (typeof window === "undefined") return;
-    const ethereum = (window as typeof window & { ethereum?: EthereumProvider }).ethereum;
-    if (!ethereum) {
-      toast.error("MetaMask not available");
+    const activeProvider =
+      provider ?? (window as typeof window & { ethereum?: Eip1193Provider }).ethereum ?? null;
+    if (!activeProvider) {
+      toast.error("Wallet provider not available. Please reconnect your wallet.");
       return;
     }
 
     try {
       setIsSubmitting(true);
-      const signature = await ethereum.request<string>({
+      const signature = await activeProvider.request<string>({
         method: "personal_sign",
         params: [messageToSign, walletAddress],
       });
