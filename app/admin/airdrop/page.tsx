@@ -2,14 +2,14 @@ import { listAirdropEntries } from "@/lib/airdrop";
 
 export const dynamic = "force-dynamic";
 
-export default function AirdropAdminPage({
+export default async function AirdropAdminPage({
   searchParams,
 }: {
   searchParams: { from?: string; to?: string };
 }) {
   const from = searchParams.from;
   const to = searchParams.to;
-  const { entries, total } = listAirdropEntries({ from, to });
+  const { entries, total } = await listAirdropEntries({ from, to });
 
   const query = new URLSearchParams();
   if (from) query.set("from", from);

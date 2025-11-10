@@ -32,7 +32,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    createAirdropEntry({
+    await createAirdropEntry({
       name: name?.trim() ? name.trim() : null,
       email: email.trim().toLowerCase(),
       walletAddress: walletAddress.trim().toLowerCase(),

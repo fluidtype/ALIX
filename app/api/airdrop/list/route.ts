@@ -7,7 +7,7 @@ export async function GET(request: Request) {
   const from = searchParams.get("from") || undefined;
   const to = searchParams.get("to") || undefined;
 
-  const { entries, total } = listAirdropEntries({ from, to });
+  const { entries, total } = await listAirdropEntries({ from, to });
 
   return NextResponse.json({ entries, total });
 }
