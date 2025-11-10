@@ -39,28 +39,25 @@ const isLikelyPooledConnectionString = (value: string | undefined) => {
   try {
     const url = new URL(value);
     const hostname = url.hostname.toLowerCase();
-    const params = url.searchParams;
 
-    return (
-      params.has("pgbouncer") ||
-      params.has("connection_limit") ||
-      hostname.includes("pooler.vercel") ||
-      hostname.includes("pooling")
-    );
+    return hostname.includes("pooler") || hostname.includes("pooling");
   } catch {
     return false;
   }
 };
 
-const pooledConnectionAvailable =
-  pooledConnectionString && isLikelyPooledConnectionString(pooledConnectionString);
+const explicitDirectConnectionString =
+  process.env.POSTGRES_URL_NON_POOLING ?? process.env.POSTGRES_PRISMA_URL ?? undefined;
 
-const directConnectionString =
-  process.env.POSTGRES_URL_NON_POOLING ??
-  process.env.POSTGRES_PRISMA_URL ??
-  (!pooledConnectionAvailable ? pooledConnectionString : undefined);
+const pooledConnectionAvailable = Boolean(
+  pooledConnectionString &&
+    (isLikelyPooledConnectionString(pooledConnectionString) || explicitDirectConnectionString)
+);
 
-const hasPostgresConnection = Boolean(pooledConnectionString ?? directConnectionString);
+const effectiveDirectConnectionString =
+  explicitDirectConnectionString ?? (!pooledConnectionAvailable ? pooledConnectionString : undefined);
+
+const hasPostgresConnection = Boolean(pooledConnectionString ?? effectiveDirectConnectionString);
 
 if (!isBuildTime && forcePostgres && !hasPostgresConnection) {
   throw new Error(
@@ -77,7 +74,9 @@ if (shouldUsePostgres) {
   let initializationPromise: Promise<void> | null = null;
   const connectionMode: "pool" | "direct" = pooledConnectionAvailable ? "pool" : "direct";
   const connectionString =
-    connectionMode === "pool" ? pooledConnectionString : directConnectionString ?? pooledConnectionString;
+    connectionMode === "pool"
+      ? pooledConnectionString
+      : effectiveDirectConnectionString ?? pooledConnectionString;
 
   if (!connectionString) {
     throw new Error("Postgres connection string is not defined");
