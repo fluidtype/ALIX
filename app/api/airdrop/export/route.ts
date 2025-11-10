@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 import { listAirdropEntries } from "@/lib/airdrop";
 
+export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
