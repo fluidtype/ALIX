@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 import { createAirdropEntry } from "@/lib/airdrop";
 
+export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
@@ -44,7 +45,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true }, { status: 201 });
   } catch (error) {
     if (error instanceof Error) {
-      return NextResponse.json({ error: error.message }, { status: 409 });
+      return NextResponse.json({ error: error.message }, { status: error.message.includes("already") ? 409 : 500 });
     }
     return NextResponse.json({ error: "Internal error" }, { status: 500 });
   }
