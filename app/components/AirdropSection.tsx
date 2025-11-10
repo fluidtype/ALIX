@@ -78,6 +78,14 @@ const benefits: Benefit[] = [
   },
 ];
 
+const WALLETCONNECT_METHODS = [
+  "eth_requestAccounts",
+  "eth_accounts",
+  "personal_sign",
+  "eth_signTypedData",
+  "eth_sendTransaction",
+];
+
 const stats = [
   { label: "Total Supply", value: "1B", description: "Total Supply ALIX" },
   { label: "Burn Fee", value: "1%", description: "Burn Fee" },
@@ -179,7 +187,8 @@ export function AirdropSection() {
             projectId: walletConnectProjectId,
             chains: [1],
             showQrModal: true,
-            methods: ["personal_sign", "eth_signTypedData", "eth_sendTransaction"],
+            methods: WALLETCONNECT_METHODS,
+            optionalMethods: WALLETCONNECT_METHODS,
             metadata: {
               name: "ALIX",
               description: "ALIX airdrop registration",
