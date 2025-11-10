@@ -6,26 +6,50 @@ const connectionString =
   process.env.DATABASE_URL ??
   process.env.POSTGRES_URL;
 
-if (!connectionString) {
-  throw new Error(
-    "Missing database connection string. Set POSTGRES_PRISMA_URL or DATABASE_URL in your environment."
-  );
-}
+const isBuildTime =
+  process.env.NEXT_PHASE === "phase-production-build" ||
+  process.env.npm_lifecycle_event === "build";
 
-const isAccelerateUrl = /^prisma(\+|:\/)/i.test(connectionString);
+const missingConnectionStringError = new Error(
+  "Missing database connection string. Set POSTGRES_PRISMA_URL or DATABASE_URL in your environment."
+);
+
+const createNoopClient = (): PrismaClient =>
+  new Proxy(
+    {},
+    {
+      get() {
+        throw missingConnectionStringError;
+      },
+    }
+  ) as PrismaClient;
+
+const isAccelerateUrl = connectionString ? /^prisma(\+|:\/)/i.test(connectionString) : false;
 const shouldUseAccelerate = isAccelerateUrl;
 
-const createClient = () => {
+const createClient = (): PrismaClient => {
+  if (!connectionString) {
+    if (isBuildTime) {
+      return createNoopClient();
+    }
+
+    throw missingConnectionStringError;
+  }
+
   const client = new PrismaClient({
     datasourceUrl: connectionString,
   });
 
-  return shouldUseAccelerate ? client.$extends(withAccelerate()) : client;
+  if (shouldUseAccelerate) {
+    return client.$extends(withAccelerate()) as unknown as PrismaClient;
+  }
+
+  return client;
 };
 
 declare global {
   // eslint-disable-next-line no-var
-  var __prisma__: ReturnType<typeof createClient> | undefined;
+  var __prisma__: PrismaClient | undefined;
 }
 
 const prisma = globalThis.__prisma__ ?? createClient();
