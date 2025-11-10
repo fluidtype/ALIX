@@ -9,7 +9,7 @@ function isValidEmail(email: string) {
 export async function POST(request: Request) {
   const payload = await request.json().catch(() => null);
   if (!payload || typeof payload !== "object") {
-    return NextResponse.json({ error: "Payload non valido" }, { status: 400 });
+    return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
   }
 
   const { name, email, walletAddress, signature } = payload as {
@@ -20,15 +20,15 @@ export async function POST(request: Request) {
   };
 
   if (!email || !isValidEmail(email)) {
-    return NextResponse.json({ error: "Email non valida" }, { status: 422 });
+    return NextResponse.json({ error: "Invalid email" }, { status: 422 });
   }
 
   if (!walletAddress || typeof walletAddress !== "string" || !walletAddress.startsWith("0x")) {
-    return NextResponse.json({ error: "Wallet address non valida" }, { status: 422 });
+    return NextResponse.json({ error: "Invalid wallet address" }, { status: 422 });
   }
 
   if (!signature || typeof signature !== "string") {
-    return NextResponse.json({ error: "Firma richiesta" }, { status: 422 });
+    return NextResponse.json({ error: "Signature required" }, { status: 422 });
   }
 
   try {
@@ -43,6 +43,6 @@ export async function POST(request: Request) {
     if (error instanceof Error) {
       return NextResponse.json({ error: error.message }, { status: 409 });
     }
-    return NextResponse.json({ error: "Errore interno" }, { status: 500 });
+    return NextResponse.json({ error: "Internal error" }, { status: 500 });
   }
 }

@@ -43,33 +43,33 @@ type Benefit = {
 
 const benefits: Benefit[] = [
   {
-    title: "Token Gratuiti",
-    description: "Ottieni token ALIX senza costi e avvia il tuo journey nell'ecosistema.",
+    title: "Free Tokens",
+    description: "Collect ALIX tokens at no cost and kickstart your journey in the ecosystem.",
     icon: Coins,
   },
   {
-    title: "Accesso Anticipato",
-    description: "Provare per primi le nuove funzionalità del protocollo e i drop riservati.",
+    title: "Early Access",
+    description: "Be the first to try new protocol features and members-only drops.",
     icon: Crown,
   },
   {
     title: "Governance",
-    description: "Partecipa alle decisioni strategiche con diritto di voto on-chain.",
+    description: "Join strategic decisions with on-chain voting power.",
     icon: Users,
   },
   {
-    title: "Rewards Esclusivi",
-    description: "Sblocca missioni stagionali con reward potenziati per i primi utenti.",
+    title: "Exclusive Rewards",
+    description: "Unlock seasonal quests with boosted rewards for early supporters.",
     icon: Gift,
   },
   {
     title: "Deflationary Benefit",
-    description: "Approfitta del burn del 1% che sostiene il valore del token.",
+    description: "Benefit from the 1% burn that underpins the token's value.",
     icon: TrendingUp,
   },
   {
-    title: "Community VIP",
-    description: "Accedi alle stanze private della community e ai briefing settimanali.",
+    title: "VIP Community",
+    description: "Enter private community lounges and weekly briefings.",
     icon: Sparkles,
   },
 ];
@@ -93,7 +93,7 @@ export function AirdropSection() {
 
   const messageToSign = useMemo(() => {
     if (!walletAddress) return "";
-    return `Partecipo all'airdrop ALIX con l'indirizzo: ${walletAddress}`;
+    return `I am joining the ALIX airdrop with address: ${walletAddress}`;
   }, [walletAddress]);
 
   const resetForm = () => {
@@ -109,7 +109,7 @@ export function AirdropSection() {
     if (typeof window === "undefined") return;
     const ethereum = (window as typeof window & { ethereum?: EthereumProvider }).ethereum;
     if (!ethereum) {
-      toast.error("Collega MetaMask per continuare");
+      toast.error("Connect MetaMask to continue");
       return;
     }
 
@@ -117,36 +117,36 @@ export function AirdropSection() {
       const accounts = await ethereum.request<string[]>({ method: "eth_requestAccounts" });
       const account = accounts?.[0];
       if (!account) {
-        toast.error("Nessun wallet selezionato");
+        toast.error("No wallet selected");
         return;
       }
       setWalletAddress(account);
-      toast.success("Wallet connesso");
+      toast.success("Wallet connected");
     } catch (error) {
       console.error(error);
-      toast.error("Connessione al wallet annullata");
+      toast.error("Wallet connection cancelled");
     }
   };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      toast.error("Inserisci un'email valida");
+      toast.error("Enter a valid email");
       return;
     }
     if (!walletConnected) {
-      toast.error("Connetti il wallet per continuare");
+      toast.error("Connect your wallet to continue");
       return;
     }
     if (!termsAccepted) {
-      toast.error("Accetta termini e condizioni");
+      toast.error("Accept the terms and conditions");
       return;
     }
 
     if (typeof window === "undefined") return;
     const ethereum = (window as typeof window & { ethereum?: EthereumProvider }).ethereum;
     if (!ethereum) {
-      toast.error("MetaMask non disponibile");
+      toast.error("MetaMask not available");
       return;
     }
 
@@ -170,15 +170,15 @@ export function AirdropSection() {
 
       const payload = await response.json();
       if (!response.ok) {
-        throw new Error(payload?.error ?? "Impossibile completare l'iscrizione");
+        throw new Error(payload?.error ?? "Unable to complete the registration");
       }
 
       setSuccessEmail(email.trim());
-      toast.success("Iscrizione completata");
+      toast.success("Registration completed");
     } catch (error) {
       console.error(error);
       const message =
-        error instanceof Error && error.message ? error.message : "Errore inatteso";
+        error instanceof Error && error.message ? error.message : "Unexpected error";
       toast.error(message);
     } finally {
       setIsSubmitting(false);
@@ -204,17 +204,17 @@ export function AirdropSection() {
               Airdrop Live
             </span>
             <h2 className="font-display text-4xl font-semibold text-white md:text-5xl">
-              Partecipa all&apos;Airdrop di ALIX
+              Join the ALIX Airdrop
             </h2>
             <p className="max-w-2xl text-lg text-white/70">
-              Ricevi token ALIX gratuitamente e diventa parte della rivoluzione dell&apos;intelligenza decentralizzata.
-              Unisciti alla community di early adopters e sblocca vantaggi esclusivi.
+              Receive ALIX tokens for free and become part of the decentralized intelligence revolution. Join the
+              early-adopter community and unlock exclusive perks.
             </p>
             <Dialog open={open} onOpenChange={handleOpenChange}>
               <DialogTrigger asChild>
                 <Button className="text-base font-semibold" size="lg">
                   <Coins className="h-5 w-5" />
-                  Partecipa all&apos;Airdrop
+                  Join the Airdrop
                 </Button>
               </DialogTrigger>
               <DialogContent className="max-w-2xl gap-8 rounded-none p-6 sm:rounded-[2rem] sm:p-10">
@@ -223,18 +223,18 @@ export function AirdropSection() {
                     <CheckCircle2 className="h-16 w-16 text-[#CDFF00]" />
                     <div className="space-y-2">
                       <h3 className="font-display text-3xl font-semibold text-white">
-                        Partecipazione Confermata!
+                        Participation Confirmed!
                       </h3>
                       <p className="text-sm text-white/70">
-                        Sei dentro! Ti abbiamo inviato un riepilogo a <span className="font-semibold text-white">{successEmail}</span>.
+                        You&apos;re in! We sent a recap to <span className="font-semibold text-white">{successEmail}</span>.
                       </p>
                     </div>
                     <ul className="w-full space-y-3 text-left text-sm text-white/70">
                       {[
-                        "Controlla la tua email per gli step successivi",
-                        "Unisciti al nostro Discord privato per gli update",
-                        "Segui i social ufficiali per le call to action",
-                        "Tieniti pronto per la distribuzione dei token",
+                        "Check your inbox for the next steps",
+                        "Join our private Discord for updates",
+                        "Follow the official socials for calls to action",
+                        "Stay ready for the token distribution",
                       ].map((item) => (
                         <li key={item} className="flex items-start gap-3">
                           <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#CDFF00]" />
@@ -247,23 +247,23 @@ export function AirdropSection() {
                       onClick={() => handleOpenChange(false)}
                       type="button"
                     >
-                      Chiudi
+                      Close
                     </Button>
                   </div>
                 ) : (
                   <form className="space-y-6" onSubmit={handleSubmit}>
                     <DialogHeader className="space-y-3 text-left">
-                      <DialogTitle>Partecipa all&apos;Airdrop ALIX</DialogTitle>
+                      <DialogTitle>Join the ALIX Airdrop</DialogTitle>
                       <DialogDescription>
-                        Compila il form, collega il tuo wallet e conferma la partecipazione firmando il messaggio.
+                        Fill in the form, connect your wallet, and confirm your participation by signing the message.
                       </DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-4">
                       <div className="grid gap-2">
-                        <Label htmlFor="airdrop-name">Nome (opzionale)</Label>
+                        <Label htmlFor="airdrop-name">Name (optional)</Label>
                         <Input
                           id="airdrop-name"
-                          placeholder="Inserisci il tuo nome"
+                          placeholder="Enter your name"
                           value={name}
                           onChange={(event) => setName(event.target.value)}
                           autoComplete="name"
@@ -276,7 +276,7 @@ export function AirdropSection() {
                         <Input
                           id="airdrop-email"
                           type="email"
-                          placeholder="nome@email.com"
+                          placeholder="you@example.com"
                           required
                           value={email}
                           onChange={(event) => setEmail(event.target.value)}
@@ -320,7 +320,7 @@ export function AirdropSection() {
                           onCheckedChange={(value) => setTermsAccepted(Boolean(value))}
                         />
                         <Label htmlFor="airdrop-terms" className="text-sm font-normal text-white/80">
-                          Accetto i <a className="text-[#CDFF00] underline" href="/privacy" target="_blank" rel="noreferrer">termini e condizioni</a> e la privacy policy.
+                          I agree to the <a className="text-[#CDFF00] underline" href="/privacy" target="_blank" rel="noreferrer">terms and conditions</a> and privacy policy.
                         </Label>
                       </div>
                     </div>
@@ -329,7 +329,7 @@ export function AirdropSection() {
                       className="w-full text-base"
                       disabled={isSubmitting || !walletConnected || !termsAccepted}
                     >
-                      {isSubmitting ? "Invio in corso..." : "Conferma Partecipazione"}
+                      {isSubmitting ? "Submitting..." : "Confirm Participation"}
                     </Button>
                   </form>
                 )}

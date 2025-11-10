@@ -165,25 +165,25 @@ function handleDatabaseError(error: unknown): never {
     if (code === "SQLITE_CONSTRAINT_UNIQUE") {
       const message = error.message ?? "";
       if (/email/.test(message)) {
-        throw new Error("Questa email è già registrata all'airdrop");
+        throw new Error("This email is already registered for the airdrop");
       }
       if (/wallet_address/.test(message)) {
-        throw new Error("Questo wallet ha già partecipato all'airdrop");
+        throw new Error("This wallet has already joined the airdrop");
       }
-      throw new Error("Partecipazione già registrata");
+      throw new Error("Participation already recorded");
     }
 
     if (code === "23505") {
       const constraint = (error as { constraint?: string }).constraint ?? "";
       if (constraint.includes("email")) {
-        throw new Error("Questa email è già registrata all'airdrop");
+        throw new Error("This email is already registered for the airdrop");
       }
       if (constraint.includes("wallet_address")) {
-        throw new Error("Questo wallet ha già partecipato all'airdrop");
+        throw new Error("This wallet has already joined the airdrop");
       }
-      throw new Error("Partecipazione già registrata");
+      throw new Error("Participation already recorded");
     }
   }
 
-  throw error instanceof Error ? error : new Error("Errore interno");
+  throw error instanceof Error ? error : new Error("Internal error");
 }
