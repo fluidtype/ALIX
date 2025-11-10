@@ -25,6 +25,16 @@ type PostgresDriver = {
   ensureInitialized: () => Promise<void>;
 };
 
+type PrismaAccelerateClient = {
+  $queryRawUnsafe: <T = unknown>(query: string, ...params: unknown[]) => Promise<T>;
+  $executeRawUnsafe: (query: string, ...params: unknown[]) => Promise<unknown>;
+};
+
+declare global {
+  // eslint-disable-next-line no-var
+  var __airdropPrismaClient: PrismaAccelerateClient | undefined;
+}
+
 export type DatabaseDriver = SqliteDriver | PostgresDriver;
 
 const isBuildTime =
@@ -32,9 +42,41 @@ const isBuildTime =
 const runningOnVercel = Boolean(process.env.VERCEL);
 const forcePostgres = (process.env.AIRDROP_DB_PROVIDER ?? "").toLowerCase() === "postgres";
 const pooledConnectionString = process.env.POSTGRES_URL;
-const directConnectionString = process.env.POSTGRES_URL_NON_POOLING ?? process.env.POSTGRES_PRISMA_URL;
-const postgresConnectionString = pooledConnectionString ?? directConnectionString;
-const hasPostgresConnection = Boolean(postgresConnectionString);
+const prismaConnectionString = process.env.POSTGRES_PRISMA_URL ?? process.env.DATABASE_URL ?? undefined;
+const isAccelerateConnectionString = prismaConnectionString?.startsWith("prisma+postgres://") ?? false;
+
+const candidateDirectStrings = [
+  process.env.POSTGRES_URL_NON_POOLING,
+  !isAccelerateConnectionString ? prismaConnectionString : undefined,
+].filter((value): value is string => Boolean(value));
+
+const isLikelyPooledConnectionString = (value: string | undefined) => {
+  if (!value) return false;
+
+  try {
+    const url = new URL(value);
+    const hostname = url.hostname.toLowerCase();
+
+    return hostname.includes("pooler") || hostname.includes("pooling");
+  } catch {
+    return false;
+  }
+};
+
+const pooledConnectionAvailable = Boolean(
+  pooledConnectionString &&
+    (isLikelyPooledConnectionString(pooledConnectionString) || Boolean(process.env.POSTGRES_URL_NON_POOLING))
+);
+
+const explicitDirectConnectionString = candidateDirectStrings[0];
+
+const effectiveDirectConnectionString =
+  explicitDirectConnectionString ?? (!pooledConnectionAvailable ? pooledConnectionString : undefined);
+
+const hasPrismaAccelerateConnection = Boolean(isAccelerateConnectionString && prismaConnectionString);
+const hasPostgresConnection = Boolean(
+  pooledConnectionString ?? effectiveDirectConnectionString ?? (hasPrismaAccelerateConnection ? prismaConnectionString : undefined)
+);
 
 if (!isBuildTime && forcePostgres && !hasPostgresConnection) {
   throw new Error(
@@ -42,38 +84,28 @@ if (!isBuildTime && forcePostgres && !hasPostgresConnection) {
   );
 }
 
-const shouldUsePostgres = !isBuildTime && (forcePostgres || hasPostgresConnection);
+const shouldUsePrismaAccelerate = !isBuildTime && hasPrismaAccelerateConnection;
+const shouldUsePostgres = !shouldUsePrismaAccelerate && !isBuildTime && (forcePostgres || hasPostgresConnection);
 
 let driver: DatabaseDriver;
 
-if (shouldUsePostgres) {
+if (shouldUsePrismaAccelerate && prismaConnectionString) {
+  driver = createPrismaAccelerateDriver(prismaConnectionString);
+} else if (shouldUsePostgres) {
   let initialized = false;
   let initializationPromise: Promise<void> | null = null;
-  if (!postgresConnectionString) {
+  const connectionMode: "pool" | "direct" = pooledConnectionAvailable ? "pool" : "direct";
+  const connectionString =
+    connectionMode === "pool"
+      ? pooledConnectionString
+      : effectiveDirectConnectionString ?? pooledConnectionString;
+
+  if (!connectionString) {
     throw new Error("Postgres connection string is not defined");
   }
 
-  const inferConnectionMode = (): "pool" | "direct" => {
-    if (pooledConnectionString && directConnectionString) {
-      return "pool";
-    }
-
-    const target = pooledConnectionString ?? directConnectionString ?? postgresConnectionString;
-
-    try {
-      const { hostname } = new URL(target);
-      const looksLikeVercelPool = /vercel-storage\.com$/i.test(hostname);
-      return looksLikeVercelPool ? "pool" : "direct";
-    } catch {
-      return pooledConnectionString ? "pool" : "direct";
-    }
-  };
-
-  const connectionMode = inferConnectionMode();
-  const usePooledConnection = connectionMode === "pool";
-
-  if (usePooledConnection) {
-    const pool = createPool({ connectionString: postgresConnectionString });
+  if (connectionMode === "pool") {
+    const pool = createPool({ connectionString });
 
     const query: PostgresDriver["query"] = async <T = unknown>(
       text: string,
@@ -112,7 +144,7 @@ if (shouldUsePostgres) {
       ensureInitialized,
     };
   } else {
-    const client = createClient({ connectionString: postgresConnectionString });
+    const client = createClient({ connectionString });
     let connected = false;
     let connectPromise: Promise<void> | null = null;
 
@@ -220,6 +252,90 @@ if (shouldUsePostgres) {
   driver = {
     kind: "sqlite",
     db,
+  };
+}
+
+function createPrismaAccelerateDriver(connectionString: string): PostgresDriver {
+  let initialized = false;
+  let initializationPromise: Promise<void> | null = null;
+  let prismaClientPromise: Promise<PrismaAccelerateClient> | null = null;
+
+  const getClient = async () => {
+    if (globalThis.__airdropPrismaClient) {
+      return globalThis.__airdropPrismaClient;
+    }
+
+    if (!prismaClientPromise) {
+      prismaClientPromise = (async () => {
+        const [{ PrismaClient }, { withAccelerate }] = await Promise.all([
+          import("@prisma/client/edge"),
+          import("@prisma/extension-accelerate"),
+        ]);
+
+        const client = new PrismaClient({
+          datasources: {
+            db: {
+              url: connectionString,
+            },
+          },
+        }).$extends(withAccelerate()) as unknown as PrismaAccelerateClient;
+
+        globalThis.__airdropPrismaClient = client;
+        return client;
+      })().catch((error) => {
+        prismaClientPromise = null;
+        throw error;
+      });
+    }
+
+    return prismaClientPromise!;
+  };
+
+  const query: PostgresDriver["query"] = async <T = unknown>(
+    text: string,
+    params: readonly unknown[] = []
+  ) => {
+    const client = await getClient();
+    const trimmed = text.trim();
+    const shouldUseQueryRaw =
+      /^(select|with|show|describe|explain)\b/i.test(trimmed) || /\breturning\b/i.test(trimmed);
+
+    if (shouldUseQueryRaw) {
+      const rows = (await client.$queryRawUnsafe<T[]>(text, ...(params as unknown[]))) ?? [];
+      return { rows };
+    }
+
+    await client.$executeRawUnsafe(text, ...(params as unknown[]));
+    return { rows: [] as T[] };
+  };
+
+  const ensureInitialized = async () => {
+    if (initialized) return;
+    if (!initializationPromise) {
+      initializationPromise = (async () => {
+        await query(
+          `CREATE TABLE IF NOT EXISTS airdrop_entries (
+            id SERIAL PRIMARY KEY,
+            name TEXT NULL,
+            email TEXT UNIQUE NOT NULL,
+            wallet_address TEXT UNIQUE NOT NULL,
+            signature TEXT NOT NULL,
+            created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+          )`
+        );
+        initialized = true;
+      })().catch((error) => {
+        initializationPromise = null;
+        throw error;
+      });
+    }
+    await initializationPromise;
+  };
+
+  return {
+    kind: "postgres",
+    query,
+    ensureInitialized,
   };
 }
 
