@@ -41,7 +41,7 @@ const createClient = (): PrismaClient => {
   });
 
   if (shouldUseAccelerate) {
-    return client.$extends(withAccelerate()) as PrismaClient;
+    return client.$extends(withAccelerate()) as unknown as PrismaClient;
   }
 
   return client;
