@@ -12,8 +12,8 @@ export default function LandingPage() {
       <Header />
       <main className="pt-24 md:pt-28">
         <HeroSection />
-        <AirdropSection />
         <AboutAlixSection />
+        <AirdropSection />
         <HowItWorksSection />
         <LiveIndexSection />
         <TrustedSection />
